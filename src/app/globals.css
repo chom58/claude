@@ -1,0 +1,289 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* フォントの読み込み */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap');
+
+/* ベーススタイル */
+@layer base {
+  html {
+    font-family: 'Inter', 'Noto Sans JP', sans-serif;
+  }
+  
+  body {
+    @apply bg-harajuku-gradient min-h-screen;
+  }
+  
+  /* スクロールバーのスタイリング */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-100;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-harajuku-pink-300 rounded-full;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-harajuku-pink-400;
+  }
+}
+
+/* カスタムコンポーネントスタイル */
+@layer components {
+  /* ボタンスタイル */
+  .btn-primary {
+    @apply bg-gradient-to-r from-harajuku-pink-500 to-harajuku-purple-500 text-white font-medium px-6 py-3 rounded-xl hover:from-harajuku-pink-600 hover:to-harajuku-purple-600 transform hover:scale-105 transition-all duration-200 shadow-harajuku;
+  }
+  
+  .btn-secondary {
+    @apply bg-white text-harajuku-pink-600 font-medium px-6 py-3 rounded-xl border-2 border-harajuku-pink-200 hover:border-harajuku-pink-300 hover:bg-harajuku-pink-50 transition-all duration-200;
+  }
+  
+  .btn-outline {
+    @apply border-2 border-harajuku-purple-300 text-harajuku-purple-600 font-medium px-6 py-3 rounded-xl hover:bg-harajuku-purple-50 transition-all duration-200;
+  }
+  
+  /* カードスタイル */
+  .card {
+    @apply bg-white rounded-2xl shadow-harajuku p-6 hover:shadow-harajuku-lg transition-all duration-300 border border-white/50 backdrop-blur-sm;
+  }
+  
+  .card-hover {
+    @apply transform hover:scale-105 hover:-translate-y-2;
+  }
+  
+  /* グラデーションテキスト */
+  .text-gradient {
+    @apply bg-gradient-to-r from-harajuku-pink-500 to-harajuku-purple-500 bg-clip-text text-transparent;
+  }
+  
+  .text-gradient-blue {
+    @apply bg-gradient-to-r from-harajuku-purple-500 to-harajuku-blue-500 bg-clip-text text-transparent;
+  }
+  
+  /* ナビゲーションスタイル */
+  .nav-link {
+    @apply text-gray-700 hover:text-harajuku-pink-600 font-medium transition-colors duration-200 relative;
+  }
+  
+  .nav-link.active {
+    @apply text-harajuku-pink-600;
+  }
+  
+  .nav-link::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-harajuku-pink-500 to-harajuku-purple-500 transition-all duration-300;
+  }
+  
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    @apply w-full;
+  }
+  
+  /* フォーム要素 */
+  .form-input {
+    @apply w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-harajuku-pink-200 focus:border-harajuku-pink-400 transition-all duration-200 bg-white/80 backdrop-blur-sm;
+  }
+  
+  .form-label {
+    @apply block text-sm font-medium text-gray-700 mb-2;
+  }
+  
+  .form-error {
+    @apply text-red-500 text-sm mt-1;
+  }
+  
+  /* タグスタイル */
+  .tag {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium;
+  }
+  
+  .tag-pink {
+    @apply bg-harajuku-pink-100 text-harajuku-pink-800;
+  }
+  
+  .tag-purple {
+    @apply bg-harajuku-purple-100 text-harajuku-purple-800;
+  }
+  
+  .tag-blue {
+    @apply bg-harajuku-blue-100 text-harajuku-blue-800;
+  }
+  
+  /* バッジスタイル */
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold;
+  }
+  
+  .badge-success {
+    @apply bg-green-100 text-green-800;
+  }
+  
+  .badge-warning {
+    @apply bg-yellow-100 text-yellow-800;
+  }
+  
+  .badge-error {
+    @apply bg-red-100 text-red-800;
+  }
+  
+  /* ローディングアニメーション */
+  .loading-spinner {
+    @apply animate-spin rounded-full border-4 border-gray-200 border-t-harajuku-pink-500;
+  }
+  
+  /* スケルトンローディング */
+  .skeleton {
+    @apply animate-pulse bg-gray-200 rounded;
+  }
+  
+  /* フェードインアニメーション */
+  .fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* スライドインアニメーション */
+  .slide-in-left {
+    animation: slideInLeft 0.5s ease-out;
+  }
+  
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  .slide-in-right {
+    animation: slideInRight 0.5s ease-out;
+  }
+  
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  /* レスポンシブなコンテナ */
+  .container-responsive {
+    @apply w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  /* グリッドレイアウト */
+  .grid-responsive {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
+  }
+  
+  .grid-responsive-4 {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6;
+  }
+  
+  /* セクション間のスペーシング */
+  .section-spacing {
+    @apply py-12 lg:py-16;
+  }
+  
+  /* ホバーエフェクト */
+  .hover-lift {
+    @apply transition-transform duration-300 hover:scale-105 hover:-translate-y-1;
+  }
+  
+  .hover-glow {
+    @apply transition-all duration-300 hover:shadow-harajuku-lg;
+  }
+}
+
+/* ユーティリティクラス */
+@layer utilities {
+  /* テキストの省略 */
+  .text-ellipsis-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .text-ellipsis-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  /* スクロールスナップ */
+  .scroll-snap-x {
+    scroll-snap-type: x mandatory;
+  }
+  
+  .scroll-snap-start {
+    scroll-snap-align: start;
+  }
+  
+  /* グラスモーフィズム効果 */
+  .glassmorphism {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  /* 背景パターン */
+  .bg-pattern-dots {
+    background-image: radial-gradient(circle, rgba(222, 79, 186, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+  
+  .bg-pattern-grid {
+    background-image: 
+      linear-gradient(rgba(222, 79, 186, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(222, 79, 186, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+  
+  /* ダークモード対応（将来の拡張用） */
+  @media (prefers-color-scheme: dark) {
+    .dark-mode {
+      @apply bg-harajuku-gradient-dark text-white;
+    }
+  }
+}
+
+/* プリント用スタイル */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  body {
+    background: white !important;
+  }
+  
+  .card {
+    box-shadow: none !important;
+    border: 1px solid #ccc !important;
+  }
+}
