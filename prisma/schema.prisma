@@ -1,0 +1,179 @@
+// Prisma schema for 原宿デザイン会社交流会サイト
+// データベーススキーマ定義
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ユーザーテーブル（認証用）
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  name          String?
+  password      String?   // ローカル認証用（ハッシュ化済み）
+  image         String?
+  emailVerified DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  // リレーション
+  companyMembers CompanyMember[]
+  eventRegistrations EventRegistration[]
+  accounts       Account[]
+  sessions       Session[]
+
+  @@map("users")
+}
+
+// NextAuth.js用のAccountテーブル
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.Text
+  access_token      String? @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.Text
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+// NextAuth.js用のSessionテーブル
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+// NextAuth.js用のVerificationTokenテーブル
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verificationtokens")
+}
+
+// デザイン会社テーブル
+model Company {
+  id          String    @id @default(cuid())
+  name        String
+  description String?   @db.Text
+  website     String?
+  email       String?
+  phone       String?
+  address     String?
+  logoUrl     String?
+  isActive    Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  // 会社の詳細情報
+  foundedYear Int?
+  employeeCount String? // "1-10", "11-50", "51-200", "200+"
+  specialties String[] // 専門分野の配列
+  services    String[] // 提供サービスの配列
+
+  // リレーション
+  members     CompanyMember[]
+  eventRegistrations EventRegistration[]
+
+  @@map("companies")
+}
+
+// 会社メンバーテーブル（ユーザーと会社の中間テーブル）
+model CompanyMember {
+  id        String   @id @default(cuid())
+  userId    String
+  companyId String
+  role      String   @default("member") // "admin", "manager", "member"
+  position  String?  // 役職
+  isActive  Boolean  @default(true)
+  joinedAt  DateTime @default(now())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // リレーション
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  company Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, companyId])
+  @@map("company_members")
+}
+
+// イベントテーブル
+model Event {
+  id          String    @id @default(cuid())
+  title       String
+  description String?   @db.Text
+  startDate   DateTime
+  endDate     DateTime?
+  location    String?
+  venue       String?
+  maxParticipants Int?
+  currentParticipants Int @default(0)
+  isActive    Boolean   @default(true)
+  eventType   String    @default("networking") // "networking", "workshop", "seminar", "exhibition"
+  tags        String[]  // イベントタグの配列
+  imageUrl    String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  // 参加費関連
+  price       Float?    @default(0)
+  currency    String    @default("JPY")
+  
+  // 申し込み期限
+  registrationDeadline DateTime?
+  
+  // リレーション
+  registrations EventRegistration[]
+
+  @@map("events")
+}
+
+// イベント参加登録テーブル
+model EventRegistration {
+  id          String    @id @default(cuid())
+  eventId     String
+  userId      String?   // ログインユーザーの場合
+  companyId   String?   // 会社としての参加の場合
+  
+  // 非ログインユーザー情報
+  guestName   String?
+  guestEmail  String?
+  guestPhone  String?
+  guestCompany String?
+  
+  status      String    @default("registered") // "registered", "attended", "cancelled", "no-show"
+  notes       String?   @db.Text
+  registeredAt DateTime @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  // リレーション
+  event   Event    @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  user    User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  company Company? @relation(fields: [companyId], references: [id], onDelete: SetNull)
+
+  @@unique([eventId, userId])
+  @@unique([eventId, guestEmail])
+  @@map("event_registrations")
+}

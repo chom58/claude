@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter, Poppins, Noto_Sans_JP } from 'next/font/google';
 import { SITE_CONFIG } from '@/lib/constants';
+import SessionProvider from '@/components/providers/SessionProvider';
 import './globals.css';
 
 // フォントの設定
@@ -170,9 +171,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
         </div>
         
         {/* メインコンテンツ */}
-        <div className="min-h-screen flex flex-col">
-          {children}
-        </div>
+        <SessionProvider>
+          <div className="min-h-screen flex flex-col">
+            {children}
+          </div>
+        </SessionProvider>
         
         {/* JavaScript無効時のメッセージ */}
         <noscript>

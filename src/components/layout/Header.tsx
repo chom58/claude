@@ -3,14 +3,17 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useSession, signOut } from 'next-auth/react';
 import { cn } from '@/lib/utils';
 import { NAVIGATION_ITEMS, SITE_CONFIG } from '@/lib/constants';
-import { HiMenu, HiX, HiSparkles } from 'react-icons/hi';
+import { HiMenu, HiX, HiSparkles, HiUser, HiLogout } from 'react-icons/hi';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
+  const { data: session, status } = useSession();
 
   // スクロール検知
   useEffect(() => {
@@ -25,6 +28,13 @@ export default function Header() {
   // メニューを閉じる
   const closeMenu = () => {
     setIsMenuOpen(false);
+    setIsUserMenuOpen(false);
+  };
+
+  // ログアウト処理
+  const handleSignOut = async () => {
+    await signOut({ callbackUrl: '/' });
+    closeMenu();
   };
 
   return (
@@ -75,14 +85,77 @@ export default function Header() {
             ))}
           </div>
 
-          {/* CTAボタン（デスクトップ） */}
+          {/* ユーザーメニュー・CTAボタン（デスクトップ） */}
           <div className="hidden lg:flex items-center space-x-4">
-            <Link
-              href="/register"
-              className="btn-primary text-sm"
-            >
-              参加登録
-            </Link>
+            {status === 'loading' ? (
+              <div className="w-8 h-8 bg-gray-200 rounded-full animate-pulse" />
+            ) : session ? (
+              <div className="relative">
+                <button
+                  onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
+                  className="flex items-center space-x-2 p-2 rounded-lg hover:bg-black/5 transition-colors"
+                >
+                  {session.user?.image ? (
+                    <img
+                      src={session.user.image}
+                      alt={session.user.name || 'ユーザー'}
+                      className="w-8 h-8 rounded-full object-cover"
+                    />
+                  ) : (
+                    <div className="w-8 h-8 bg-harajuku-pink-500 rounded-full flex items-center justify-center">
+                      <HiUser className="w-4 h-4 text-white" />
+                    </div>
+                  )}
+                  <span className="text-sm font-medium text-gray-700">
+                    {session.user?.name || 'ユーザー'}
+                  </span>
+                </button>
+
+                {/* ユーザードロップダウンメニュー */}
+                {isUserMenuOpen && (
+                  <div className="absolute right-0 top-full mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-2 z-50">
+                    <Link
+                      href="/profile"
+                      className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+                      onClick={closeMenu}
+                    >
+                      <HiUser className="w-4 h-4 mr-2" />
+                      プロフィール
+                    </Link>
+                    <Link
+                      href="/my-events"
+                      className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+                      onClick={closeMenu}
+                    >
+                      参加予定イベント
+                    </Link>
+                    <div className="border-t border-gray-200 my-1" />
+                    <button
+                      onClick={handleSignOut}
+                      className="flex items-center w-full px-4 py-2 text-sm text-red-600 hover:bg-red-50"
+                    >
+                      <HiLogout className="w-4 h-4 mr-2" />
+                      ログアウト
+                    </button>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <>
+                <Link
+                  href="/auth/signin"
+                  className="text-sm font-medium text-gray-700 hover:text-harajuku-pink-600 transition-colors"
+                >
+                  ログイン
+                </Link>
+                <Link
+                  href="/auth/signup"
+                  className="btn-primary text-sm"
+                >
+                  新規登録
+                </Link>
+              </>
+            )}
           </div>
 
           {/* モバイルメニューボタン */}
@@ -132,15 +205,72 @@ export default function Header() {
               </Link>
             ))}
             
-            {/* モバイル用CTAボタン */}
-            <div className="pt-4 border-t border-gray-200">
-              <Link
-                href="/register"
-                className="block w-full btn-primary text-center"
-                onClick={closeMenu}
-              >
-                参加登録
-              </Link>
+            {/* モバイル用認証・CTAボタン */}
+            <div className="pt-4 border-t border-gray-200 space-y-2">
+              {status === 'loading' ? (
+                <div className="h-10 bg-gray-200 rounded animate-pulse" />
+              ) : session ? (
+                <>
+                  <div className="flex items-center space-x-3 px-4 py-2">
+                    {session.user?.image ? (
+                      <img
+                        src={session.user.image}
+                        alt={session.user.name || 'ユーザー'}
+                        className="w-10 h-10 rounded-full object-cover"
+                      />
+                    ) : (
+                      <div className="w-10 h-10 bg-harajuku-pink-500 rounded-full flex items-center justify-center">
+                        <HiUser className="w-5 h-5 text-white" />
+                      </div>
+                    )}
+                    <div>
+                      <div className="font-medium text-gray-900">
+                        {session.user?.name || 'ユーザー'}
+                      </div>
+                      <div className="text-sm text-gray-500">
+                        {session.user?.email}
+                      </div>
+                    </div>
+                  </div>
+                  <Link
+                    href="/profile"
+                    className="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded"
+                    onClick={closeMenu}
+                  >
+                    プロフィール
+                  </Link>
+                  <Link
+                    href="/my-events"
+                    className="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded"
+                    onClick={closeMenu}
+                  >
+                    参加予定イベント
+                  </Link>
+                  <button
+                    onClick={handleSignOut}
+                    className="block w-full text-left px-4 py-2 text-red-600 hover:bg-red-50 rounded"
+                  >
+                    ログアウト
+                  </button>
+                </>
+              ) : (
+                <>
+                  <Link
+                    href="/auth/signin"
+                    className="block w-full btn-secondary text-center"
+                    onClick={closeMenu}
+                  >
+                    ログイン
+                  </Link>
+                  <Link
+                    href="/auth/signup"
+                    className="block w-full btn-primary text-center"
+                    onClick={closeMenu}
+                  >
+                    新規登録
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         </div>

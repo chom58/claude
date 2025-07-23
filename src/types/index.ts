@@ -1,68 +1,125 @@
-// 会社情報の型定義
+// 会社情報の型定義（Prismaスキーマに基づく）
 export interface Company {
   id: string;
   name: string;
-  nameEn?: string;
-  description: string;
-  category: CompanyCategory;
+  description?: string;
+  website?: string;
+  email?: string;
+  phone?: string;
+  address?: string;
   logoUrl?: string;
-  websiteUrl?: string;
-  location: string;
-  establishedYear?: number;
+  isActive: boolean;
+  foundedYear?: number;
   employeeCount?: string;
+  specialties: string[];
   services: string[];
-  tags: string[];
-  contactEmail?: string;
-  socialLinks?: {
-    twitter?: string;
-    instagram?: string;
-    linkedin?: string;
-  };
   createdAt: Date;
   updatedAt: Date;
+  // リレーション
+  members?: CompanyMember[];
+  eventRegistrations?: EventRegistration[];
 }
 
-// 会社カテゴリ
-export type CompanyCategory = 
-  | 'web-design'
-  | 'graphic-design'
-  | 'ui-ux'
-  | 'branding'
-  | 'advertising'
-  | 'digital-marketing'
-  | 'illustration'
-  | 'animation'
-  | 'photography'
-  | 'other';
+// 会社メンバー情報の型定義
+export interface CompanyMember {
+  id: string;
+  userId: string;
+  companyId: string;
+  role: string; // 'admin', 'manager', 'member'
+  position?: string;
+  isActive: boolean;
+  joinedAt: Date;
+  createdAt: Date;
+  updatedAt: Date;
+  // リレーション
+  user?: User;
+  company?: Company;
+}
 
-// イベント情報の型定義
+// イベント情報の型定義（Prismaスキーマに基づく）
 export interface Event {
   id: string;
   title: string;
-  description: string;
-  type: EventType;
-  date: Date;
-  startTime: string;
-  endTime: string;
-  location: EventLocation;
-  capacity: number;
-  registeredCount: number;
-  isOnline: boolean;
-  meetingUrl?: string;
+  description?: string;
+  startDate: Date;
+  endDate?: Date;
+  location?: string;
+  venue?: string;
+  maxParticipants?: number;
+  currentParticipants: number;
+  isActive: boolean;
+  eventType: string; // 'networking', 'workshop', 'seminar', 'exhibition'
   tags: string[];
-  organizer: {
-    id: string;
-    name: string;
-    company?: string;
-  };
-  speakers?: Speaker[];
-  agenda?: AgendaItem[];
-  registrationDeadline?: Date;
-  fee?: number;
   imageUrl?: string;
-  requirements?: string[];
+  price?: number;
+  currency: string;
+  registrationDeadline?: Date;
   createdAt: Date;
   updatedAt: Date;
+  // リレーション
+  registrations?: EventRegistration[];
+}
+
+// イベント参加登録の型定義
+export interface EventRegistration {
+  id: string;
+  eventId: string;
+  userId?: string;
+  companyId?: string;
+  // ゲストユーザー情報
+  guestName?: string;
+  guestEmail?: string;
+  guestPhone?: string;
+  guestCompany?: string;
+  status: string; // 'registered', 'attended', 'cancelled', 'no-show'
+  notes?: string;
+  registeredAt: Date;
+  updatedAt: Date;
+  // リレーション
+  event?: Event;
+  user?: User;
+  company?: Company;
+}
+
+// ユーザー情報の型定義（Prismaスキーマに基づく）
+export interface User {
+  id: string;
+  email: string;
+  name?: string;
+  password?: string;
+  image?: string;
+  emailVerified?: Date;
+  createdAt: Date;
+  updatedAt: Date;
+  // リレーション
+  companyMembers?: CompanyMember[];
+  eventRegistrations?: EventRegistration[];
+  accounts?: Account[];
+  sessions?: Session[];
+}
+
+// NextAuth.jsのAccount型
+export interface Account {
+  id: string;
+  userId: string;
+  type: string;
+  provider: string;
+  providerAccountId: string;
+  refresh_token?: string;
+  access_token?: string;
+  expires_at?: number;
+  token_type?: string;
+  scope?: string;
+  id_token?: string;
+  session_state?: string;
+}
+
+// NextAuth.jsのSession型
+export interface Session {
+  id: string;
+  sessionToken: string;
+  userId: string;
+  expires: Date;
 }
 
 // イベントタイプ
@@ -70,84 +127,7 @@ export type EventType =
   | 'networking'
   | 'workshop'
   | 'seminar'
-  | 'panel-discussion'
-  | 'showcase'
-  | 'social'
-  | 'other';
-
-// イベント開催場所
-export interface EventLocation {
-  name: string;
-  address: string;
-  accessInfo?: string;
-  mapUrl?: string;
-}
-
-// スピーカー情報
-export interface Speaker {
-  id: string;
-  name: string;
-  title: string;
-  company?: string;
-  bio: string;
-  avatarUrl?: string;
-  socialLinks?: {
-    twitter?: string;
-    linkedin?: string;
-  };
-}
-
-// アジェンダアイテム
-export interface AgendaItem {
-  id: string;
-  time: string;
-  title: string;
-  description?: string;
-  speaker?: string;
-  duration: number; // 分
-}
-
-// ユーザー情報の型定義（Phase 2用）
-export interface User {
-  id: string;
-  email: string;
-  name: string;
-  displayName?: string;
-  avatarUrl?: string;
-  company?: string;
-  position?: string;
-  bio?: string;
-  skills: string[];
-  interests: string[];
-  socialLinks?: {
-    twitter?: string;
-    instagram?: string;
-    linkedin?: string;
-    portfolio?: string;
-  };
-  isVerified: boolean;
-  role: UserRole;
-  createdAt: Date;
-  updatedAt: Date;
-}
-
-// ユーザーロール
-export type UserRole = 'user' | 'company-admin' | 'event-organizer' | 'admin';
-
-// 登録情報の型定義
-export interface Registration {
-  id: string;
-  eventId: string;
-  userId: string;
-  status: RegistrationStatus;
-  registeredAt: Date;
-  attendedAt?: Date;
-  cancelledAt?: Date;
-  notes?: string;
-}
-
-// 登録ステータス
-export type RegistrationStatus = 'registered' | 'cancelled' | 'attended' | 'no-show';
+  | 'exhibition';
 
 // フォーム関連の型定義
 export interface ContactFormData {
@@ -158,12 +138,13 @@ export interface ContactFormData {
 }
 
 export interface EventRegistrationFormData {
-  name: string;
-  email: string;
-  company?: string;
-  position?: string;
-  dietaryRestrictions?: string;
-  specialRequests?: string;
+  eventId: string;
+  companyId?: string;
+  guestName?: string;
+  guestEmail?: string;
+  guestPhone?: string;
+  guestCompany?: string;
+  notes?: string;
 }
 
 // API レスポンスの型定義
@@ -196,19 +177,16 @@ export interface PaginatedResponse<T> {
 
 // フィルター
 export interface CompanyFilter {
-  category?: CompanyCategory[];
-  location?: string[];
-  tags?: string[];
-  services?: string[];
+  search?: string;
+  specialty?: string;
+  page?: number;
+  limit?: number;
 }
 
 export interface EventFilter {
-  type?: EventType[];
-  date?: {
-    from?: Date;
-    to?: Date;
-  };
-  location?: string[];
-  tags?: string[];
-  isOnline?: boolean;
+  search?: string;
+  eventType?: string;
+  upcoming?: boolean;
+  page?: number;
+  limit?: number;
 }
