@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player Profile - Welcome Back Saga!!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/retro.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <style>
+        .profile-screen {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            padding: 30px;
+            background: linear-gradient(180deg, #000033 0%, #000000 100%);
+        }
+        
+        .profile-title {
+            text-align: center;
+            font-size: 24px;
+            color: #FFD700;
+            margin-bottom: 30px;
+            text-shadow: 3px 3px 0px #4B0082;
+        }
+        
+        .profile-container {
+            display: flex;
+            gap: 40px;
+            justify-content: center;
+            align-items: flex-start;
+            flex-grow: 1;
+        }
+        
+        .character-card {
+            background-color: rgba(75, 0, 130, 0.3);
+            border: 3px solid #FFD700;
+            padding: 20px;
+            width: 300px;
+        }
+        
+        .character-sprite {
+            width: 100%;
+            height: 150px;
+            background-color: #1a1a1a;
+            border: 2px solid #4B0082;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 60px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .character-sprite img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            image-rendering: pixelated;
+            filter: contrast(1.2) saturate(0.8);
+        }
+        
+        .character-name {
+            font-size: 20px;
+            color: #FFD700;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .stats-table {
+            font-size: 12px;
+            color: #FFFFFF;
+            line-height: 2;
+        }
+        
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            color: #B0B0B0;
+        }
+        
+        .stat-value {
+            color: #00FF00;
+        }
+        
+        .special-moves {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #4B0082;
+        }
+        
+        .moves-title {
+            font-size: 14px;
+            color: #FFD700;
+            margin-bottom: 10px;
+        }
+        
+        .move-item {
+            font-size: 10px;
+            color: #FFFFFF;
+            margin-bottom: 5px;
+        }
+        
+        .vs-indicator {
+            font-size: 48px;
+            color: #FF4500;
+            text-shadow: 3px 3px 0px #8B0000;
+            animation: vs-pulse 1s ease-in-out infinite;
+        }
+        
+        @keyframes vs-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        
+        .continue-prompt {
+            text-align: center;
+            font-size: 14px;
+            color: #FFFFFF;
+            margin-top: 20px;
+            animation: blink 1s step-start infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <div class="screen">
+            <div class="profile-screen">
+                <h1 class="profile-title">PLAYER SELECT</h1>
+                
+                <div class="profile-container">
+                    <!-- Player 1 -->
+                    <div class="character-card">
+                        <div class="character-sprite" id="player1-sprite">👤</div>
+                        <h2 class="character-name">YOU</h2>
+                        <div class="stats-table">
+                            <div class="stat-row">
+                                <span class="stat-label">職業:</span>
+                                <span class="stat-value">東京戦士</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">レベル:</span>
+                                <span class="stat-value">40</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">体力:</span>
+                                <span class="stat-value">100/100</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">攻撃力:</span>
+                                <span class="stat-value">85</span>
+                            </div>
+                        </div>
+                        <div class="special-moves">
+                            <h3 class="moves-title">必殺技</h3>
+                            <div class="move-item">・早稲田魂</div>
+                            <div class="move-item">・野方スペシャル</div>
+                            <div class="move-item">・友情パワー</div>
+                        </div>
+                    </div>
+                    
+                    <div class="vs-indicator">VS</div>
+                    
+                    <!-- Player 2 -->
+                    <div class="character-card">
+                        <div class="character-sprite" id="saga-sprite">🎓</div>
+                        <h2 class="character-name">SAGA</h2>
+                        <div class="stats-table">
+                            <div class="stat-row">
+                                <span class="stat-label">職業:</span>
+                                <span class="stat-value">英語教師</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">レベル:</span>
+                                <span class="stat-value">40</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">体力:</span>
+                                <span class="stat-value">100/100</span>
+                            </div>
+                            <div class="stat-row">
+                                <span class="stat-label">知力:</span>
+                                <span class="stat-value">99</span>
+                            </div>
+                        </div>
+                        <div class="special-moves">
+                            <h3 class="moves-title">必殺技</h3>
+                            <div class="move-item">・波動拳</div>
+                            <div class="move-item">・受験指導</div>
+                            <div class="move-item">・育児パワー</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="continue-prompt">
+                    PRESS ENTER TO CONTINUE
+                </div>
+            </div>
+        </div>
+        
+        <div class="scanlines"></div>
+    </div>
+
+    <script src="js/sounds.js"></script>
+    <script src="js/image-loader.js"></script>
+    <script>
+        // 初期化
+        SoundManager.init();
+        
+        // 画像を読み込んで表示
+        function loadImages() {
+            // Player2(SAGA)は固定でsaga1
+            ImageLoader.loadSagaImage('saga-sprite');
+            
+            // Player1はランダム画像
+            ImageLoader.loadRandomPlayer1Image('player1-sprite');
+        }
+        
+        // ページ読み込み時に画像を設定
+        loadImages();
+        
+        // エンターキーで次へ
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                proceed();
+            } else if (e.key === 'Escape') {
+                window.location.href = 'stages.html';
+            }
+        });
+        
+        // クリックでも進める
+        document.querySelector('.screen').addEventListener('click', proceed);
+        
+        function proceed() {
+            SoundManager.play('confirm');
+            
+            // VS演出
+            const vsIndicator = document.querySelector('.vs-indicator');
+            vsIndicator.style.animation = 'vs-zoom 0.5s ease-out';
+            
+            setTimeout(() => {
+                // 画面遷移
+                const transition = document.createElement('div');
+                transition.className = 'screen-transition';
+                document.querySelector('.screen').appendChild(transition);
+                
+                setTimeout(() => {
+                    window.location.href = 'battle.html';
+                }, 250);
+            }, 500);
+        }
+        
+        // キャラクターカードのホバーエフェクト
+        document.querySelectorAll('.character-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                SoundManager.play('select');
+            });
+        });
+    </script>
+</body>
+</html>

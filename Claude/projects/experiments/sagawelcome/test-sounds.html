@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>効果音テスト</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Press Start 2P', monospace;
+            background-color: #1a1a1a;
+            color: #FFD700;
+            padding: 20px;
+            line-height: 1.8;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #FF4500;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 0px #8B0000;
+        }
+        
+        .sound-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .sound-button {
+            background-color: #4B0082;
+            border: 2px solid #FFD700;
+            color: #FFD700;
+            padding: 15px;
+            cursor: pointer;
+            text-align: center;
+            font-size: 10px;
+            transition: all 0.1s;
+        }
+        
+        .sound-button:hover {
+            background-color: #FFD700;
+            color: #4B0082;
+            transform: scale(1.05);
+        }
+        
+        .sound-button:active {
+            transform: scale(0.95);
+        }
+        
+        .category {
+            margin-bottom: 20px;
+            border: 2px solid #4B0082;
+            padding: 15px;
+        }
+        
+        .category-title {
+            color: #00FF00;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        
+        .combo-test {
+            background-color: #2a0845;
+            padding: 20px;
+            margin-top: 30px;
+            border: 2px solid #FFD700;
+        }
+        
+        .combo-button {
+            background-color: #FF4500;
+            border: 2px solid #FFD700;
+            color: #FFFFFF;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-right: 10px;
+            font-size: 12px;
+        }
+        
+        .status {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #00FF00;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎮 効果音テスト 🎮</h1>
+        
+        <div class="category">
+            <h2 class="category-title">メニュー系</h2>
+            <div class="sound-grid">
+                <button class="sound-button" onclick="playSound('start')">START</button>
+                <button class="sound-button" onclick="playSound('select')">SELECT</button>
+                <button class="sound-button" onclick="playSound('confirm')">CONFIRM</button>
+            </div>
+        </div>
+        
+        <div class="category">
+            <h2 class="category-title">攻撃系</h2>
+            <div class="sound-grid">
+                <button class="sound-button" onclick="playSound('punch')">PUNCH</button>
+                <button class="sound-button" onclick="playSound('kick')">KICK</button>
+                <button class="sound-button" onclick="playSound('hit')">HIT</button>
+                <button class="sound-button" onclick="playSound('heavyHit')">HEAVY HIT</button>
+                <button class="sound-button" onclick="playSound('critical')">CRITICAL</button>
+            </div>
+        </div>
+        
+        <div class="category">
+            <h2 class="category-title">必殺技系</h2>
+            <div class="sound-grid">
+                <button class="sound-button" onclick="playSound('hadouken')">波動拳</button>
+                <button class="sound-button" onclick="playSound('hadoukenCharge')">波動拳チャージ</button>
+                <button class="sound-button" onclick="playSound('special')">スペシャル</button>
+                <button class="sound-button" onclick="playSound('specialCharge')">スペシャルチャージ</button>
+                <button class="sound-button" onclick="playChargeSound('hadouken')">波動拳フル</button>
+                <button class="sound-button" onclick="playChargeSound('special')">スペシャルフル</button>
+            </div>
+        </div>
+        
+        <div class="category">
+            <h2 class="category-title">防御系</h2>
+            <div class="sound-grid">
+                <button class="sound-button" onclick="playSound('block')">BLOCK</button>
+                <button class="sound-button" onclick="playSound('parry')">PARRY</button>
+                <button class="sound-button" onclick="playSound('dodge')">DODGE</button>
+            </div>
+        </div>
+        
+        <div class="category">
+            <h2 class="category-title">ダメージ系</h2>
+            <div class="sound-grid">
+                <button class="sound-button" onclick="playSound('damage')">DAMAGE</button>
+                <button class="sound-button" onclick="playSound('heavyDamage')">HEAVY DAMAGE</button>
+                <button class="sound-button" onclick="playSound('ko')">K.O.</button>
+                <button class="sound-button" onclick="playDamageSound(5)">ダメージ5</button>
+                <button class="sound-button" onclick="playDamageSound(15)">ダメージ15</button>
+                <button class="sound-button" onclick="playDamageSound(25)">ダメージ25</button>
+                <button class="sound-button" onclick="playDamageSound(40)">ダメージ40</button>
+            </div>
+        </div>
+        
+        <div class="category">
+            <h2 class="category-title">システム系</h2>
+            <div class="sound-grid">
+                <button class="sound-button" onclick="playSound('lowHealth')">LOW HEALTH</button>
+                <button class="sound-button" onclick="playSound('energyCharge')">ENERGY CHARGE</button>
+                <button class="sound-button" onclick="playSound('round')">ROUND</button>
+                <button class="sound-button" onclick="playSound('combo')">COMBO</button>
+            </div>
+        </div>
+        
+        <div class="category">
+            <h2 class="category-title">勝利・敗北</h2>
+            <div class="sound-grid">
+                <button class="sound-button" onclick="playSound('victory')">VICTORY</button>
+                <button class="sound-button" onclick="playSound('defeat')">DEFEAT</button>
+                <button class="sound-button" onclick="playSound('perfect')">PERFECT</button>
+                <button class="sound-button" onclick="SoundManager.playVictoryFanfare()">勝利ファンファーレ</button>
+            </div>
+        </div>
+        
+        <div class="combo-test">
+            <h2 class="category-title">コンボテスト</h2>
+            <button class="combo-button" onclick="testCombo(3)">3 HIT</button>
+            <button class="combo-button" onclick="testCombo(5)">5 HIT</button>
+            <button class="combo-button" onclick="testCombo(10)">10 HIT</button>
+            <button class="combo-button" onclick="testCombo(15)">15 HIT</button>
+            <button class="combo-button" onclick="testSequence()">連続再生テスト</button>
+        </div>
+        
+        <div class="status" id="status">
+            準備完了。ボタンをクリックして効果音をテストしてください。
+        </div>
+    </div>
+    
+    <script src="js/sounds.js"></script>
+    <script>
+        // 初期化
+        SoundManager.init();
+        
+        function playSound(soundName) {
+            SoundManager.play(soundName);
+            updateStatus(`再生: ${soundName}`);
+        }
+        
+        function playChargeSound(type) {
+            SoundManager.playChargeSound(type);
+            updateStatus(`チャージ音再生: ${type}`);
+        }
+        
+        function playDamageSound(damage) {
+            SoundManager.playDamageSound(damage);
+            updateStatus(`ダメージ音再生: ${damage}ダメージ`);
+        }
+        
+        function testCombo(count) {
+            SoundManager.playComboSound(count);
+            updateStatus(`コンボ音再生: ${count} HIT COMBO!`);
+        }
+        
+        function testSequence() {
+            const sequence = ['punch', 'kick', 'hit', 'combo', 'victory'];
+            SoundManager.playSequence(sequence, 200);
+            updateStatus(`連続再生: ${sequence.join(' → ')}`);
+        }
+        
+        function updateStatus(message) {
+            const status = document.getElementById('status');
+            status.textContent = message;
+            console.log(message);
+        }
+        
+        // キーボードショートカット
+        document.addEventListener('keydown', (e) => {
+            switch(e.key.toLowerCase()) {
+                case 'z':
+                    playSound('punch');
+                    break;
+                case 'x':
+                    playSound('kick');
+                    break;
+                case 'c':
+                    playSound('hadouken');
+                    break;
+                case 'v':
+                    playSound('special');
+                    break;
+                case 'd':
+                    playSound('block');
+                    break;
+                case 's':
+                    playSound('start');
+                    break;
+                case 'k':
+                    playSound('ko');
+                    break;
+            }
+        });
+    </script>
+</body>
+</html>

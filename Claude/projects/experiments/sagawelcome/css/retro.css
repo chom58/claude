@@ -1,0 +1,192 @@
+/* レトロゲーム風スタイル */
+
+/* スキャンライン効果 */
+.scanlines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.15),
+        rgba(0, 0, 0, 0.15) 1px,
+        transparent 1px,
+        transparent 2px
+    );
+    z-index: 999;
+    opacity: 0.3;
+}
+
+/* CRTモニター効果 */
+.screen::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+        ellipse at center,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(0, 0, 0, 0.4) 100%
+    );
+    pointer-events: none;
+    z-index: 10;
+}
+
+/* 波動拳エフェクト */
+.hadouken-effect {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, #00BFFF 0%, #1E90FF 50%, transparent 70%);
+    border-radius: 50%;
+    opacity: 0;
+    animation: hadouken 3s ease-out infinite;
+    animation-delay: 1s;
+    filter: blur(2px);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes hadouken {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.1);
+    }
+    20% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translate(300%, -50%) scale(2);
+    }
+}
+
+/* ピクセルフォント調整 */
+.pixel-text {
+    font-family: 'Press Start 2P', monospace;
+    text-rendering: optimizeSpeed;
+    -webkit-font-smoothing: none;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ボタンスタイル */
+.retro-button {
+    background-color: #4B0082;
+    color: #FFFFFF;
+    border: 2px solid #FFD700;
+    padding: 10px 20px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.1s;
+    box-shadow: 
+        2px 2px 0px #2a0845,
+        4px 4px 0px #1a1a1a;
+}
+
+.retro-button:hover {
+    transform: translate(2px, 2px);
+    box-shadow: 
+        0px 0px 0px #2a0845,
+        2px 2px 0px #1a1a1a;
+}
+
+.retro-button:active {
+    transform: translate(4px, 4px);
+    box-shadow: none;
+}
+
+/* 体力ゲージ */
+.health-bar {
+    width: 300px;
+    height: 30px;
+    background-color: #1a1a1a;
+    border: 3px solid #FFD700;
+    position: relative;
+    overflow: hidden;
+}
+
+.health-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #FF0000 0%, #FFD700 50%, #00FF00 100%);
+    transition: width 0.3s ease-out;
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* セレクトカーソル */
+.select-cursor {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border: 3px solid #FFD700;
+    animation: cursor-blink 0.5s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes cursor-blink {
+    0%, 100% {
+        border-color: #FFD700;
+        transform: scale(1);
+    }
+    50% {
+        border-color: #FFFFFF;
+        transform: scale(1.1);
+    }
+}
+
+/* ゲームボーイ風スタイル（モバイル用） */
+@media (max-width: 768px) {
+    .game-container {
+        background: #8BAC0F;
+        padding: 20px;
+    }
+    
+    .screen {
+        background-color: #9BBD0F;
+        border: 8px solid #556B2F;
+        border-radius: 4px;
+        box-shadow: 
+            inset 0 0 20px rgba(0, 0, 0, 0.5),
+            0 5px 10px rgba(0, 0, 0, 0.5);
+    }
+    
+    .screen::after {
+        content: "";
+        position: absolute;
+        top: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60%;
+        height: 10px;
+        background-color: #556B2F;
+        border-radius: 50%;
+    }
+    
+    body {
+        color: #0F380F;
+    }
+    
+    .main-title {
+        text-shadow: 
+            2px 2px 0px #0F380F,
+            3px 3px 0px #556B2F;
+    }
+    
+    .welcome {
+        color: #0F380F;
+    }
+    
+    .fighter {
+        color: #0F380F;
+    }
+    
+    .subtitle .english {
+        color: #556B2F;
+    }
+}

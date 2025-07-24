@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>画像テスト</title>
+    <style>
+        body {
+            font-family: monospace;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        .test-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .image-box {
+            border: 2px solid #333;
+            padding: 10px;
+            background-color: white;
+            text-align: center;
+        }
+        .image-box img {
+            max-width: 100%;
+            height: 150px;
+            object-fit: contain;
+        }
+        .status {
+            margin-top: 10px;
+            font-size: 12px;
+        }
+        .success { color: green; }
+        .error { color: red; }
+        h1 { margin-bottom: 20px; }
+        .instructions {
+            background-color: #ffffcc;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid #cccc00;
+        }
+    </style>
+</head>
+<body>
+    <h1>SAGAフォルダ画像テスト</h1>
+    
+    <div class="instructions">
+        <h3>画像配置の確認</h3>
+        <p>このページでは、SAGAフォルダ内の画像が正しく読み込めるかテストします。</p>
+        <p>期待される画像ファイル:</p>
+        <ul>
+            <li>saga1.png または saga1.jpg (Player2固定)</li>
+            <li>saga2.png〜saga10.png または .jpg (Player1用)</li>
+        </ul>
+    </div>
+    
+    <div id="test-container" class="test-container"></div>
+
+    <script>
+        // テスト対象の画像
+        const testImages = [];
+        const extensions = ['.png', '.jpg', '.jpeg', '.gif'];
+        
+        // saga1〜saga10までテスト
+        for (let i = 1; i <= 10; i++) {
+            extensions.forEach(ext => {
+                testImages.push({
+                    name: `saga${i}${ext}`,
+                    path: `SAGA/saga${i}${ext}`,
+                    number: i
+                });
+            });
+        }
+        
+        // コンテナの取得
+        const container = document.getElementById('test-container');
+        
+        // 各画像をテスト
+        testImages.forEach(imageInfo => {
+            const box = document.createElement('div');
+            box.className = 'image-box';
+            
+            const img = new Image();
+            const status = document.createElement('div');
+            status.className = 'status';
+            
+            img.onload = () => {
+                status.textContent = '✓ 読み込み成功';
+                status.classList.add('success');
+                console.log(`成功: ${imageInfo.path}`);
+            };
+            
+            img.onerror = () => {
+                status.textContent = '✗ 読み込み失敗';
+                status.classList.add('error');
+                img.style.display = 'none';
+            };
+            
+            img.src = imageInfo.path;
+            img.alt = imageInfo.name;
+            
+            const label = document.createElement('h4');
+            label.textContent = imageInfo.name;
+            
+            box.appendChild(label);
+            box.appendChild(img);
+            box.appendChild(status);
+            
+            container.appendChild(box);
+        });
+        
+        // 実際の画像ローダーもテスト
+        setTimeout(() => {
+            console.log('=== 画像ローダーテスト ===');
+            
+            // ランダムな番号を生成
+            const randomNumber = Math.floor(Math.random() * 9) + 2;
+            console.log(`Player1用ランダム番号: ${randomNumber}`);
+            
+            // 各拡張子で試す
+            const testImg = new Image();
+            let currentExtIndex = 0;
+            
+            const tryNextExtension = () => {
+                if (currentExtIndex >= extensions.length) {
+                    console.log(`saga${randomNumber}の画像が見つかりませんでした`);
+                    return;
+                }
+                
+                const testPath = `SAGA/saga${randomNumber}${extensions[currentExtIndex]}`;
+                console.log(`試行中: ${testPath}`);
+                
+                testImg.onerror = () => {
+                    currentExtIndex++;
+                    tryNextExtension();
+                };
+                
+                testImg.onload = () => {
+                    console.log(`成功！ ${testPath}が見つかりました`);
+                };
+                
+                testImg.src = testPath;
+            };
+            
+            tryNextExtension();
+        }, 1000);
+    </script>
+</body>
+</html>

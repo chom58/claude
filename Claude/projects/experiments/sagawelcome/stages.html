@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stage Select - Welcome Back Saga!!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/retro.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <style>
+        .stage-select {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            padding: 40px;
+            background: linear-gradient(180deg, #1a0033 0%, #000000 100%);
+        }
+        
+        .stage-title {
+            text-align: center;
+            font-size: 28px;
+            color: #FFD700;
+            margin-bottom: 40px;
+            text-shadow: 3px 3px 0px #4B0082;
+        }
+        
+        .stage-list {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 30px;
+            max-width: 600px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        .stage-item {
+            padding: 20px;
+            background-color: rgba(75, 0, 130, 0.3);
+            border: 2px solid #4B0082;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.2s;
+        }
+        
+        .stage-item:hover,
+        .stage-item.selected {
+            background-color: rgba(75, 0, 130, 0.6);
+            border-color: #FFD700;
+            transform: translateX(10px);
+        }
+        
+        .stage-number {
+            font-size: 14px;
+            color: #FFD700;
+            margin-bottom: 10px;
+        }
+        
+        .stage-name {
+            font-size: 18px;
+            color: #FFFFFF;
+            margin-bottom: 5px;
+        }
+        
+        .stage-description {
+            font-size: 10px;
+            color: #B0B0B0;
+        }
+        
+        .stage-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+        }
+        
+        .stage-preview {
+            position: absolute;
+            right: 60px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 60px;
+            height: 60px;
+            border: 2px solid #4B0082;
+            overflow: hidden;
+            display: none;
+        }
+        
+        .stage-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            image-rendering: pixelated;
+            filter: contrast(1.2) saturate(0.8);
+        }
+        
+        .stage-item:hover .stage-preview,
+        .stage-item.selected .stage-preview {
+            display: block;
+        }
+        
+        .instructions {
+            text-align: center;
+            font-size: 12px;
+            color: #696969;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <div class="screen">
+            <div class="stage-select">
+                <h1 class="stage-title">STAGE SELECT</h1>
+                
+                <div class="stage-list">
+                    <div class="stage-item selected" data-stage="1">
+                        <div class="stage-number">STAGE 1</div>
+                        <div class="stage-name">思い出の早稲田</div>
+                        <div class="stage-description">大隈銅像の前で待ち合わせ</div>
+                        <div class="stage-icon">🏛️</div>
+                    </div>
+                    
+                    <div class="stage-item" data-stage="2">
+                        <div class="stage-number">STAGE 2</div>
+                        <div class="stage-name">ランバト in 野方</div>
+                        <div class="stage-description">伝説のゲーム大会再び！</div>
+                        <div class="stage-icon">🎮</div>
+                    </div>
+                    
+                    <div class="stage-item" data-stage="3">
+                        <div class="stage-number">STAGE 3</div>
+                        <div class="stage-name">佐賀の戦士、東京上陸！</div>
+                        <div class="stage-description">サガフロンティアから参戦</div>
+                        <div class="stage-preview" id="saga-preview"></div>
+                        <div class="stage-icon">⚔️</div>
+                    </div>
+                </div>
+                
+                <div class="instructions">
+                    ↑↓ SELECT / ENTER CONFIRM / ESC BACK
+                </div>
+            </div>
+        </div>
+        
+        <div class="scanlines"></div>
+    </div>
+
+    <script src="js/sounds.js"></script>
+    <script>
+        // ステージセレクト機能
+        let selectedIndex = 0;
+        const stageItems = document.querySelectorAll('.stage-item');
+        
+        // 初期化
+        SoundManager.init();
+        
+        // SAGAのプレビュー画像を表示（saga1.png固定）
+        function loadSagaPreview() {
+            try {
+                const sagaPreview = document.getElementById('saga-preview');
+                const img = new Image();
+                img.onerror = () => {
+                    console.log('saga1.pngが見つかりません。SAGAフォルダに画像を配置してください。');
+                };
+                img.onload = () => {
+                    sagaPreview.appendChild(img);
+                };
+                img.src = 'SAGA/saga1.png';
+            } catch (error) {
+                console.error('画像の読み込みに失敗しました:', error);
+            }
+        }
+        
+        // ページ読み込み時に画像を設定
+        loadSagaPreview();
+        
+        // キーボード操作
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowUp') {
+                moveSelection(-1);
+            } else if (e.key === 'ArrowDown') {
+                moveSelection(1);
+            } else if (e.key === 'Enter') {
+                confirmSelection();
+            } else if (e.key === 'Escape') {
+                window.location.href = 'index.html';
+            }
+        });
+        
+        // クリック操作
+        stageItems.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                selectedIndex = index;
+                updateSelection();
+                confirmSelection();
+            });
+        });
+        
+        function moveSelection(direction) {
+            selectedIndex += direction;
+            if (selectedIndex < 0) selectedIndex = stageItems.length - 1;
+            if (selectedIndex >= stageItems.length) selectedIndex = 0;
+            
+            updateSelection();
+            SoundManager.play('select');
+        }
+        
+        function updateSelection() {
+            stageItems.forEach((item, index) => {
+                if (index === selectedIndex) {
+                    item.classList.add('selected');
+                } else {
+                    item.classList.remove('selected');
+                }
+            });
+        }
+        
+        function confirmSelection() {
+            SoundManager.play('confirm');
+            const selectedStage = stageItems[selectedIndex].dataset.stage;
+            
+            // 画面遷移エフェクト
+            const transition = document.createElement('div');
+            transition.className = 'screen-transition';
+            document.querySelector('.screen').appendChild(transition);
+            
+            setTimeout(() => {
+                // ステージに応じて遷移先を変更
+                if (selectedStage === '1') {
+                    window.location.href = 'profile.html';
+                } else if (selectedStage === '2') {
+                    window.location.href = 'battle.html';
+                } else if (selectedStage === '3') {
+                    window.location.href = 'win.html';
+                }
+            }, 250);
+        }
+    </script>
+</body>
+</html>

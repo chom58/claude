@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Back Saga!!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/retro.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="screen">
+            <!-- タイトル画面 -->
+            <div class="title-screen active" id="titleScreen">
+                <div class="title-bg">
+                    <h1 class="main-title">
+                        <span class="welcome">Welcome Back</span>
+                        <span class="fighter">Saga!!</span>
+                    </h1>
+                    <div class="hadouken-effect"></div>
+                </div>
+                <div class="subtitle">
+                    <p>佐賀からの挑戦者、東京上陸！</p>
+                    <p class="english">A NEW CHALLENGER FROM SAGA HAS APPEARED!</p>
+                </div>
+                <div class="start-prompt blink">
+                    PRESS ENTER TO START
+                </div>
+                <div class="credits">
+                    <p>早稲田大学 × ストリートファイター × 友情</p>
+                    <p class="year">2025</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- スキャンライン効果 -->
+        <div class="scanlines"></div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/sounds.js"></script>
+</body>
+</html>
