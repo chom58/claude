@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stage 1 - 思い出の早稲田</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/retro.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <style>
+        .fighting-game {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(180deg, #2B0050 0%, #000000 100%);
+            position: relative;
+        }
+        
+        .game-hud {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        
+        .health-bar {
+            width: 200px;
+            height: 20px;
+            background: #333;
+            border: 2px solid #FFF;
+            position: relative;
+        }
+        
+        .health-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #FF0000 0%, #FFFF00 100%);
+            transition: width 0.3s;
+        }
+        
+        .player-name {
+            font-size: 12px;
+            color: #FFD700;
+            margin-bottom: 5px;
+        }
+        
+        .combo-counter {
+            position: absolute;
+            top: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 24px;
+            color: #FFD700;
+            text-shadow: 3px 3px 0px #FF0000;
+            opacity: 0;
+            animation: comboFlash 0.5s;
+        }
+        
+        @keyframes comboFlash {
+            0% { opacity: 0; transform: translateX(-50%) scale(0.5); }
+            50% { opacity: 1; transform: translateX(-50%) scale(1.2); }
+            100% { opacity: 0; transform: translateX(-50%) scale(1); }
+        }
+        
+        .game-arena {
+            flex-grow: 1;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding-bottom: 50px;
+            overflow: hidden;
+        }
+        
+        .character {
+            width: 100px;
+            height: 150px;
+            position: absolute;
+            bottom: 50px;
+            transition: all 0.2s;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            image-rendering: pixelated;
+        }
+        
+        .player {
+            left: 200px;
+            border: 2px solid #0080FF;
+            box-shadow: 0 0 10px #0080FF;
+        }
+        
+        .opponent {
+            right: 200px;
+            border: 2px solid #FF0000;
+            box-shadow: 0 0 10px #FF0000;
+        }
+        
+        .character.attacking {
+            animation: attack 0.3s;
+        }
+        
+        @keyframes attack {
+            0% { transform: translateX(0); }
+            50% { transform: translateX(30px); }
+            100% { transform: translateX(0); }
+        }
+        
+        .character.hit {
+            animation: hit 0.5s;
+        }
+        
+        @keyframes hit {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+        
+        .command-list {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #4B0082;
+            padding: 10px;
+            font-size: 10px;
+            color: #FFF;
+        }
+        
+        .command-list h3 {
+            color: #FFD700;
+            margin-bottom: 10px;
+            font-size: 12px;
+        }
+        
+        .command {
+            margin-bottom: 5px;
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+        
+        .special-move {
+            color: #FF69B4;
+        }
+        
+        .victory-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+        }
+        
+        .victory-text {
+            font-size: 48px;
+            color: #FFD700;
+            text-shadow: 5px 5px 0px #FF0000;
+            margin-bottom: 20px;
+            animation: victoryPulse 1s infinite;
+        }
+        
+        @keyframes victoryPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .continue-button {
+            padding: 15px 30px;
+            font-size: 16px;
+            background: #4B0082;
+            color: #FFD700;
+            border: 2px solid #FFD700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .continue-button:hover {
+            background: #FFD700;
+            color: #4B0082;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <div class="screen">
+            <div class="fighting-game">
+                <div class="game-hud">
+                    <div class="player-info">
+                        <div class="player-name">あなた</div>
+                        <div class="health-bar">
+                            <div class="health-fill" id="player-health" style="width: 100%"></div>
+                        </div>
+                    </div>
+                    <div class="player-info">
+                        <div class="player-name">早稲田の番人</div>
+                        <div class="health-bar">
+                            <div class="health-fill" id="opponent-health" style="width: 100%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="combo-counter" id="combo-counter">COMBO x0</div>
+                
+                <div class="game-arena">
+                    <div class="character player" id="player"></div>
+                    <div class="character opponent" id="opponent"></div>
+                </div>
+                
+                <div class="command-list">
+                    <h3>コマンドリスト</h3>
+                    <div class="command">
+                        <span>パンチ</span>
+                        <span>Z</span>
+                    </div>
+                    <div class="command">
+                        <span>キック</span>
+                        <span>X</span>
+                    </div>
+                    <div class="command special-move">
+                        <span>必殺技</span>
+                        <span>C</span>
+                    </div>
+                    <div class="command">
+                        <span>ガード</span>
+                        <span>SHIFT</span>
+                    </div>
+                </div>
+                
+                <div class="victory-screen" id="victory-screen">
+                    <div class="victory-text">YOU WIN!</div>
+                    <button class="continue-button" onclick="nextStage()">次のステージへ</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="scanlines"></div>
+    </div>
+
+    <script src="js/sounds.js"></script>
+    <script>
+        SoundManager.init();
+        
+        let playerHealth = 100;
+        let opponentHealth = 100;
+        let combo = 0;
+        let gameOver = false;
+        let isBlocking = false;
+        
+        const player = document.getElementById('player');
+        const opponent = document.getElementById('opponent');
+        const playerHealthBar = document.getElementById('player-health');
+        const opponentHealthBar = document.getElementById('opponent-health');
+        const comboCounter = document.getElementById('combo-counter');
+        const victoryScreen = document.getElementById('victory-screen');
+        
+        // キャラクター画像を設定
+        const randomPlayerImage = Math.floor(Math.random() * 8) + 1;
+        player.style.backgroundImage = `url(SAGA/saga${randomPlayerImage}.png)`;
+        opponent.style.backgroundImage = `url(SAGA/saga1.png)`;
+        
+        // キーボード入力
+        document.addEventListener('keydown', (e) => {
+            if (gameOver) return;
+            
+            switch(e.key.toLowerCase()) {
+                case 'z':
+                    performAttack('punch', 10);
+                    break;
+                case 'x':
+                    performAttack('kick', 15);
+                    break;
+                case 'c':
+                    performSpecialAttack();
+                    break;
+                case 'shift':
+                    isBlocking = true;
+                    player.style.borderColor = '#00FFFF';
+                    player.style.boxShadow = '0 0 20px #00FFFF';
+                    break;
+            }
+        });
+        
+        document.addEventListener('keyup', (e) => {
+            if (e.key === 'Shift') {
+                isBlocking = false;
+                player.style.borderColor = '#0080FF';
+                player.style.boxShadow = '0 0 10px #0080FF';
+            }
+        });
+        
+        function performAttack(type, damage) {
+            player.classList.add('attacking');
+            SoundManager.play('hit');
+            
+            setTimeout(() => {
+                player.classList.remove('attacking');
+                
+                // ランダムでガードされる
+                if (Math.random() > 0.7) {
+                    showEffect('GUARD!', opponent);
+                } else {
+                    damageOpponent(damage);
+                    combo++;
+                    updateCombo();
+                }
+            }, 150);
+        }
+        
+        function performSpecialAttack() {
+            if (combo < 3) return;
+            
+            player.classList.add('attacking');
+            SoundManager.play('powerup');
+            
+            // 特殊エフェクト
+            player.style.boxShadow = '0 0 30px #FFD700';
+            
+            setTimeout(() => {
+                player.classList.remove('attacking');
+                player.style.boxShadow = 'none';
+                damageOpponent(30);
+                combo = 0;
+                updateCombo();
+            }, 300);
+        }
+        
+        function damageOpponent(damage) {
+            opponentHealth = Math.max(0, opponentHealth - damage);
+            opponentHealthBar.style.width = opponentHealth + '%';
+            opponent.classList.add('hit');
+            
+            setTimeout(() => {
+                opponent.classList.remove('hit');
+            }, 500);
+            
+            if (opponentHealth <= 0) {
+                gameWin();
+            }
+        }
+        
+        function updateCombo() {
+            if (combo > 0) {
+                comboCounter.textContent = `COMBO x${combo}`;
+                comboCounter.style.opacity = '1';
+                comboCounter.style.animation = 'none';
+                setTimeout(() => {
+                    comboCounter.style.animation = 'comboFlash 0.5s';
+                }, 10);
+            }
+        }
+        
+        function showEffect(text, target) {
+            const effect = document.createElement('div');
+            effect.textContent = text;
+            effect.style.position = 'absolute';
+            effect.style.top = '-30px';
+            effect.style.left = '50%';
+            effect.style.transform = 'translateX(-50%)';
+            effect.style.color = '#00FFFF';
+            effect.style.fontSize = '14px';
+            effect.style.animation = 'fadeUp 1s';
+            target.appendChild(effect);
+            
+            setTimeout(() => {
+                effect.remove();
+            }, 1000);
+        }
+        
+        // AI対戦相手
+        setInterval(() => {
+            if (gameOver || opponentHealth <= 0) return;
+            
+            if (Math.random() > 0.5) {
+                opponent.classList.add('attacking');
+                
+                setTimeout(() => {
+                    opponent.classList.remove('attacking');
+                    
+                    if (!isBlocking) {
+                        playerHealth = Math.max(0, playerHealth - 10);
+                        playerHealthBar.style.width = playerHealth + '%';
+                        player.classList.add('hit');
+                        combo = 0;
+                        
+                        setTimeout(() => {
+                            player.classList.remove('hit');
+                        }, 500);
+                        
+                        if (playerHealth <= 0) {
+                            gameOver = true;
+                            alert('GAME OVER\n\nもう一度挑戦してください！');
+                            location.reload();
+                        }
+                    } else {
+                        showEffect('GUARD!', player);
+                        SoundManager.play('select');
+                    }
+                }, 150);
+            }
+        }, 2000);
+        
+        function gameWin() {
+            gameOver = true;
+            SoundManager.play('victory');
+            victoryScreen.style.display = 'flex';
+        }
+        
+        function nextStage() {
+            window.location.href = 'stage2.html';
+        }
+    </script>
+</body>
+</html>
