@@ -2,7 +2,10 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <title>Stage Select - Welcome Back Saga!!</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,6 +21,7 @@
             flex-direction: column;
             padding: 40px;
             background: linear-gradient(180deg, #1a0033 0%, #000000 100%);
+            overflow-y: auto;
         }
         
         .stage-title {
@@ -111,6 +115,102 @@
             color: #696969;
             margin-top: 20px;
         }
+        
+        /* モバイル用タッチ操作ボタン */
+        .mobile-controls {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            gap: 15px;
+            z-index: 100;
+        }
+        
+        .mobile-btn {
+            background: rgba(75, 0, 130, 0.8);
+            color: #FFD700;
+            border: 2px solid #FFD700;
+            padding: 12px 20px;
+            font-size: 12px;
+            font-family: 'Press Start 2P', monospace;
+            cursor: pointer;
+            transition: all 0.1s;
+        }
+        
+        .mobile-btn:active {
+            transform: scale(0.95);
+            background: rgba(75, 0, 130, 1);
+        }
+        
+        /* レスポンシブ対応 */
+        @media (max-width: 768px) {
+            .stage-select {
+                padding: 20px;
+            }
+            
+            .stage-title {
+                font-size: 20px;
+                margin-bottom: 20px;
+            }
+            
+            .stage-list {
+                gap: 20px;
+            }
+            
+            .stage-item {
+                padding: 15px;
+            }
+            
+            .stage-name {
+                font-size: 14px;
+            }
+            
+            .stage-number {
+                font-size: 12px;
+            }
+            
+            .stage-description {
+                font-size: 8px;
+            }
+            
+            .stage-icon {
+                font-size: 20px;
+                right: 15px;
+            }
+            
+            .stage-preview {
+                display: none !important;
+            }
+            
+            .instructions {
+                display: none;
+            }
+            
+            .mobile-controls {
+                display: flex;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .stage-select {
+                padding: 15px;
+            }
+            
+            .stage-title {
+                font-size: 16px;
+                margin-bottom: 15px;
+            }
+            
+            .stage-item {
+                padding: 12px;
+            }
+            
+            .stage-item:hover,
+            .stage-item.selected {
+                transform: translateX(5px);
+            }
+        }
     </style>
 </head>
 <body>
@@ -150,6 +250,12 @@
         </div>
         
         <div class="scanlines"></div>
+        
+        <!-- モバイル用コントロール -->
+        <div class="mobile-controls">
+            <button class="mobile-btn" id="backBtn">戻る</button>
+            <button class="mobile-btn" id="selectBtn">選択</button>
+        </div>
     </div>
 
     <script src="js/sounds.js"></script>
@@ -201,7 +307,31 @@
                 updateSelection();
                 confirmSelection();
             });
+            
+            // タッチイベントの追加
+            item.addEventListener('touchend', (e) => {
+                e.preventDefault();
+                selectedIndex = index;
+                updateSelection();
+                confirmSelection();
+            });
         });
+        
+        // モバイルボタンの操作
+        const backBtn = document.getElementById('backBtn');
+        const selectBtn = document.getElementById('selectBtn');
+        
+        if (backBtn) {
+            backBtn.addEventListener('click', () => {
+                window.location.href = 'index.html';
+            });
+        }
+        
+        if (selectBtn) {
+            selectBtn.addEventListener('click', () => {
+                confirmSelection();
+            });
+        }
         
         function moveSelection(direction) {
             selectedIndex += direction;

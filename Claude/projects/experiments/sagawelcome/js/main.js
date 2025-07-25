@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 要素の取得
     const titleScreen = document.getElementById('titleScreen');
     const startPrompt = document.querySelector('.start-prompt');
+    const touchButton = document.getElementById('touchStart');
     
     // サウンドマネージャーの初期化
     if (typeof SoundManager !== 'undefined') {
@@ -16,12 +17,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
     
-    // タッチデバイス対応
-    titleScreen.addEventListener('click', () => {
-        if (titleScreen.classList.contains('active')) {
+    // タッチボタンでゲーム開始
+    if (touchButton) {
+        touchButton.addEventListener('click', (e) => {
+            e.stopPropagation();
             startGame();
-        }
-    });
+        });
+        
+        // タッチイベントも追加（より確実に動作させるため）
+        touchButton.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            startGame();
+        });
+    }
     
     // ゲーム開始処理
     function startGame() {
