@@ -677,8 +677,19 @@
         }
         
         .vision-icon {
-            font-size: 3rem;
             margin-bottom: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 60px;
+        }
+        
+        .vision-icon svg {
+            transition: transform 0.3s ease;
+        }
+        
+        .vision-item:hover .vision-icon svg {
+            transform: scale(1.1);
         }
         
         .vision-item h4 {
@@ -1177,7 +1188,12 @@
             <div class="events-grid">
                 <div class="event-card" data-scroll>
                     <div class="event-image" style="background: var(--gradient-primary);">
-                        🎨
+                        <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="40" cy="40" r="30" stroke="white" stroke-width="2" opacity="0.8"/>
+                            <path d="M30 30H50V50H30V30Z" stroke="white" stroke-width="2" opacity="0.8"/>
+                            <path d="M35 25V35M45 25V35" stroke="white" stroke-width="2" opacity="0.8"/>
+                            <path d="M40 50V55" stroke="white" stroke-width="2" opacity="0.8"/>
+                        </svg>
                     </div>
                     <div class="event-content">
                         <h3>Harajuku Creators Meet-up Vol.1</h3>
@@ -1187,7 +1203,11 @@
                 </div>
                 <div class="event-card" data-scroll>
                     <div class="event-image" style="background: var(--gradient-secondary);">
-                        🎵
+                        <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 40C20 40 30 30 40 30C50 30 60 40 60 40C60 40 50 50 40 50C30 50 20 40 20 40Z" stroke="white" stroke-width="2" opacity="0.8"/>
+                            <circle cx="40" cy="40" r="5" stroke="white" stroke-width="2" opacity="0.8"/>
+                            <path d="M25 25L30 30M55 25L50 30M25 55L30 50M55 55L50 50" stroke="white" stroke-width="2" opacity="0.8"/>
+                        </svg>
                     </div>
                     <div class="event-content">
                         <h3>Music Production Workshop</h3>
@@ -1197,7 +1217,12 @@
                 </div>
                 <div class="event-card" data-scroll>
                     <div class="event-image" style="background: linear-gradient(135deg, #FFD700, #FF006E);">
-                        🎭
+                        <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="30" cy="35" r="8" stroke="white" stroke-width="2" opacity="0.8"/>
+                            <circle cx="50" cy="35" r="8" stroke="white" stroke-width="2" opacity="0.8"/>
+                            <path d="M22 35C22 35 25 45 40 45C55 45 58 35 58 35" stroke="white" stroke-width="2" opacity="0.8"/>
+                            <path d="M30 50L25 60M50 50L55 60M40 50V60" stroke="white" stroke-width="2" opacity="0.8"/>
+                        </svg>
                     </div>
                     <div class="event-content">
                         <h3>Performance Art Lab</h3>
@@ -1245,22 +1270,70 @@
             <h2 class="section-title" data-scroll>VISION</h2>
             <div class="vision-grid">
                 <div class="vision-item" data-scroll>
-                    <div class="vision-icon">🤝</div>
+                    <div class="vision-icon">
+                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15 30H25L30 25L35 30H45" stroke="url(#vision-gradient1)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M20 30V40C20 42 22 44 24 44H36C38 44 40 42 40 40V30" stroke="url(#vision-gradient1)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <defs>
+                                <linearGradient id="vision-gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#FF006E"/>
+                                    <stop offset="100%" stop-color="#8B00FF"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
                     <h4>企業×クリエイター</h4>
                     <p>垣根を超えた自然な交流</p>
                 </div>
                 <div class="vision-item" data-scroll>
-                    <div class="vision-icon">🍽️</div>
+                    <div class="vision-icon">
+                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="30" cy="30" r="15" stroke="url(#vision-gradient2)" stroke-width="2"/>
+                            <path d="M25 30L30 25L35 30" stroke="url(#vision-gradient2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M20 35H40" stroke="url(#vision-gradient2)" stroke-width="2" stroke-linecap="round"/>
+                            <defs>
+                                <linearGradient id="vision-gradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#00D9FF"/>
+                                    <stop offset="100%" stop-color="#00FF88"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
                     <h4>食×コミュニケーション</h4>
                     <p>食を通じたリラックスした対話</p>
                 </div>
                 <div class="vision-item" data-scroll>
-                    <div class="vision-icon">🎨</div>
+                    <div class="vision-icon">
+                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="20" y="20" width="20" height="20" stroke="url(#vision-gradient3)" stroke-width="2"/>
+                            <circle cx="40" cy="40" r="10" stroke="url(#vision-gradient3)" stroke-width="2"/>
+                            <path d="M15 15L25 25M35 15L45 25" stroke="url(#vision-gradient3)" stroke-width="2" stroke-linecap="round"/>
+                            <defs>
+                                <linearGradient id="vision-gradient3" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#FFD700"/>
+                                    <stop offset="100%" stop-color="#FF006E"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
                     <h4>カルチャー×ビジネス</h4>
                     <p>創造性と実行力の融合</p>
                 </div>
                 <div class="vision-item" data-scroll>
-                    <div class="vision-icon">🚀</div>
+                    <div class="vision-icon">
+                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M30 15L35 25H25L30 15Z" stroke="url(#vision-gradient4)" stroke-width="2" stroke-linejoin="round"/>
+                            <path d="M25 25H35V40L30 45L25 40V25Z" stroke="url(#vision-gradient4)" stroke-width="2" stroke-linejoin="round"/>
+                            <path d="M20 35L25 30M40 35L35 30" stroke="url(#vision-gradient4)" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M25 40L20 45M35 40L40 45" stroke="url(#vision-gradient4)" stroke-width="2" stroke-linecap="round"/>
+                            <defs>
+                                <linearGradient id="vision-gradient4" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#00FF88"/>
+                                    <stop offset="100%" stop-color="#8B00FF"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
                     <h4>次世代コラボレーション</h4>
                     <p>新しい価値創造の形</p>
                 </div>
