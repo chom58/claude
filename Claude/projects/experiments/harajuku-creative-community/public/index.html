@@ -191,6 +191,9 @@
             flex-direction: column;
             gap: 4px;
             cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
         }
         
         .hamburger span {
@@ -367,8 +370,9 @@
         
         .activities-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+            gap: clamp(1.5rem, 4vw, 3rem);
+            align-items: start;
         }
         
         .activity-card {
@@ -431,8 +435,9 @@
         
         .creators-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+            gap: clamp(1rem, 3vw, 2rem);
+            align-items: stretch;
         }
         
         .creator-type {
@@ -496,8 +501,9 @@
         
         .space-gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+            gap: clamp(1rem, 3vw, 2rem);
+            align-items: start;
         }
         
         .space-item {
@@ -553,8 +559,9 @@
         
         .events-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(min(350px, 100%), 1fr));
+            gap: clamp(1.5rem, 4vw, 3rem);
+            align-items: start;
         }
         
         .event-card {
@@ -626,8 +633,9 @@
         
         .community-showcase {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+            gap: clamp(1.5rem, 4vw, 3rem);
+            align-items: start;
         }
         
         .community-card {
@@ -666,10 +674,11 @@
         
         .vision-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+            gap: clamp(1.5rem, 4vw, 3rem);
             max-width: 1000px;
             margin: 0 auto;
+            align-items: start;
         }
         
         .vision-item {
@@ -728,10 +737,11 @@
         
         .participation-methods {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+            gap: clamp(1.5rem, 4vw, 3rem);
             max-width: 800px;
             margin: 3rem auto;
+            align-items: start;
         }
         
         .method-card {
@@ -762,9 +772,10 @@
             margin: 0 auto;
             padding: 0 2rem;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+            gap: clamp(1.5rem, 4vw, 3rem);
             margin-bottom: 3rem;
+            align-items: start;
         }
         
         .footer-section h4 {
@@ -792,7 +803,143 @@
             opacity: 0.6;
         }
         
-        /* Responsive */
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100vh;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 9999;
+            transition: right 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .mobile-menu.open {
+            right: 0;
+        }
+        
+        .mobile-menu-links {
+            list-style: none;
+            text-align: center;
+        }
+        
+        .mobile-menu-links li {
+            margin: 2rem 0;
+        }
+        
+        .mobile-menu-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 2rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-menu-links a:hover {
+            color: var(--accent-pink);
+        }
+        
+        .menu-close {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            font-size: 2rem;
+            color: var(--white);
+            cursor: pointer;
+        }
+        
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+        
+        /* Touch Targets */
+        .btn, .nav-links a, .hamburger {
+            min-height: 44px;
+            min-width: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Responsive Breakpoints */
+        
+        /* Large Desktop */
+        @media (min-width: 1440px) {
+            .container {
+                max-width: 1600px;
+            }
+            
+            .hero-title {
+                font-size: 12rem;
+            }
+            
+            .section-title {
+                font-size: 6rem;
+            }
+        }
+        
+        /* Desktop */
+        @media (min-width: 1024px) and (max-width: 1439px) {
+            .container {
+                max-width: 1200px;
+            }
+            
+            .activities-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .creators-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        
+        /* Tablet */
+        @media (min-width: 769px) and (max-width: 1023px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+            
+            .hero-title {
+                font-size: 8rem;
+            }
+            
+            .activities-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+            
+            .creators-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .space-gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .events-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .about-content {
+                gap: 3rem;
+            }
+        }
+        
+        /* Mobile */
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -800,24 +947,53 @@
             
             .hamburger {
                 display: flex;
+                z-index: 10000;
+            }
+            
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .hero {
+                margin-top: 60px;
+                padding: 2rem 0;
             }
             
             .hero-title {
-                font-size: 4rem;
+                font-size: clamp(3rem, 12vw, 5rem);
+                line-height: 0.8;
+                margin-bottom: 1.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: clamp(1rem, 4vw, 1.3rem);
+                margin-bottom: 2rem;
             }
             
             .hero-buttons {
                 flex-direction: column;
-                align-items: center;
+                gap: 1rem;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
+                padding: 1rem 2rem;
+            }
+            
+            .section-title {
+                font-size: clamp(2.5rem, 8vw, 4rem);
+                margin-bottom: 2rem;
             }
             
             .about-content {
                 grid-template-columns: 1fr;
+                gap: 2rem;
                 text-align: center;
             }
             
-            .section-title {
-                font-size: 3rem;
+            .about-text h3 {
+                font-size: 1.5rem;
             }
             
             .activities-grid,
@@ -825,15 +1001,137 @@
             .space-gallery,
             .community-showcase {
                 grid-template-columns: 1fr;
+                gap: 2rem;
             }
             
             .creators-grid {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+            
+            .creator-type {
+                padding: 1.5rem 1rem;
+            }
+            
+            .vision-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .participation-methods {
+                grid-template-columns: 1fr;
+                gap: 2rem;
             }
             
             .footer-content {
                 grid-template-columns: 1fr;
                 text-align: center;
+                gap: 2rem;
+            }
+            
+            .value-create-logo {
+                height: 25px;
+            }
+            
+            nav {
+                padding: 1rem;
+            }
+        }
+        
+        /* Small Mobile */
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 0.8rem;
+            }
+            
+            .hero-title {
+                font-size: clamp(2.5rem, 10vw, 4rem);
+            }
+            
+            .section-title {
+                font-size: clamp(2rem, 7vw, 3rem);
+            }
+            
+            .activity-card,
+            .event-card {
+                padding: 1.5rem;
+            }
+            
+            .space-item {
+                height: 250px;
+            }
+            
+            .creators-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .creator-type {
+                padding: 2rem 1rem;
+            }
+        }
+        
+        /* Landscape Mobile */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .hero {
+                min-height: auto;
+                padding: 1rem 0;
+            }
+            
+            .hero-title {
+                font-size: 3rem;
+                margin-bottom: 1rem;
+            }
+            
+            .hero-subtitle {
+                margin-bottom: 1rem;
+            }
+            
+            .hero-buttons {
+                margin-top: 1rem;
+            }
+        }
+        
+        /* High DPI Displays */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            .space-item img {
+                image-rendering: -webkit-optimize-contrast;
+            }
+        }
+        
+        /* Prefers Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Skip link for accessibility */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            background: var(--primary-dark);
+            color: var(--white);
+            padding: 8px;
+            text-decoration: none;
+            border-radius: 4px;
+            z-index: 1000;
+            transition: top 0.3s;
+        }
+
+        .skip-link:focus {
+            top: 6px;
+        }
+        
+        /* Dark Mode Support */
+        @media (prefers-color-scheme: light) {
+            :root {
+                --primary-dark: #FFFFFF;
+                --secondary-dark: #F5F5F5;
+                --white: #0A0A0A;
+                --gray: #333333;
             }
         }
         
@@ -863,6 +1161,9 @@
     </style>
 </head>
 <body>
+    <!-- Skip to main content link for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
     <!-- Loader -->
     <div class="loader" id="loader">
         <div class="loader-content">
@@ -888,16 +1189,29 @@
                 <li><a href="/events.html">EVENTS</a></li>
                 <li><a href="/contact.html">CONTACT</a></li>
             </ul>
-            <div class="hamburger">
+            <button class="hamburger" id="hamburger" aria-label="メニューを開く" aria-expanded="false">
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
+            </button>
         </nav>
+        
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobile-menu">
+            <div class="menu-close" id="menu-close">&times;</div>
+            <ul class="mobile-menu-links">
+                <li><a href="/about.html">ABOUT</a></li>
+                <li><a href="#whatwedo">WHAT WE DO</a></li>
+                <li><a href="#whoweconnect">WHO WE CONNECT</a></li>
+                <li><a href="#ourspace">OUR SPACE</a></li>
+                <li><a href="/events.html">EVENTS</a></li>
+                <li><a href="/contact.html">CONTACT</a></li>
+            </ul>
+        </div>
     </header>
     
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero" id="main-content">
         <div class="hero-content" data-scroll>
             <h1 class="hero-title">
                 MEET<br>
@@ -924,7 +1238,7 @@
                     <p>ファッション、アート、音楽、テクノロジー。様々な分野のプロフェッショナルが集まり、原宿から世界へ新しい価値を発信します。</p>
                 </div>
                 <div class="about-image" data-scroll>
-                    <img src="./images/1753672747077.jpeg" alt="HCC Space">
+                    <img src="./images/1753672747077.jpeg" alt="HCC Space" loading="lazy" decoding="async">
                 </div>
             </div>
         </div>
@@ -1150,28 +1464,28 @@
             <h2 class="section-title" data-scroll>OUR SPACE</h2>
             <div class="space-gallery">
                 <div class="space-item" data-scroll>
-                    <img src="./images/1753672747077.jpeg" alt="メインスペース">
+                    <img src="./images/1753672747077.jpeg" alt="メインスペース" loading="lazy" decoding="async">
                     <div class="space-overlay">
                         <h4>メインスペース</h4>
                         <p>開放的な空間で自然な交流が生まれます</p>
                     </div>
                 </div>
                 <div class="space-item" data-scroll>
-                    <img src="./images/1753672747782.jpeg" alt="カフェ&バー">
+                    <img src="./images/1753672747782.jpeg" alt="カフェ&バー" loading="lazy" decoding="async">
                     <div class="space-overlay">
                         <h4>カフェ&バー</h4>
                         <p>コーヒーマシンとバーカウンターを完備</p>
                     </div>
                 </div>
                 <div class="space-item" data-scroll>
-                    <img src="./images/1753672748383.jpeg" alt="ライブラリー">
+                    <img src="./images/1753672748383.jpeg" alt="ライブラリー" loading="lazy" decoding="async">
                     <div class="space-overlay">
                         <h4>ライブラリー</h4>
                         <p>クリエイティブな書籍が並ぶ図書スペース</p>
                     </div>
                 </div>
                 <div class="space-item" data-scroll>
-                    <img src="./images/1753672748933.jpeg" alt="原宿エリア">
+                    <img src="./images/1753672748933.jpeg" alt="原宿エリア" loading="lazy" decoding="async">
                     <div class="space-overlay">
                         <h4>原宿駅徒歩5分</h4>
                         <p>アクセス抜群の立地</p>
@@ -1454,12 +1768,56 @@
         handleScrollAnimation();
         
         // Mobile menu toggle
-        const hamburger = document.querySelector('.hamburger');
-        const navLinks = document.querySelector('.nav-links');
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuClose = document.getElementById('menu-close');
+        const mobileMenuLinks = document.querySelectorAll('.mobile-menu-links a');
         
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            hamburger.classList.toggle('active');
+        function openMobileMenu() {
+            mobileMenu.classList.add('open');
+            hamburger.classList.add('active');
+            hamburger.setAttribute('aria-expanded', 'true');
+            hamburger.setAttribute('aria-label', 'メニューを閉じる');
+            document.body.style.overflow = 'hidden';
+            
+            // Focus management
+            const firstMenuLink = mobileMenu.querySelector('.mobile-menu-links a');
+            if (firstMenuLink) {
+                firstMenuLink.focus();
+            }
+        }
+        
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('open');
+            hamburger.classList.remove('active');
+            hamburger.setAttribute('aria-expanded', 'false');
+            hamburger.setAttribute('aria-label', 'メニューを開く');
+            document.body.style.overflow = '';
+            
+            // Return focus to hamburger
+            hamburger.focus();
+        }
+        
+        hamburger.addEventListener('click', openMobileMenu);
+        menuClose.addEventListener('click', closeMobileMenu);
+        
+        // Close menu when clicking on links
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
+        });
+        
+        // Close menu when clicking outside
+        mobileMenu.addEventListener('click', (e) => {
+            if (e.target === mobileMenu) {
+                closeMobileMenu();
+            }
+        });
+        
+        // Close menu on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+                closeMobileMenu();
+            }
         });
         
         // Smooth scroll for anchor links
@@ -1474,6 +1832,43 @@
                     });
                 }
             });
+        });
+
+        // Intersection Observer for scroll animations (performance optimization)
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const scrollObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all scroll elements
+        document.querySelectorAll('[data-scroll]').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            scrollObserver.observe(el);
+        });
+
+        // Preload critical images
+        const criticalImages = [
+            './images/1753672747077.jpeg',
+            './images/value-create-logo.png'
+        ];
+
+        criticalImages.forEach(src => {
+            const link = document.createElement('link');
+            link.rel = 'preload';
+            link.as = 'image';
+            link.href = src;
+            document.head.appendChild(link);
         });
     </script>
 </body>
