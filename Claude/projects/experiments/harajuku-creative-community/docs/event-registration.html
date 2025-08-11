@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>イベント参加申込 | HARAJUKU CREATIVE COMMUNITY</title>
+    <meta name="description" content="HARAJUKU CREATIVE COMMUNITYのイベント参加申込フォーム">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+JP:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0A0A0A;
+            color: #FFFFFF;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        /* Header */
+        header {
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 1.5rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            text-decoration: none;
+            color: #FFFFFF;
+            letter-spacing: 2px;
+            transition: color 0.3s;
+        }
+        
+        .logo:hover {
+            color: #FF006E;
+        }
+        
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: #FFFFFF;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #FF006E;
+        }
+        
+        /* Main Content */
+        .registration-container {
+            max-width: 800px;
+            margin: 120px auto 50px;
+            padding: 0 2rem;
+        }
+        
+        .registration-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(3rem, 6vw, 4rem);
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #FF006E, #8B00FF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 3px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            margin-bottom: 2rem;
+        }
+        
+        /* Form Container */
+        .form-container {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        /* Google Forms Embed Placeholder */
+        .form-info {
+            text-align: center;
+            padding: 3rem;
+            background: linear-gradient(135deg, rgba(255, 0, 110, 0.1), rgba(139, 0, 255, 0.1));
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+        
+        .form-info h2 {
+            color: #00D9FF;
+            margin-bottom: 1rem;
+        }
+        
+        .form-info p {
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .external-form-btn {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: linear-gradient(135deg, #FF006E, #8B00FF);
+            color: #FFFFFF;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            text-transform: uppercase;
+        }
+        
+        .external-form-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 0, 110, 0.3);
+        }
+        
+        /* Event Details */
+        .event-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .detail-card {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 2rem;
+            border-radius: 10px;
+            border-left: 4px solid #00FF88;
+        }
+        
+        .detail-card h3 {
+            color: #00FF88;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .detail-card p {
+            opacity: 0.9;
+        }
+        
+        /* Notes Section */
+        .notes-section {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 3rem;
+        }
+        
+        .notes-section h2 {
+            color: #FFD700;
+            margin-bottom: 1.5rem;
+        }
+        
+        .notes-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .notes-section li {
+            padding-left: 1.5rem;
+            position: relative;
+            margin-bottom: 0.8rem;
+            opacity: 0.9;
+        }
+        
+        .notes-section li::before {
+            content: "▶";
+            position: absolute;
+            left: 0;
+            color: #FFD700;
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 10px;
+        }
+        
+        .contact-section h3 {
+            color: #00D9FF;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-section a {
+            color: #FF006E;
+            text-decoration: none;
+        }
+        
+        .contact-section a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Footer */
+        footer {
+            background: #1A1A1A;
+            padding: 3rem 0;
+            margin-top: 5rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links a {
+            color: #FFFFFF;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+        
+        .footer-links a:hover {
+            opacity: 1;
+            color: #FF006E;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .form-container {
+                padding: 2rem 1.5rem;
+            }
+            
+            .event-details {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="/" class="logo">HCC</a>
+            <ul class="nav-links">
+                <li><a href="/">ホーム</a></li>
+                <li><a href="/about.html">About</a></li>
+                <li><a href="/events.html">Events</a></li>
+                <li><a href="/contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="registration-container">
+        <div class="registration-header">
+            <h1>イベント参加申込</h1>
+            <p class="subtitle">原宿から世界へ、新しいクリエイティブを共に創造しましょう</p>
+        </div>
+
+        <div class="form-container">
+            <div class="form-info">
+                <h2>🎨 Creative Morning Session</h2>
+                <p>
+                    毎週火曜日の朝、コーヒーを飲みながら<br>
+                    クリエイターと企業の新しい出会いを
+                </p>
+                <a href="https://forms.gle/YOUR_GOOGLE_FORM_ID" target="_blank" class="external-form-btn">
+                    申込フォームへ進む
+                </a>
+            </div>
+
+            <!-- イベント詳細 -->
+            <div class="event-details">
+                <div class="detail-card">
+                    <h3>📅 開催日時</h3>
+                    <p>毎週火曜日<br>8:00 - 9:00 AM</p>
+                </div>
+                <div class="detail-card">
+                    <h3>📍 場所</h3>
+                    <p>原宿クリエイティブスペース<br>（原宿駅徒歩5分）</p>
+                </div>
+                <div class="detail-card">
+                    <h3>👥 定員</h3>
+                    <p>20名<br>（先着順）</p>
+                </div>
+                <div class="detail-card">
+                    <h3>💰 参加費</h3>
+                    <p>無料<br>（コーヒー付き）</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 注意事項 -->
+        <div class="notes-section">
+            <h2>ご参加にあたって</h2>
+            <ul>
+                <li>イベントは原則として日本語で行われます</li>
+                <li>名刺をお持ちの方はご持参ください</li>
+                <li>カジュアルな服装でお越しください</li>
+                <li>写真撮影を行う場合があります（SNS掲載可否は確認します）</li>
+                <li>キャンセルの場合は前日までにご連絡ください</li>
+            </ul>
+        </div>
+
+        <!-- 今後のイベント予定 -->
+        <div class="form-container">
+            <h2 style="color: #00D9FF; margin-bottom: 2rem; text-align: center;">今後のイベント予定</h2>
+            <div class="event-details">
+                <div class="detail-card">
+                    <h3>Design Workshop</h3>
+                    <p>第3金曜日 19:00-21:00<br>デザイン思考を学ぶワークショップ</p>
+                </div>
+                <div class="detail-card">
+                    <h3>Fashion Tech Night</h3>
+                    <p>月1回土曜日 18:00-20:00<br>ファッション×テクノロジーの最前線</p>
+                </div>
+                <div class="detail-card">
+                    <h3>Creator Meetup</h3>
+                    <p>毎月最終水曜日 19:00-21:00<br>クリエイター交流会</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- お問い合わせ -->
+        <div class="contact-section">
+            <h3>お問い合わせ</h3>
+            <p>
+                イベントに関するご質問は<br>
+                <a href="mailto:events@harajuku-creative.com">events@harajuku-creative.com</a><br>
+                までお気軽にお問い合わせください
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-links">
+            <a href="/privacy.html">プライバシーポリシー</a>
+            <a href="/terms.html">利用規約</a>
+            <a href="/contact.html">お問い合わせ</a>
+        </div>
+        <p>&copy; 2025 HARAJUKU CREATIVE COMMUNITY. All rights reserved.</p>
+    </footer>
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+</body>
+</html>

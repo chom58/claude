@@ -1,0 +1,14 @@
+# Robots.txt for Harajuku Creative Community
+# Allow all robots to crawl the site
+
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /private/
+
+# Sitemap location
+Sitemap: https://harajuku-creative.com/sitemap.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
