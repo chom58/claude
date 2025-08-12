@@ -1,0 +1,10 @@
+# Amplify Redirects
+# No wildcards - only specific redirects
+/home              /index.html        200
+/about             /about.html        200
+/contact           /contact.html      200
+/events            /events.html       200
+/event-registration /event-registration.html 200
+
+# SPAフォールバック (最後に配置)
+/*                 /index.html        200
