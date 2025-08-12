@@ -61,7 +61,7 @@
             font-family: 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
             background: #0A0A0A !important;
             background-color: #0A0A0A !important;
-            color: var(--white);
+            color: #FFFFFF !important;
             overflow-x: hidden;
             line-height: 1.6;
             min-height: 100vh;
@@ -70,6 +70,15 @@
         html {
             background: #0A0A0A !important;
             background-color: #0A0A0A !important;
+        }
+        
+        /* テキストカラーの強制適用 */
+        * {
+            color: #FFFFFF;
+        }
+        
+        h1, h2, h3, h4, h5, h6, p, span, div, a, li {
+            color: #FFFFFF !important;
         }
         
         /* Smooth Scrolling */
@@ -460,12 +469,13 @@
         .activity-card h3 {
             font-size: 1.5rem;
             margin-bottom: 1rem;
-            color: var(--white);
+            color: #FFFFFF !important;
         }
         
         .activity-card p {
-            opacity: 0.8;
+            opacity: 0.9;
             font-size: 0.9rem;
+            color: #FFFFFF !important;
         }
         
         /* Who We Connect Section */
