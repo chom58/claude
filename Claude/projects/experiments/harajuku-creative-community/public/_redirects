@@ -1,0 +1,5 @@
+# Amplify Redirects Configuration
+# Simple redirects only - no wildcards
+/home /index.html 301
+/event /events.html 301
+/register /event-registration.html 301
