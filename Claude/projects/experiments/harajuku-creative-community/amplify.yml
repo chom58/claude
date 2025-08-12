@@ -1,24 +1,14 @@
 version: 1
 frontend:
   phases:
-    # preBuildフェーズを簡略化
     preBuild:
       commands:
         - echo "Starting deployment of static site"
-        - echo "Removing docs folder to avoid conflicts"
-        - rm -rf docs
     build:
       commands:
         - echo "No build required for static HTML site"
-        - ls -la
         - ls -la public/
   artifacts:
-    # publicフォルダの内容をデプロイ
     baseDirectory: public
     files:
       - '**/*'
-  customHeaders:
-    - pattern: '**/*'
-      headers:
-        - key: 'Cache-Control'
-          value: 'public, max-age=3600'
