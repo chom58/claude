@@ -1,0 +1,12 @@
+version: 1
+applications:
+  - appRoot: Claude/projects/experiments/harajuku-creative-community
+    frontend:
+      phases:
+        build:
+          commands:
+            - echo "Static site deployment"
+      artifacts:
+        baseDirectory: public
+        files:
+          - '**/*'

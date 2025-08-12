@@ -1,31 +1,17 @@
 version: 1
 frontend:
   phases:
+    # preBuildフェーズを簡略化
     preBuild:
       commands:
-        - echo "Installing dependencies..."
-        - npm ci
+        - echo "Starting deployment of static site"
     build:
       commands:
-        - echo "Building static site..."
-        # 静的サイトなのでビルド不要、そのままコピー
-        - echo "Build completed"
+        - echo "No build required for static HTML site"
+        - ls -la
+        - ls -la public/
   artifacts:
     # publicフォルダの内容をデプロイ
     baseDirectory: public
     files:
       - '**/*'
-  cache:
-    paths:
-      - node_modules/**/*
-
-# カスタムヘッダー設定
-headers:
-  - pattern: '**/*'
-    headers:
-      - key: 'Cache-Control'
-        value: 'public, max-age=31536000, immutable'
-  - pattern: '*.html'
-    headers:
-      - key: 'Cache-Control'
-        value: 'public, max-age=0, must-revalidate'
