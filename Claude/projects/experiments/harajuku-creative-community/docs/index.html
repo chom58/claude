@@ -859,12 +859,16 @@
             opacity: 0.8;
             display: block;
             margin-bottom: 0.5rem;
-            transition: opacity 0.3s ease;
+            transition: all 0.3s ease;
+            position: relative;
+            padding-left: 0;
         }
         
         .footer-section a:hover {
             opacity: 1;
             color: #FF006E !important;
+            padding-left: 5px;
+            text-decoration: underline;
         }
         
         .footer-bottom {
@@ -1758,26 +1762,34 @@
             <div class="footer-section">
                 <h4>HARAJUKU CREATIVE COMMUNITY</h4>
                 <p>原宿から世界へ、新しいクリエイティブを</p>
+                <a href="/" style="margin-top: 1rem; display: inline-block;">ホームへ戻る</a>
             </div>
             <div class="footer-section">
                 <h4>QUICK LINKS</h4>
-                <a href="/about.html">About</a>
-                <a href="/events.html">Events</a>
-                <a href="/contact.html">Contact</a>
+                <a href="/">ホーム</a>
+                <a href="about.html">About</a>
+                <a href="events.html">Events</a>
+                <a href="contact.html">Contact</a>
+                <a href="event-registration.html">イベント申込</a>
+            </div>
+            <div class="footer-section">
+                <h4>INFORMATION</h4>
+                <a href="privacy.html">プライバシーポリシー</a>
+                <a href="404.html">サイトマップ</a>
+                <a href="https://value-create.com" target="_blank" rel="noopener">運営会社</a>
             </div>
             <div class="footer-section">
                 <h4>CONNECT</h4>
-                <a href="#">Instagram</a>
-                <a href="#">X (Twitter)</a>
-                <a href="#">Facebook</a>
-            </div>
-            <div class="footer-section">
-                <h4>LOCATION</h4>
-                <p>東京都渋谷区神宮前<br>原宿駅徒歩5分</p>
+                <a href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
+                <a href="https://twitter.com" target="_blank" rel="noopener">X (Twitter)</a>
+                <a href="https://facebook.com" target="_blank" rel="noopener">Facebook</a>
+                <a href="mailto:info@harajuku-creative.com">メールで問い合わせ</a>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 Harajuku Creative Community. All rights reserved.</p>
+            <p>&copy; 2025 Harajuku Creative Community. All rights reserved. | 
+            <a href="privacy.html" style="color: #FFFFFF; opacity: 0.8; text-decoration: underline;">プライバシーポリシー</a> | 
+            <a href="contact.html" style="color: #FFFFFF; opacity: 0.8; text-decoration: underline;">お問い合わせ</a></p>
         </div>
     </footer>
     
