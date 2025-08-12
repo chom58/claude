@@ -109,4 +109,4 @@ npm start
 
 ## 🤝 ライセンス
 
-MIT License
+MIT License# Force redeploy Tue Aug 12 21:55:57 JST 2025
