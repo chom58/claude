@@ -1,0 +1,22 @@
+{
+  "name": "ai-talent-bridge",
+  "version": "1.0.0",
+  "description": "AI Talent Bridge - バリュークリエイト AI人材採用サービス",
+  "main": "index.html",
+  "scripts": {
+    "dev": "live-server --port=${PORT:-8001} --host=localhost",
+    "start": "python3 -m http.server ${PORT:-8001}",
+    "serve": "npx http-server -p ${PORT:-8001}"
+  },
+  "keywords": [
+    "AI",
+    "recruitment",
+    "talent",
+    "hiring"
+  ],
+  "author": "株式会社バリュークリエイト",
+  "license": "Proprietary",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}
