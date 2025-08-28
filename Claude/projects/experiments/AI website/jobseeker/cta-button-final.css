@@ -1,0 +1,224 @@
+/**
+ * CTA Button Final Fix
+ * Ultimate solution for CTA button visibility
+ */
+
+/* ========================================
+   REMOVE ALL CONFLICTS
+   ======================================== */
+
+/* Kill any existing CTA styles from other files */
+.hero .cta-primary,
+.hero-section .cta-primary,
+.hero-content .cta-primary,
+.cta-container .cta-primary,
+a.cta-primary,
+.cta-primary {
+    /* Complete reset */
+    all: unset !important;
+}
+
+/* ========================================
+   CTA BUTTON DEFINITIVE STYLES
+   ======================================== */
+
+.cta-primary,
+a.cta-primary,
+.cta-container a.cta-primary,
+.hero-content .cta-container a.cta-primary,
+body .hero .cta-container a.cta-primary,
+body .hero-section .cta-container a.cta-primary {
+    /* Display */
+    display: inline-block !important;
+    box-sizing: border-box !important;
+    
+    /* Sizing */
+    padding: 16px 48px !important;
+    margin: 0 !important;
+    width: auto !important;
+    min-width: 200px !important;
+    
+    /* Colors - CRITICAL */
+    background-color: #10B981 !important;
+    background-image: none !important;
+    background: #10B981 !important;
+    color: #FFFFFF !important;
+    opacity: 1 !important;
+    
+    /* Typography */
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans JP', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif !important;
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    line-height: 1.2 !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    text-transform: none !important;
+    letter-spacing: 0.02em !important;
+    white-space: nowrap !important;
+    
+    /* Font Rendering */
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+    text-rendering: optimizeLegibility !important;
+    font-smooth: always !important;
+    
+    /* Border */
+    border: 3px solid #10B981 !important;
+    border-radius: 50px !important;
+    outline: none !important;
+    
+    /* Shadow for depth */
+    box-shadow: 
+        0 4px 6px rgba(0, 0, 0, 0.1),
+        0 2px 8px rgba(16, 185, 129, 0.3) !important;
+    
+    /* Position */
+    position: relative !important;
+    z-index: 1000 !important;
+    
+    /* Interaction */
+    cursor: pointer !important;
+    pointer-events: auto !important;
+    user-select: none !important;
+    
+    /* Visibility */
+    visibility: visible !important;
+    
+    /* Transition */
+    transition: all 0.2s ease !important;
+    
+    /* Force GPU */
+    transform: translateZ(0) !important;
+    will-change: transform, box-shadow !important;
+    backface-visibility: hidden !important;
+    -webkit-backface-visibility: hidden !important;
+}
+
+/* ========================================
+   HOVER STATE
+   ======================================== */
+
+.cta-primary:hover,
+a.cta-primary:hover,
+.cta-container a.cta-primary:hover {
+    /* Colors */
+    background-color: #059669 !important;
+    background: #059669 !important;
+    border-color: #059669 !important;
+    color: #FFFFFF !important;
+    
+    /* Animation */
+    transform: translateY(-2px) translateZ(0) !important;
+    box-shadow: 
+        0 6px 8px rgba(0, 0, 0, 0.15),
+        0 4px 12px rgba(16, 185, 129, 0.4) !important;
+    
+    /* Keep visibility */
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* ========================================
+   ACTIVE STATE
+   ======================================== */
+
+.cta-primary:active,
+a.cta-primary:active {
+    transform: translateY(0) translateZ(0) !important;
+    box-shadow: 
+        0 2px 4px rgba(0, 0, 0, 0.1),
+        0 1px 6px rgba(16, 185, 129, 0.3) !important;
+}
+
+/* ========================================
+   FOCUS STATE
+   ======================================== */
+
+.cta-primary:focus,
+a.cta-primary:focus {
+    outline: 3px solid rgba(16, 185, 129, 0.5) !important;
+    outline-offset: 3px !important;
+}
+
+/* ========================================
+   CONTAINER STYLES
+   ======================================== */
+
+.cta-container {
+    display: inline-block !important;
+    margin-top: 32px !important;
+    position: relative !important;
+    z-index: 1000 !important;
+    pointer-events: auto !important;
+}
+
+/* ========================================
+   REMOVE ALL PSEUDO ELEMENTS
+   ======================================== */
+
+.cta-primary::before,
+.cta-primary::after,
+a.cta-primary::before,
+a.cta-primary::after {
+    display: none !important;
+    content: none !important;
+}
+
+/* ========================================
+   REMOVE ALL ANIMATIONS
+   ======================================== */
+
+.cta-primary,
+a.cta-primary {
+    animation: none !important;
+    animation-name: none !important;
+    animation-duration: 0s !important;
+}
+
+/* ========================================
+   MOBILE RESPONSIVE
+   ======================================== */
+
+@media (max-width: 768px) {
+    .cta-primary,
+    a.cta-primary {
+        padding: 14px 36px !important;
+        font-size: 16px !important;
+        min-width: 180px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .cta-primary,
+    a.cta-primary {
+        padding: 12px 32px !important;
+        font-size: 15px !important;
+        display: block !important;
+        width: 100% !important;
+        max-width: 280px !important;
+        margin: 0 auto !important;
+    }
+    
+    .cta-container {
+        width: 100% !important;
+        text-align: center !important;
+    }
+}
+
+/* ========================================
+   FORCE OVERRIDE EVERYTHING
+   ======================================== */
+
+html body .hero-section .hero-content .cta-container a.cta-primary {
+    background: #10B981 !important;
+    color: #FFFFFF !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    font-weight: 700 !important;
+}
+
+/* Debug visibility */
+.cta-primary {
+    min-height: 52px !important;
+    line-height: 20px !important;
+}

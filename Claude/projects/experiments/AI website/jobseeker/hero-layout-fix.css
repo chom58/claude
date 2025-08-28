@@ -1,0 +1,302 @@
+/**
+ * Hero Layout Fix
+ * Fixes content cutoff and visibility issues
+ * Load as final CSS file
+ */
+
+/* ========================================
+   HERO HEIGHT & OVERFLOW FIX
+   ======================================== */
+
+/* Ensure hero section has proper height and scrolling */
+.hero {
+    height: auto !important;
+    min-height: 100vh !important;
+    max-height: none !important;
+    display: flex !important;
+    align-items: center !important;
+    padding: 100px 0 60px 0 !important; /* Top padding for header, bottom for content */
+    overflow: visible !important;
+}
+
+/* Hero content container adjustments */
+.hero-content {
+    min-height: calc(100vh - 160px) !important; /* Account for padding */
+    display: grid !important;
+    align-items: start !important; /* Change from center to start */
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+}
+
+/* ========================================
+   GRID LAYOUT ADJUSTMENTS
+   ======================================== */
+
+/* Adjust grid for better spacing */
+.hero-content {
+    grid-template-columns: 55% 45% !important; /* Slightly adjust ratio */
+    gap: 2rem !important; /* Reduce gap */
+}
+
+/* Left column - ensure content fits */
+.hero-text-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem !important; /* Reduce gap */
+    padding-right: 1rem !important;
+}
+
+/* Right column - ensure visibility */
+.hero-visual-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem !important; /* Reduce gap */
+    padding-left: 1rem !important;
+}
+
+/* ========================================
+   COMPONENT SIZE ADJUSTMENTS
+   ======================================== */
+
+/* Main message area - more compact */
+.hero-main-message {
+    padding: 1.5rem !important;
+    margin-bottom: 1rem !important;
+}
+
+.hero-main {
+    font-size: clamp(2rem, 5vw, 3.5rem) !important; /* Slightly smaller */
+    line-height: 1.15 !important;
+}
+
+/* Sub message points - more compact */
+.hero-sub-message {
+    padding: 1rem 0 !important;
+    margin-bottom: 0.5rem !important;
+}
+
+.hero-points {
+    gap: 0.75rem !important; /* Reduce gap between points */
+}
+
+.hero-point {
+    padding: 0.75rem 1rem !important; /* Reduce padding */
+}
+
+.point-text {
+    font-size: 0.95rem !important; /* Slightly smaller */
+}
+
+.point-icon {
+    font-size: 1.25rem !important; /* Slightly smaller */
+}
+
+/* CTA area - more compact */
+.hero-cta-area {
+    padding: 1.5rem 0 0.5rem !important;
+    margin: 0 !important;
+}
+
+.btn-hero-primary {
+    padding: 1rem 2.5rem !important; /* Slightly reduce padding */
+}
+
+/* ========================================
+   RIGHT COLUMN COMPONENTS
+   ======================================== */
+
+/* Badges area - more compact */
+.hero-badges-area {
+    padding: 1rem !important;
+}
+
+.community-badge {
+    font-size: 0.85rem !important;
+    padding: 0.5rem 1rem !important;
+}
+
+.partner-badge {
+    font-size: 0.8rem !important;
+    padding: 0.3rem 0.75rem !important;
+    margin-bottom: 0.25rem !important;
+}
+
+/* Statistics area - ensure visibility */
+.hero-stats-area {
+    padding: 1rem !important;
+}
+
+.hero-stats {
+    gap: 0.75rem !important;
+    padding: 0 !important;
+}
+
+.stat-item {
+    padding: 0.75rem !important;
+}
+
+.stat-number {
+    font-size: 1.25rem !important;
+}
+
+.stat-label {
+    font-size: 0.75rem !important;
+}
+
+/* ========================================
+   RESPONSIVE FIXES
+   ======================================== */
+
+@media (max-width: 1200px) {
+    .hero-content {
+        grid-template-columns: 50% 50% !important;
+    }
+}
+
+@media (max-width: 1024px) {
+    .hero-content {
+        grid-template-columns: 1fr !important; /* Single column on tablets */
+        gap: 2rem !important;
+    }
+    
+    .hero {
+        min-height: auto !important;
+        padding: 80px 0 40px 0 !important;
+    }
+    
+    .hero-visual-column {
+        padding-left: 0 !important;
+    }
+    
+    .hero-text-column {
+        padding-right: 0 !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        padding: 70px 0 30px 0 !important;
+    }
+    
+    .hero-content {
+        min-height: auto !important;
+        padding: 1rem !important;
+    }
+    
+    /* Stack elements vertically */
+    .hero-text-column,
+    .hero-visual-column {
+        width: 100% !important;
+    }
+    
+    /* Main message mobile size */
+    .hero-main-message {
+        padding: 1.25rem !important;
+    }
+    
+    .hero-main {
+        font-size: 2rem !important;
+        line-height: 1.2 !important;
+    }
+    
+    /* Points mobile size */
+    .hero-points {
+        gap: 0.5rem !important;
+    }
+    
+    .hero-point {
+        padding: 0.625rem 0.875rem !important;
+    }
+    
+    .point-text {
+        font-size: 0.9rem !important;
+    }
+    
+    .point-icon {
+        font-size: 1.125rem !important;
+    }
+    
+    /* Stats mobile layout */
+    .hero-stats {
+        flex-direction: column !important;
+    }
+    
+    .stat-item {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        padding: 0.5rem 0 !important;
+    }
+    
+    .stat-item:not(:last-child)::after {
+        display: none !important;
+    }
+    
+    .stat-item:not(:last-child) {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        padding: 60px 0 20px 0 !important;
+    }
+    
+    .hero-main {
+        font-size: 1.75rem !important;
+    }
+    
+    .hero-point {
+        padding: 0.5rem 0.75rem !important;
+    }
+    
+    .point-text {
+        font-size: 0.85rem !important;
+    }
+    
+    .btn-hero-primary {
+        padding: 0.875rem 1.5rem !important;
+        font-size: 1rem !important;
+    }
+}
+
+/* ========================================
+   OVERFLOW & VISIBILITY FIXES
+   ======================================== */
+
+/* Ensure all content is visible */
+.hero-background {
+    position: absolute !important;
+    inset: 0 !important;
+    z-index: 0 !important;
+    overflow: hidden !important;
+}
+
+.hero-content > * {
+    position: relative !important;
+    z-index: 1 !important;
+}
+
+/* Remove any height constraints on inner elements */
+.hero-text-column,
+.hero-visual-column,
+.hero-main-message,
+.hero-sub-message,
+.hero-cta-area,
+.hero-badges-area,
+.hero-stats-area {
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
+}
+
+/* Ensure proper stacking context */
+.hero {
+    position: relative !important;
+}
+
+.hero-content {
+    position: relative !important;
+    z-index: 10 !important;
+}

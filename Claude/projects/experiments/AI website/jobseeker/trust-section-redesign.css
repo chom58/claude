@@ -1,0 +1,487 @@
+/**
+ * Trust Section Complete Redesign
+ * Dark theme with gradient cards and modern animations
+ */
+
+/* ========================================
+   SECTION LAYOUT
+   ======================================== */
+
+.trust-section {
+    padding: 100px 0 !important;
+    background: #0f172a !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+/* Background pattern */
+.trust-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 20% 80%, rgba(16, 185, 129, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(99, 102, 241, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.trust-section .container {
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    padding: 0 24px !important;
+    position: relative !important;
+    z-index: 1 !important;
+}
+
+/* ========================================
+   HEADER STYLING
+   ======================================== */
+
+.trust-header {
+    text-align: center !important;
+    margin-bottom: 60px !important;
+}
+
+.trust-title {
+    font-size: clamp(2rem, 4vw, 3rem) !important;
+    font-weight: 800 !important;
+    color: #FFFFFF !important;
+    margin-bottom: 1rem !important;
+    letter-spacing: -0.02em !important;
+    background: linear-gradient(135deg, #FFFFFF 0%, #E2E8F0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.trust-subtitle {
+    font-size: clamp(1rem, 2vw, 1.25rem) !important;
+    color: rgba(226, 232, 240, 0.7) !important;
+    font-weight: 400 !important;
+    max-width: 600px !important;
+    margin: 0 auto !important;
+}
+
+/* ========================================
+   CARDS GRID
+   ======================================== */
+
+.trust-cards,
+.trust-grid {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 24px !important;
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    padding: 0 24px !important;
+}
+
+/* ========================================
+   CARD DESIGN
+   ======================================== */
+
+.trust-card,
+.trust-item {
+    background: linear-gradient(145deg, #1e293b, #0f172a) !important;
+    border: 1px solid rgba(99, 102, 241, 0.1) !important;
+    border-radius: 16px !important;
+    padding: 28px 20px !important;
+    position: relative !important;
+    overflow: hidden !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    min-width: 0 !important; /* Allow cards to shrink */
+}
+
+/* Top gradient bar animation */
+.trust-card::before,
+.trust-item::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: 3px !important;
+    background: linear-gradient(90deg, #10B981, #6366F1) !important;
+    transform: translateX(-100%) !important;
+    transition: transform 0.4s ease !important;
+}
+
+.trust-card:hover::before,
+.trust-item:hover::before {
+    transform: translateX(0) !important;
+}
+
+/* Background glow on hover */
+.trust-card::after,
+.trust-item::after {
+    content: '' !important;
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: radial-gradient(circle, rgba(16, 185, 129, 0.1) 0%, transparent 70%) !important;
+    transform: translate(-50%, -50%) scale(0) !important;
+    transition: transform 0.4s ease !important;
+    pointer-events: none !important;
+}
+
+.trust-card:hover::after,
+.trust-item:hover::after {
+    transform: translate(-50%, -50%) scale(2) !important;
+}
+
+.trust-card:hover,
+.trust-item:hover {
+    transform: translateY(-4px) !important;
+    border-color: rgba(16, 185, 129, 0.3) !important;
+    box-shadow: 
+        0 20px 40px rgba(0, 0, 0, 0.3),
+        0 0 60px rgba(16, 185, 129, 0.1) !important;
+}
+
+/* ========================================
+   BADGE STYLING
+   ======================================== */
+
+.trust-card .badge,
+.trust-item .badge {
+    position: absolute !important;
+    top: 16px !important;
+    right: 16px !important;
+    background: rgba(16, 185, 129, 0.1) !important;
+    color: #10B981 !important;
+    padding: 4px 12px !important;
+    border-radius: 20px !important;
+    font-size: 0.75rem !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    border: 1px solid rgba(16, 185, 129, 0.2) !important;
+}
+
+/* ========================================
+   ICON WRAPPER
+   ======================================== */
+
+.icon-wrapper,
+.trust-icon {
+    width: 56px !important;
+    height: 56px !important;
+    margin: 0 0 16px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: rgba(16, 185, 129, 0.1) !important;
+    border-radius: 12px !important;
+    border: 1px solid rgba(16, 185, 129, 0.2) !important;
+    transition: all 0.3s ease !important;
+}
+
+.trust-card:hover .icon-wrapper,
+.trust-item:hover .trust-icon {
+    background: rgba(16, 185, 129, 0.15) !important;
+    border-color: rgba(16, 185, 129, 0.3) !important;
+    transform: scale(1.05) !important;
+}
+
+/* SVG Icon Styling */
+.trust-card svg,
+.trust-item svg,
+.icon-wrapper svg {
+    width: 32px !important;
+    height: 32px !important;
+    stroke: #10B981 !important;
+    stroke-width: 1.5 !important;
+    fill: none !important;
+    transition: stroke 0.3s ease !important;
+}
+
+.trust-card:hover svg,
+.trust-item:hover svg {
+    stroke: #6366F1 !important;
+}
+
+/* Emoji fallback styling */
+.trust-icon:not(.icon-wrapper) {
+    font-size: 32px !important;
+}
+
+/* ========================================
+   TYPOGRAPHY
+   ======================================== */
+
+.trust-card h3,
+.trust-item h3 {
+    font-size: 1.1rem !important;
+    font-weight: 700 !important;
+    color: #FFFFFF !important;
+    margin-bottom: 12px !important;
+    line-height: 1.4 !important;
+    letter-spacing: -0.01em !important;
+    padding-right: 60px !important; /* Space for badge */
+    font-feature-settings: 'palt' 1 !important; /* 文字詰め */
+    word-break: keep-all !important; /* 単語単位で改行 */
+    min-height: 2.8em !important; /* 2行分の高さを確保 */
+}
+
+.trust-card p,
+.trust-item p {
+    font-size: 0.9rem !important;
+    color: rgba(226, 232, 240, 0.8) !important;
+    line-height: 1.7 !important;
+    margin: 0 !important;
+    font-feature-settings: 'palt' 1 !important;
+    letter-spacing: 0.02em !important;
+    min-height: 3.4em !important; /* 2行分の高さを確保 */
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+
+@media (max-width: 1024px) {
+    .trust-section {
+        padding: 80px 0 !important;
+    }
+    
+    .trust-cards,
+    .trust-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 20px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .trust-section {
+        padding: 60px 0 !important;
+    }
+    
+    .trust-cards,
+    .trust-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+}
+
+/* Mobile specific */
+@media (max-width: 640px) {
+    .trust-cards,
+    .trust-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+    }
+}
+
+/* ========================================
+   LINE BREAK CONTROL
+   ======================================== */
+
+/* Tablet - hide line breaks */
+@media (min-width: 769px) and (max-width: 1200px) {
+    .trust-card h3 br,
+    .trust-item h3 br {
+        display: none !important;
+    }
+    
+    .trust-card h3,
+    .trust-item h3 {
+        min-height: auto !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+    }
+    
+    .trust-card p br,
+    .trust-item p br {
+        display: none !important;
+    }
+}
+
+/* Mobile - show line breaks */
+@media (max-width: 768px) {
+    .trust-card h3 br,
+    .trust-item h3 br,
+    .trust-card p br,
+    .trust-item p br {
+        display: inline !important;
+    }
+    
+    .trust-card h3,
+    .trust-item h3 {
+        white-space: normal !important;
+        min-height: auto !important;
+    }
+    
+    .trust-card p,
+    .trust-item p {
+        min-height: auto !important;
+    }
+    
+    .trust-card,
+    .trust-item {
+        padding: 28px 20px !important;
+    }
+    
+    .trust-header {
+        margin-bottom: 40px !important;
+    }
+    
+    .trust-title {
+        font-size: clamp(1.75rem, 5vw, 2.5rem) !important;
+    }
+    
+    .icon-wrapper,
+    .trust-icon {
+        width: 56px !important;
+        height: 56px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .trust-section {
+        padding: 50px 0 !important;
+    }
+    
+    .trust-section .container {
+        padding: 0 16px !important;
+    }
+    
+    .trust-card h3,
+    .trust-item h3 {
+        font-size: 1.1rem !important;
+    }
+    
+    .trust-card p,
+    .trust-item p {
+        font-size: 0.9rem !important;
+    }
+}
+
+/* ========================================
+   ENTRANCE ANIMATIONS
+   ======================================== */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.trust-card,
+.trust-item {
+    opacity: 0;
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.trust-card:nth-child(1),
+.trust-item:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.trust-card:nth-child(2),
+.trust-item:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.trust-card:nth-child(3),
+.trust-item:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.trust-card:nth-child(4),
+.trust-item:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+/* Force animation on page load */
+.trust-section .trust-card,
+.trust-section .trust-item {
+    opacity: 1 !important;
+}
+
+/* ========================================
+   LARGE SCREEN SUPPORT
+   ======================================== */
+
+@media (min-width: 1400px) {
+    .trust-cards,
+    .trust-grid {
+        max-width: 1400px !important;
+        gap: 32px !important;
+    }
+    
+    .trust-card,
+    .trust-item {
+        padding: 32px 24px !important;
+    }
+    
+    .trust-card h3,
+    .trust-item h3 {
+        font-size: 1.25rem !important;
+    }
+    
+    .trust-card p,
+    .trust-item p {
+        font-size: 0.95rem !important;
+    }
+    
+    .icon-wrapper,
+    .trust-icon {
+        width: 64px !important;
+        height: 64px !important;
+        margin-bottom: 20px !important;
+    }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+    .trust-section {
+        padding: 50px 0 !important;
+    }
+    
+    .trust-section .container {
+        padding: 0 16px !important;
+    }
+    
+    .trust-cards,
+    .trust-grid {
+        gap: 14px !important;
+    }
+    
+    .trust-card,
+    .trust-item {
+        padding: 24px 18px !important;
+    }
+    
+    .trust-card h3,
+    .trust-item h3 {
+        font-size: 1rem !important;
+    }
+    
+    .trust-card p,
+    .trust-item p {
+        font-size: 0.85rem !important;
+    }
+    
+    .icon-wrapper,
+    .trust-icon {
+        width: 48px !important;
+        height: 48px !important;
+    }
+    
+    .trust-card svg,
+    .trust-item svg,
+    .icon-wrapper svg {
+        width: 28px !important;
+        height: 28px !important;
+    }
+}

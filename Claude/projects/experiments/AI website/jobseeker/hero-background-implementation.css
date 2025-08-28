@@ -1,0 +1,512 @@
+/**
+ * Hero Background Implementation
+ * Proper implementation of career-path-wide.png as background
+ * Load as the final CSS file for hero section
+ */
+
+/* ========================================
+   HERO SECTION BASE
+   ======================================== */
+
+.hero,
+.hero-section {
+    position: relative !important;
+    min-height: 100vh !important;
+    overflow: hidden !important;
+    background-color: #1e293b !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+/* ========================================
+   BACKGROUND IMAGE LAYER
+   ======================================== */
+
+.hero-background {
+    position: absolute !important;
+    top: 0 !important;
+    left: 25% !important;  /* Shift more to the right */
+    width: 85% !important;  /* Keep width */
+    height: 100% !important;
+    background-image: url('./hero-bg-fixed.png') !important;  /* Updated image without typo */
+    background-size: cover !important;  /* Back to cover for proper sizing */
+    background-position: left center !important;  /* Align left side of shifted image */
+    background-repeat: no-repeat !important;
+    opacity: 0.75 !important;  /* Slightly more visible than before */
+    z-index: 1 !important;
+}
+
+/* Fallback for img tag if exists */
+.hero-bg-image {
+    display: none !important;
+}
+
+/* ========================================
+   GRADIENT OVERLAY LAYER
+   ======================================== */
+
+.hero-overlay {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: linear-gradient(
+        95deg,  /* Slight angle */
+        rgba(30, 41, 59, 0.96) 0%,
+        rgba(30, 41, 59, 0.90) 25%,  /* Keep text readable */
+        rgba(30, 41, 59, 0.70) 45%,   /* Gradual fade */
+        rgba(30, 41, 59, 0.40) 65%,   /* More transparent for image */
+        rgba(30, 41, 59, 0.15) 80%,   /* Light on right side */
+        rgba(30, 41, 59, 0.05) 90%,   /* Very light */
+        transparent 100%
+    ) !important;
+    z-index: 2 !important;
+    pointer-events: none !important;  /* Allow clicks to pass through */
+}
+
+/* Remove old overlay styles */
+.hero::before,
+.hero::after,
+.hero-bg-overlay,
+.hero-bg-gradient {
+    display: none !important;
+}
+
+/* ========================================
+   CONTENT CONTAINER
+   ======================================== */
+
+.hero-content {
+    position: relative !important;
+    z-index: 5 !important;  /* Higher than overlay */
+    max-width: 1400px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    padding: 120px 5% 80px 5% !important;
+    display: grid !important;
+    grid-template-columns: 60% 40% !important;
+    align-items: center !important;
+    min-height: 100vh !important;
+    pointer-events: none !important;  /* Allow clicks through container */
+}
+
+/* Ensure all interactive elements are clickable */
+.hero-content * {
+    pointer-events: auto !important;
+}
+
+/* ========================================
+   TEXT CONTENT AREA
+   ======================================== */
+
+.hero-text,
+.hero-title,
+.hero-description,
+.trust-badges,
+.cta-primary {
+    grid-column: 1 !important; /* All text content in left 60% */
+}
+
+/* Subtitle styling */
+.subtitle {
+    display: block !important;
+    color: #10B981 !important;
+    font-size: clamp(1rem, 2vw, 1.3rem) !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.12em !important;
+    margin-bottom: 2.5rem !important;  /* Increased spacing below subtitle */
+    text-transform: uppercase !important;
+    animation: fadeInUp 0.6s ease-out !important;
+}
+
+/* Main title styling */
+.main-title {
+    font-size: clamp(2rem, 5vw, 4rem) !important;
+    line-height: 0.9 !important;  /* Very tight line spacing */
+    font-weight: 800 !important;
+    margin-top: 1.5rem !important;  /* Add space above title */
+    margin-bottom: 2rem !important;
+    color: #FFFFFF !important;
+    animation: fadeInUp 0.8s ease-out 0.1s both !important;
+    white-space: pre-line !important;  /* Force line breaks to work */
+}
+
+/* Title break for proper line formatting */
+.title-break {
+    display: block !important;
+}
+
+/* Force proper line breaks in title - especially for PC */
+.main-title br {
+    display: block !important;
+    content: "" !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1.3 !important;
+}
+
+/* Hero description */
+.hero-description {
+    font-size: clamp(0.95rem, 1.8vw, 1.15rem) !important;
+    line-height: 1.7 !important;
+    color: rgba(255, 255, 255, 0.85) !important;
+    margin: 1.5rem 0 2rem 0 !important;
+    max-width: 600px !important;
+    animation: fadeInUp 1s ease-out 0.2s both !important;
+}
+
+/* ========================================
+   TRUST BADGES
+   ======================================== */
+
+.trust-badges {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 1rem !important;
+    margin: 2rem 0 !important;
+    animation: fadeInUp 1.2s ease-out 0.3s both !important;
+}
+
+.trust-badges .badge {
+    padding: 0.6rem 1.2rem !important;
+    background: rgba(15, 23, 42, 0.8) !important;
+    backdrop-filter: blur(16px) !important;
+    border: 1px solid rgba(16, 185, 129, 0.3) !important;
+    border-radius: 9999px !important;
+    font-size: 0.9rem !important;
+    font-weight: 500 !important;
+    color: #FFFFFF !important;
+    transition: all 0.3s ease !important;
+    white-space: nowrap !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.trust-badges .badge:hover {
+    background: rgba(16, 185, 129, 0.15) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 8px 16px rgba(16, 185, 129, 0.25) !important;
+    border-color: rgba(16, 185, 129, 0.5) !important;
+}
+
+.badge-icon {
+    font-size: 1.1rem !important;
+    margin-right: 0.25rem !important;
+}
+
+/* ========================================
+   CTA BUTTON
+   ======================================== */
+
+.cta-primary {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    padding: 1.2rem 3.5rem !important;  /* Slightly larger padding */
+    margin-top: 2rem !important;
+    font-size: 1.2rem !important;  /* Slightly larger text */
+    font-weight: 700 !important;  /* Bolder text */
+    color: #FFFFFF !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2) !important;  /* Text shadow for clarity */
+    background: linear-gradient(135deg, 
+        #10B981 0%, 
+        #0FA968 25%,
+        #059669 75%,
+        #047857 100%) !important;  /* More vibrant gradient */
+    border: 2px solid #10B981 !important;  /* Solid border color */
+    border-radius: 9999px !important;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    box-shadow: 
+        0 4px 6px rgba(0, 0, 0, 0.1),
+        0 10px 30px rgba(16, 185, 129, 0.5),
+        0 0 60px rgba(16, 185, 129, 0.25),
+        inset 0 2px 4px rgba(255, 255, 255, 0.3),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.15) !important;  /* Multiple shadows for depth */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    animation: fadeInUp 1.4s ease-out 0.4s both, pulse 2s infinite 1.5s !important;
+    position: relative !important;
+    z-index: 10 !important;
+    isolation: isolate !important;
+    transform: translateZ(0) !important;  /* Force GPU acceleration */
+    will-change: transform, box-shadow !important;
+}
+
+/* Enhanced pulse animation for CTA button */
+@keyframes pulse {
+    0%, 100% {
+        box-shadow: 
+            0 4px 6px rgba(0, 0, 0, 0.1),
+            0 10px 30px rgba(16, 185, 129, 0.5),
+            0 0 0 0 rgba(16, 185, 129, 0.6),
+            0 0 60px rgba(16, 185, 129, 0.25),
+            inset 0 2px 4px rgba(255, 255, 255, 0.3),
+            inset 0 -2px 4px rgba(0, 0, 0, 0.15);
+    }
+    50% {
+        box-shadow: 
+            0 4px 6px rgba(0, 0, 0, 0.1),
+            0 10px 30px rgba(16, 185, 129, 0.5),
+            0 0 0 25px rgba(16, 185, 129, 0),
+            0 0 80px rgba(16, 185, 129, 0.3),
+            inset 0 2px 4px rgba(255, 255, 255, 0.3),
+            inset 0 -2px 4px rgba(0, 0, 0, 0.15);
+    }
+}
+
+.cta-primary:hover {
+    transform: translateY(-4px) scale(1.06) translateZ(0) !important;  /* Stronger lift */
+    background: linear-gradient(135deg, 
+        #0FA968 0%,
+        #059669 25%, 
+        #047857 75%,
+        #035E42 100%) !important;  /* Darker on hover */
+    border-color: #0FA968 !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+    box-shadow: 
+        0 6px 8px rgba(0, 0, 0, 0.15),
+        0 15px 40px rgba(16, 185, 129, 0.7),
+        0 0 100px rgba(16, 185, 129, 0.4),
+        inset 0 2px 4px rgba(255, 255, 255, 0.4),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.2) !important;
+    animation-play-state: paused !important;
+}
+
+/* Active state for better feedback */
+.cta-primary:active {
+    transform: translateY(-2px) scale(1.04) translateZ(0) !important;
+    box-shadow: 
+        0 4px 6px rgba(0, 0, 0, 0.1),
+        0 8px 25px rgba(16, 185, 129, 0.6),
+        0 0 50px rgba(16, 185, 129, 0.3),
+        inset 0 1px 2px rgba(255, 255, 255, 0.3),
+        inset 0 -1px 2px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Focus state for accessibility */
+.cta-primary:focus {
+    outline: none !important;
+    box-shadow: 
+        0 4px 6px rgba(0, 0, 0, 0.1),
+        0 10px 30px rgba(16, 185, 129, 0.5),
+        0 0 60px rgba(16, 185, 129, 0.25),
+        0 0 0 4px rgba(16, 185, 129, 0.2),
+        inset 0 2px 4px rgba(255, 255, 255, 0.3),
+        inset 0 -2px 4px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Arrow animation */
+.cta-primary svg,
+.arrow-icon {
+    transition: transform 0.3s ease !important;
+}
+
+.cta-primary:hover svg,
+.cta-primary:hover .arrow-icon {
+    transform: translateX(4px) !important;
+}
+
+/* ========================================
+   ANIMATIONS
+   ======================================== */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ========================================
+   LARGE SCREENS - DESKTOP
+   ======================================== */
+
+@media (min-width: 1400px) {
+    .hero-background {
+        left: 30% !important;  /* More to the right on large screens */
+        width: 75% !important;
+        background-size: cover !important;
+        background-position: left center !important;
+        opacity: 0.8 !important;  /* More visible on larger screens */
+    }
+}
+
+@media (min-width: 1600px) {
+    .hero-background {
+        left: 35% !important;  /* Even further right on very large screens */
+        width: 70% !important;
+        background-position: left center !important;
+        opacity: 0.8 !important;
+    }
+}
+
+/* ========================================
+   RESPONSIVE - TABLET
+   ======================================== */
+
+@media (max-width: 1024px) {
+    .hero-content {
+        grid-template-columns: 65% 35% !important;
+        padding: 100px 4% 70px 4% !important;
+    }
+    
+    .main-title {
+        font-size: clamp(1.8rem, 4.5vw, 3.5rem) !important;
+    }
+    
+    .hero-background {
+        left: 20% !important;  /* More offset on tablets */
+        width: 80% !important;
+        background-size: cover !important;
+        background-position: left center !important;
+        opacity: 0.65 !important;
+    }
+}
+
+/* ========================================
+   RESPONSIVE - MOBILE
+   ======================================== */
+
+@media (max-width: 768px) {
+    .hero-content {
+        grid-template-columns: 1fr !important;
+        text-align: center !important;
+        padding: 100px 20px 60px 20px !important;
+    }
+    
+    .hero-text,
+    .hero-title,
+    .hero-description,
+    .trust-badges,
+    .cta-primary {
+        grid-column: auto !important;
+        text-align: center !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+    
+    .hero-background {
+        left: 0 !important;  /* Full width on mobile */
+        width: 100% !important;
+        background-size: cover !important;
+        background-position: center center !important;
+        opacity: 0.35 !important;  /* Slightly more visible */
+    }
+    
+    .hero-overlay {
+        background: linear-gradient(
+            105deg,
+            rgba(30, 41, 59, 0.95) 0%,
+            rgba(30, 41, 59, 0.92) 35%,
+            rgba(30, 41, 59, 0.85) 65%,
+            rgba(30, 41, 59, 0.7) 90%,
+            rgba(30, 41, 59, 0.5) 100%
+        ) !important;
+    }
+    
+    .trust-badges .badge {
+        background: rgba(15, 23, 42, 0.9) !important;
+        backdrop-filter: blur(12px) !important;
+    }
+    
+    .main-title {
+        font-size: clamp(1.5rem, 5vw, 2.5rem) !important;
+    }
+    
+    .subtitle {
+        font-size: clamp(0.9rem, 2vw, 1.1rem) !important;
+    }
+    
+    .hero-description {
+        font-size: 0.95rem !important;
+    }
+    
+    /* Remove line breaks on mobile */
+    .hero-description br {
+        display: none !important;
+    }
+    
+    /* Keep title break visible */
+    .title-break {
+        display: inline !important;
+    }
+    
+    .trust-badges {
+        justify-content: center !important;
+    }
+}
+
+/* ========================================
+   RESPONSIVE - SMALL MOBILE
+   ======================================== */
+
+@media (max-width: 480px) {
+    .hero,
+    .hero-section {
+        min-height: 90vh !important;
+    }
+    
+    .hero-content {
+        padding: 80px 15px 50px 15px !important;
+    }
+    
+    .main-title {
+        font-size: clamp(1.3rem, 6vw, 2rem) !important;
+    }
+    
+    .subtitle {
+        font-size: 0.85rem !important;
+    }
+    
+    .hero-description {
+        font-size: 0.9rem !important;
+        line-height: 1.6 !important;
+    }
+    
+    .trust-badges {
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 0.5rem !important;
+    }
+    
+    .trust-badges .badge {
+        width: fit-content !important;
+        min-width: 160px !important;
+        text-align: center !important;
+        justify-content: center !important;
+        padding: 0.5rem 1rem !important;
+        font-size: 0.85rem !important;
+    }
+    
+    .hero-background {
+        opacity: 0.2 !important;
+        background-position: center !important;
+    }
+    
+    .hero-overlay {
+        background: rgba(30, 41, 59, 0.95) !important;
+    }
+    
+    .cta-primary {
+        padding: 1rem 2rem !important;
+        font-size: 1rem !important;
+        width: 100% !important;
+        max-width: 280px !important;
+        /* Reduce pulse animation on mobile for better performance */
+        animation: fadeInUp 1.4s ease-out 0.4s both !important;
+    }
+    
+    /* Disable pulse on very small screens */
+    @keyframes pulse {
+        0%, 100% {
+            box-shadow: 
+                0 10px 25px rgba(16, 185, 129, 0.4),
+                0 0 0 0 rgba(16, 185, 129, 0);
+        }
+    }
+}

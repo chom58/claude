@@ -1,0 +1,287 @@
+/**
+ * 3-Step Process Section
+ * Simple and clean process steps design
+ */
+
+/* ========================================
+   SECTION LAYOUT
+   ======================================== */
+
+.process-section {
+    padding: 80px 0 !important;
+    background: #0f172a !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+/* Background gradient */
+.process-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 0% 50%, rgba(99, 102, 241, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 100% 50%, rgba(99, 102, 241, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.process-section .container {
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    padding: 0 24px !important;
+    position: relative !important;
+    z-index: 1 !important;
+}
+
+/* ========================================
+   SECTION HEADER
+   ======================================== */
+
+.process-section .section-title {
+    font-size: clamp(2rem, 4vw, 3rem) !important;
+    font-weight: 800 !important;
+    color: #FFFFFF !important;
+    text-align: center !important;
+    margin-bottom: 1rem !important;
+    letter-spacing: -0.02em !important;
+}
+
+.process-section .section-subtitle {
+    font-size: clamp(1rem, 2vw, 1.25rem) !important;
+    color: rgba(226, 232, 240, 0.7) !important;
+    text-align: center !important;
+    margin-bottom: 60px !important;
+}
+
+/* ========================================
+   STEPS CONTAINER
+   ======================================== */
+
+.steps {
+    display: flex !important;
+    justify-content: center !important;
+    gap: 4rem !important;
+    max-width: 900px !important;
+    margin: 0 auto !important;
+    position: relative !important;
+}
+
+/* Connection lines between steps */
+.steps::before {
+    content: '';
+    position: absolute;
+    top: 30px;
+    left: 25%;
+    right: 25%;
+    height: 2px;
+    background: linear-gradient(90deg, 
+        rgba(16, 185, 129, 0.2) 0%,
+        rgba(16, 185, 129, 0.4) 50%,
+        rgba(16, 185, 129, 0.2) 100%);
+    z-index: 0;
+}
+
+/* ========================================
+   INDIVIDUAL STEP
+   ======================================== */
+
+.step {
+    text-align: center !important;
+    flex: 1 !important;
+    position: relative !important;
+    z-index: 1 !important;
+    padding: 0 20px !important;
+}
+
+/* Step animation on hover */
+.step {
+    transition: transform 0.3s ease !important;
+}
+
+.step:hover {
+    transform: translateY(-5px) !important;
+}
+
+/* ========================================
+   STEP NUMBER
+   ======================================== */
+
+.step-number {
+    display: inline-block !important;
+    width: 60px !important;
+    height: 60px !important;
+    line-height: 56px !important; /* Adjusted for border */
+    border-radius: 50% !important;
+    background: rgba(16, 185, 129, 0.1) !important;
+    border: 2px solid #10B981 !important;
+    color: #10B981 !important;
+    font-size: 1.5rem !important;
+    font-weight: bold !important;
+    margin-bottom: 1rem !important;
+    position: relative !important;
+    transition: all 0.3s ease !important;
+}
+
+/* Glow effect on hover */
+.step:hover .step-number {
+    background: rgba(16, 185, 129, 0.2) !important;
+    border-color: #10B981 !important;
+    box-shadow: 
+        0 0 20px rgba(16, 185, 129, 0.3),
+        inset 0 0 15px rgba(16, 185, 129, 0.1) !important;
+    transform: scale(1.1) !important;
+}
+
+/* Pulse animation */
+@keyframes pulse {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 0 15px rgba(16, 185, 129, 0);
+    }
+}
+
+.step:nth-child(2) .step-number {
+    animation: pulse 2s infinite;
+}
+
+/* ========================================
+   STEP CONTENT
+   ======================================== */
+
+.step h3 {
+    font-size: 1.25rem !important;
+    font-weight: 700 !important;
+    color: #FFFFFF !important;
+    margin-bottom: 0.75rem !important;
+    letter-spacing: -0.01em !important;
+}
+
+.step p {
+    font-size: 0.95rem !important;
+    color: rgba(226, 232, 240, 0.8) !important;
+    line-height: 1.6 !important;
+    margin: 0 !important;
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+
+/* Tablet */
+@media (max-width: 1024px) {
+    .steps {
+        gap: 3rem !important;
+    }
+    
+    .steps::before {
+        left: 20%;
+        right: 20%;
+    }
+}
+
+/* Mobile - Stack vertically */
+@media (max-width: 768px) {
+    .process-section {
+        padding: 60px 0 !important;
+    }
+    
+    .steps {
+        flex-direction: column !important;
+        gap: 3rem !important;
+        align-items: center !important;
+    }
+    
+    /* Vertical connection line */
+    .steps::before {
+        top: 60px;
+        left: 50%;
+        right: auto;
+        width: 2px;
+        height: calc(100% - 120px);
+        transform: translateX(-50%);
+        background: linear-gradient(180deg, 
+            rgba(16, 185, 129, 0.2) 0%,
+            rgba(16, 185, 129, 0.4) 50%,
+            rgba(16, 185, 129, 0.2) 100%);
+    }
+    
+    .step {
+        max-width: 300px !important;
+        width: 100% !important;
+        padding: 0 !important;
+    }
+    
+    .process-section .section-title {
+        font-size: clamp(1.75rem, 5vw, 2.5rem) !important;
+    }
+    
+    .process-section .section-subtitle {
+        font-size: 1rem !important;
+        margin-bottom: 40px !important;
+    }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+    .process-section {
+        padding: 50px 0 !important;
+    }
+    
+    .step-number {
+        width: 50px !important;
+        height: 50px !important;
+        line-height: 46px !important;
+        font-size: 1.25rem !important;
+    }
+    
+    .step h3 {
+        font-size: 1.1rem !important;
+    }
+    
+    .step p {
+        font-size: 0.9rem !important;
+    }
+}
+
+/* ========================================
+   ENTRANCE ANIMATION
+   ======================================== */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.step {
+    opacity: 0;
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.step:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.step:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.step:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+/* Force animation on visible */
+.process-section .step {
+    opacity: 1 !important;
+}

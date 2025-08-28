@@ -1,0 +1,351 @@
+/**
+ * Design Tokens CSS
+ * Comprehensive design system variables
+ * 
+ * Structure:
+ * 1. Colors (Primary, Secondary, Grayscale, Semantic)
+ * 2. Typography (Font sizes, Line heights, Font weights)
+ * 3. Spacing (4px base unit system)
+ * 4. Border Radius
+ * 5. Shadows
+ * 6. Transitions
+ * 7. Z-index layers
+ * 8. Breakpoints
+ */
+
+:root {
+  /* ========================================
+     1. COLORS
+     ======================================== */
+  
+  /* Primary Color - Indigo */
+  --color-primary-50: #EEF2FF;
+  --color-primary-100: #E0E7FF;
+  --color-primary-200: #C7D2FE;
+  --color-primary-300: #A5B4FC;
+  --color-primary-400: #818CF8;
+  --color-primary-500: #6366F1;  /* Main Primary */
+  --color-primary-600: #4F46E5;
+  --color-primary-700: #4338CA;
+  --color-primary-800: #3730A3;
+  --color-primary-900: #312E81;
+  --color-primary-950: #1E1B4B;
+  
+  /* Secondary Color - Green */
+  --color-secondary-50: #F0FDF4;
+  --color-secondary-100: #DCFCE7;
+  --color-secondary-200: #BBF7D0;
+  --color-secondary-300: #86EFAC;
+  --color-secondary-400: #4ADE80;
+  --color-secondary-500: #10B981;  /* Main Secondary */
+  --color-secondary-600: #059669;
+  --color-secondary-700: #047857;
+  --color-secondary-800: #065F46;
+  --color-secondary-900: #064E3B;
+  --color-secondary-950: #022C22;
+  
+  /* Grayscale - 8 Levels */
+  --color-gray-0: #FFFFFF;     /* White */
+  --color-gray-50: #F9FAFB;    /* Lightest gray */
+  --color-gray-100: #F3F4F6;   /* Very light gray */
+  --color-gray-200: #E5E7EB;   /* Light gray */
+  --color-gray-300: #D1D5DB;   /* Medium light gray */
+  --color-gray-400: #9CA3AF;   /* Medium gray */
+  --color-gray-500: #6B7280;   /* Gray */
+  --color-gray-600: #4B5563;   /* Medium dark gray */
+  --color-gray-700: #374151;   /* Dark gray */
+  --color-gray-800: #1F2937;   /* Very dark gray */
+  --color-gray-900: #111827;   /* Darkest gray */
+  --color-gray-950: #030712;   /* Near black */
+  --color-gray-1000: #000000;  /* Black */
+  
+  /* Semantic Colors */
+  --color-success: var(--color-secondary-500);
+  --color-success-light: var(--color-secondary-100);
+  --color-success-dark: var(--color-secondary-700);
+  
+  --color-warning: #F59E0B;
+  --color-warning-light: #FEF3C7;
+  --color-warning-dark: #D97706;
+  
+  --color-error: #EF4444;
+  --color-error-light: #FEE2E2;
+  --color-error-dark: #DC2626;
+  
+  --color-info: #3B82F6;
+  --color-info-light: #DBEAFE;
+  --color-info-dark: #2563EB;
+  
+  /* ========================================
+     2. TYPOGRAPHY
+     ======================================== */
+  
+  /* Font Sizes (xs to 6xl) */
+  --font-size-xs: 0.75rem;     /* 12px */
+  --font-size-sm: 0.875rem;    /* 14px */
+  --font-size-base: 1rem;      /* 16px */
+  --font-size-lg: 1.125rem;    /* 18px */
+  --font-size-xl: 1.25rem;     /* 20px */
+  --font-size-2xl: 1.5rem;     /* 24px */
+  --font-size-3xl: 1.875rem;   /* 30px */
+  --font-size-4xl: 2.25rem;    /* 36px */
+  --font-size-5xl: 3rem;       /* 48px */
+  --font-size-6xl: 3.75rem;    /* 60px */
+  
+  /* Line Heights */
+  --line-height-none: 1;
+  --line-height-tight: 1.25;
+  --line-height-snug: 1.375;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.625;
+  --line-height-loose: 1.75;
+  --line-height-extra: 2;
+  
+  /* Font Weights */
+  --font-weight-thin: 100;
+  --font-weight-extra-light: 200;
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extra-bold: 800;
+  --font-weight-black: 900;
+  
+  /* Letter Spacing */
+  --letter-spacing-tighter: -0.05em;
+  --letter-spacing-tight: -0.025em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.025em;
+  --letter-spacing-wider: 0.05em;
+  --letter-spacing-widest: 0.1em;
+  
+  /* ========================================
+     3. SPACING (4px base unit)
+     ======================================== */
+  
+  --space-0: 0;           /* 0px */
+  --space-0-5: 0.125rem;  /* 2px */
+  --space-1: 0.25rem;     /* 4px - base unit */
+  --space-1-5: 0.375rem;  /* 6px */
+  --space-2: 0.5rem;      /* 8px */
+  --space-2-5: 0.625rem;  /* 10px */
+  --space-3: 0.75rem;     /* 12px */
+  --space-3-5: 0.875rem;  /* 14px */
+  --space-4: 1rem;        /* 16px */
+  --space-5: 1.25rem;     /* 20px */
+  --space-6: 1.5rem;      /* 24px */
+  --space-7: 1.75rem;     /* 28px */
+  --space-8: 2rem;        /* 32px */
+  --space-9: 2.25rem;     /* 36px */
+  --space-10: 2.5rem;     /* 40px */
+  --space-11: 2.75rem;    /* 44px */
+  --space-12: 3rem;       /* 48px */
+  --space-14: 3.5rem;     /* 56px */
+  --space-16: 4rem;       /* 64px */
+  --space-20: 5rem;       /* 80px */
+  --space-24: 6rem;       /* 96px */
+  --space-28: 7rem;       /* 112px */
+  --space-32: 8rem;       /* 128px */
+  --space-36: 9rem;       /* 144px */
+  --space-40: 10rem;      /* 160px */
+  --space-44: 11rem;      /* 176px */
+  --space-48: 12rem;      /* 192px */
+  --space-52: 13rem;      /* 208px */
+  --space-56: 14rem;      /* 224px */
+  --space-60: 15rem;      /* 240px */
+  --space-64: 16rem;      /* 256px */
+  --space-72: 18rem;      /* 288px */
+  --space-80: 20rem;      /* 320px */
+  
+  /* Negative Spacing */
+  --space-n1: -0.25rem;
+  --space-n2: -0.5rem;
+  --space-n3: -0.75rem;
+  --space-n4: -1rem;
+  --space-n5: -1.25rem;
+  --space-n6: -1.5rem;
+  --space-n8: -2rem;
+  --space-n10: -2.5rem;
+  --space-n12: -3rem;
+  --space-n16: -4rem;
+  --space-n20: -5rem;
+  
+  /* ========================================
+     4. BORDER RADIUS
+     ======================================== */
+  
+  --radius-none: 0;
+  --radius-sm: 0.125rem;   /* 2px */
+  --radius-base: 0.25rem;  /* 4px - Default */
+  --radius-md: 0.375rem;   /* 6px */
+  --radius-lg: 0.5rem;     /* 8px */
+  --radius-xl: 0.75rem;    /* 12px */
+  --radius-2xl: 1rem;      /* 16px */
+  --radius-3xl: 1.5rem;    /* 24px */
+  --radius-full: 9999px;   /* Full round */
+  
+  /* Component-specific radius */
+  --radius-button: var(--radius-md);
+  --radius-card: var(--radius-lg);
+  --radius-modal: var(--radius-xl);
+  --radius-badge: var(--radius-full);
+  
+  /* ========================================
+     5. SHADOWS (5 levels)
+     ======================================== */
+  
+  /* Shadow Levels */
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1),
+               0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+               0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+               0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+               0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  
+  --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+  --shadow-none: none;
+  
+  /* Colored Shadows */
+  --shadow-primary: 0 10px 25px -5px rgba(99, 102, 241, 0.25);
+  --shadow-secondary: 0 10px 25px -5px rgba(16, 185, 129, 0.25);
+  --shadow-error: 0 10px 25px -5px rgba(239, 68, 68, 0.25);
+  
+  /* Glow Effects */
+  --glow-primary: 0 0 20px rgba(99, 102, 241, 0.35);
+  --glow-secondary: 0 0 20px rgba(16, 185, 129, 0.35);
+  
+  /* ========================================
+     6. TRANSITIONS
+     ======================================== */
+  
+  --transition-none: none;
+  --transition-all: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-colors: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1),
+                       border-color 150ms cubic-bezier(0.4, 0, 0.2, 1),
+                       color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-opacity: opacity 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-shadow: box-shadow 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-transform: transform 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Timing Functions */
+  --ease-linear: linear;
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Duration */
+  --duration-75: 75ms;
+  --duration-100: 100ms;
+  --duration-150: 150ms;
+  --duration-200: 200ms;
+  --duration-300: 300ms;
+  --duration-500: 500ms;
+  --duration-700: 700ms;
+  --duration-1000: 1000ms;
+  
+  /* ========================================
+     7. Z-INDEX LAYERS
+     ======================================== */
+  
+  --z-negative: -1;
+  --z-0: 0;
+  --z-10: 10;        /* Background elements */
+  --z-20: 20;        /* Base content */
+  magnificient--z-30: 30;        /* Elevated cards */
+  --z-40: 40;        /* Dropdowns */
+  --z-50: 50;        /* Fixed headers */
+  --z-60: 60;        /* Tooltips */
+  --z-70: 70;        /* Modals */
+  --z-80: 80;        /* Overlays */
+  --z-90: 90;        /* Notifications */
+  --z-100: 100;      /* Maximum priority */
+  --z-max: 9999;     /* Emergency override */
+  
+  /* ========================================
+     8. BREAKPOINTS
+     ======================================== */
+  
+  --breakpoint-xs: 375px;   /* Extra small devices */
+  --breakpoint-sm: 640px;   /* Small devices */
+  --breakpoint-md: 768px;   /* Medium devices */
+  --breakpoint-lg: 1024px;  /* Large devices */
+  --breakpoint-xl: 1280px;  /* Extra large devices */
+  --breakpoint-2xl: 1536px; /* 2X large devices */
+  
+  /* Container Max Widths */
+  --container-xs: 100%;
+  --container-sm: 640px;
+  --container-md: 768px;
+  --container-lg: 1024px;
+  --container-xl: 1280px;
+  --container-2xl: 1536px;
+}
+
+/* ========================================
+   UTILITY ALIASES
+   ======================================== */
+
+:root {
+  /* Quick access aliases */
+  --primary: var(--color-primary-500);
+  --primary-hover: var(--color-primary-600);
+  --primary-active: var(--color-primary-700);
+  
+  --secondary: var(--color-secondary-500);
+  --secondary-hover: var(--color-secondary-600);
+  --secondary-active: var(--color-secondary-700);
+  
+  /* Text colors */
+  --text-primary: var(--color-gray-900);
+  --text-secondary: var(--color-gray-600);
+  --text-tertiary: var(--color-gray-500);
+  --text-disabled: var(--color-gray-400);
+  --text-inverse: var(--color-gray-0);
+  
+  /* Background colors */
+  --bg-primary: var(--color-gray-0);
+  --bg-secondary: var(--color-gray-50);
+  --bg-tertiary: var(--color-gray-100);
+  --bg-inverse: var(--color-gray-900);
+  
+  /* Border colors */
+  --border-light: var(--color-gray-200);
+  --border-default: var(--color-gray-300);
+  --border-dark: var(--color-gray-400);
+}
+
+/* ========================================
+   DARK MODE OVERRIDES
+   ======================================== */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Invert text colors for dark mode */
+    --text-primary: var(--color-gray-100);
+    --text-secondary: var(--color-gray-400);
+    --text-tertiary: var(--color-gray-500);
+    --text-disabled: var(--color-gray-600);
+    --text-inverse: var(--color-gray-900);
+    
+    /* Invert backgrounds */
+    --bg-primary: var(--color-gray-900);
+    --bg-secondary: var(--color-gray-800);
+    --bg-tertiary: var(--color-gray-700);
+    --bg-inverse: var(--color-gray-0);
+    
+    /* Adjust borders */
+    --border-light: var(--color-gray-700);
+    --border-default: var(--color-gray-600);
+    --border-dark: var(--color-gray-500);
+  }
+}

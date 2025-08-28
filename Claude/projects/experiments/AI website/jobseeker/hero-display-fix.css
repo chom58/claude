@@ -1,0 +1,386 @@
+/**
+ * Hero Display Fix
+ * Fixes container width, title cutoff, and background image issues
+ * Load as the final hero CSS file
+ */
+
+/* ========================================
+   HERO SECTION CONTAINER FIX
+   ======================================== */
+
+.hero,
+.hero-section {
+    width: 100% !important;
+    min-height: 100vh !important;
+    position: relative !important;
+    overflow: hidden !important; /* Prevent content cutoff */
+    display: flex !important;
+    align-items: center !important;
+    background: #0F172A !important; /* Fallback color */
+}
+
+/* ========================================
+   CONTENT CONTAINER WITH PROPER PADDING
+   ======================================== */
+
+.hero-content {
+    max-width: 1400px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    padding: 120px 5% 80px 5% !important; /* Header space + content padding */
+    position: relative !important;
+    z-index: 2 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+}
+
+/* ========================================
+   BACKGROUND IMAGE PROPER SETUP
+   ======================================== */
+
+.hero-background {
+    position: absolute !important;
+    top: 0 !important;
+    right: -10% !important; /* Shift slightly right */
+    width: 70% !important;
+    height: 100% !important;
+    /* Debug: Purple tint to verify element is visible */
+    background-color: rgba(99, 102, 241, 0.08) !important;
+    /* Try multiple image path formats */
+    background-image: 
+        url('career-path-wide.png'),
+        url('./career-path-wide.png'),
+        url('../jobseeker/career-path-wide.png') !important;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position: center right !important;
+    opacity: 0.8 !important; /* Slightly increased for better visibility */
+    z-index: 0 !important;
+}
+
+/* Alternative: Direct img tag styling if it exists */
+.hero-bg-image {
+    position: absolute !important;
+    top: 0 !important;
+    right: -10% !important;
+    width: 70% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    object-position: right center !important;
+    opacity: 0.7 !important;
+    z-index: 0 !important;
+}
+
+/* Gradient overlay for text readability */
+.hero-overlay,
+.hero::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: linear-gradient(
+        100deg,
+        rgba(15, 23, 42, 1) 0%,
+        rgba(15, 23, 42, 0.95) 30%,
+        rgba(15, 23, 42, 0.7) 60%,
+        rgba(15, 23, 42, 0.2) 100%
+    ) !important;
+    z-index: 1 !important;
+}
+
+/* ========================================
+   MAIN TITLE FIX
+   ======================================== */
+
+.hero-title .main-title {
+    font-size: clamp(2rem, 5vw, 4rem) !important; /* Adjusted max size */
+    line-height: 1.3 !important;
+    margin-bottom: 2rem !important;
+    word-break: keep-all !important; /* Proper Japanese line breaks */
+    white-space: normal !important;
+    max-width: 800px !important; /* Prevent overly wide text */
+}
+
+/* Force line break at specific point */
+.title-break {
+    display: block !important;
+}
+
+/* ========================================
+   SUBTITLE ADJUSTMENTS
+   ======================================== */
+
+.hero-title .subtitle {
+    font-size: clamp(1rem, 2vw, 1.3rem) !important;
+    margin-bottom: 1rem !important;
+    display: block !important;
+    color: #10B981 !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.12em !important;
+}
+
+/* ========================================
+   DESCRIPTION TEXT
+   ======================================== */
+
+.hero-description {
+    font-size: clamp(0.95rem, 1.8vw, 1.15rem) !important;
+    line-height: 1.7 !important;
+    margin: 1.5rem 0 2rem !important;
+    max-width: 600px !important;
+    color: rgba(255, 255, 255, 0.85) !important;
+}
+
+/* ========================================
+   TRUST BADGES LAYOUT
+   ======================================== */
+
+.trust-badges {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 1rem !important;
+    margin: 2rem 0 !important;
+    max-width: 700px !important;
+}
+
+.trust-badges .badge {
+    padding: 0.6rem 1.2rem !important;
+    background: linear-gradient(
+        135deg,
+        rgba(16, 185, 129, 0.12) 0%,
+        rgba(16, 185, 129, 0.06) 100%
+    ) !important;
+    border: 1px solid rgba(16, 185, 129, 0.3) !important;
+    border-radius: 9999px !important;
+    font-size: 0.9rem !important;
+    backdrop-filter: blur(20px) !important;
+    color: #FFFFFF !important;
+    transition: all 0.3s ease !important;
+    white-space: nowrap !important;
+}
+
+/* ========================================
+   CTA BUTTON POSITIONING
+   ======================================== */
+
+.cta-primary {
+    margin-top: 2rem !important;
+    padding: 1.1rem 3rem !important;
+    font-size: 1.15rem !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.75rem !important;
+}
+
+/* ========================================
+   RESPONSIVE ADJUSTMENTS
+   ======================================== */
+
+@media (max-width: 1200px) {
+    .hero-title .main-title {
+        font-size: clamp(1.8rem, 4vw, 3.5rem) !important;
+    }
+    
+    .hero-content {
+        padding: 100px 4% 70px 4% !important;
+    }
+    
+    .hero-background {
+        right: -15% !important;
+        width: 80% !important;
+        opacity: 0.6 !important;
+    }
+}
+
+@media (max-width: 992px) {
+    .hero-content {
+        padding: 90px 4% 60px 4% !important;
+    }
+    
+    .hero-title .main-title {
+        font-size: clamp(1.6rem, 4.5vw, 3rem) !important;
+    }
+    
+    .hero-background {
+        opacity: 0.5 !important;
+        right: -20% !important;
+        width: 100% !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero,
+    .hero-section {
+        min-height: 100vh !important;
+    }
+    
+    .hero-content {
+        padding: 100px 20px 60px 20px !important;
+        align-items: center !important;
+        text-align: center !important;
+    }
+    
+    .hero-title .main-title {
+        font-size: clamp(1.5rem, 5vw, 2.5rem) !important;
+        text-align: center !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+    
+    .hero-title .subtitle {
+        font-size: clamp(0.9rem, 2vw, 1.1rem) !important;
+        text-align: center !important;
+    }
+    
+    .hero-description {
+        text-align: center !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+    
+    /* Remove line breaks on mobile */
+    .hero-description br,
+    .hero-title .main-title br {
+        display: none !important;
+    }
+    
+    /* Keep title break */
+    .title-break {
+        display: inline !important;
+    }
+    
+    .trust-badges {
+        justify-content: center !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+    
+    .hero-background,
+    .hero-bg-image {
+        opacity: 0.3 !important;
+        right: -20% !important;
+        width: 140% !important;
+        background-size: cover !important; /* Change to cover on mobile */
+    }
+    
+    .hero-overlay,
+    .hero::before {
+        background: rgba(15, 23, 42, 0.9) !important;
+    }
+    
+    .cta-primary {
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero,
+    .hero-section {
+        min-height: 90vh !important;
+    }
+    
+    .hero-content {
+        padding: 80px 15px 50px 15px !important;
+    }
+    
+    .hero-title .main-title {
+        font-size: clamp(1.3rem, 6vw, 2rem) !important;
+        line-height: 1.35 !important;
+    }
+    
+    .hero-title .subtitle {
+        font-size: 0.85rem !important;
+        letter-spacing: 0.08em !important;
+    }
+    
+    .hero-description {
+        font-size: 0.9rem !important;
+        line-height: 1.6 !important;
+    }
+    
+    .trust-badges {
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 0.5rem !important;
+    }
+    
+    .trust-badges .badge {
+        width: fit-content !important;
+        min-width: 160px !important;
+        text-align: center !important;
+        justify-content: center !important;
+        padding: 0.5rem 1rem !important;
+        font-size: 0.85rem !important;
+    }
+    
+    .hero-background {
+        opacity: 0.2 !important;
+        width: 200% !important;
+        right: -50% !important;
+    }
+    
+    .hero-overlay,
+    .hero::before {
+        background: rgba(15, 23, 42, 0.95) !important;
+    }
+    
+    .cta-primary {
+        padding: 1rem 2rem !important;
+        font-size: 1rem !important;
+        width: 100% !important;
+        max-width: 280px !important;
+    }
+}
+
+/* ========================================
+   OVERFLOW AND VISIBILITY FIXES
+   ======================================== */
+
+/* Ensure all content is visible */
+.hero * {
+    position: relative !important;
+}
+
+/* Fix grid layout issues from previous CSS */
+.hero-content {
+    display: flex !important;
+    flex-direction: column !important;
+    grid-template-columns: none !important;
+}
+
+/* Reset any absolute positioning that might cause issues */
+.hero-title,
+.hero-description,
+.trust-badges,
+.cta-primary {
+    position: relative !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: auto !important;
+}
+
+/* ========================================
+   Z-INDEX HIERARCHY
+   ======================================== */
+
+.hero-background {
+    z-index: 0 !important;
+}
+
+.hero-overlay,
+.hero::before {
+    z-index: 1 !important;
+}
+
+.hero-content {
+    z-index: 2 !important;
+}
+
+.hero-content * {
+    z-index: inherit !important;
+}

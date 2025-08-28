@@ -1,0 +1,428 @@
+/**
+ * Final Polish - Site-wide Consistency
+ * Unified styling for cohesive design across all sections
+ * Load as the last CSS file
+ */
+
+/* ========================================
+   SECTION SPACING STANDARDIZATION
+   ======================================== */
+
+/* All major sections - consistent spacing */
+section,
+.hero,
+.trust-section,
+.value-create,
+.team-section,
+.benefits,
+.companies-section,
+.success-stories,
+.process-section,
+.faq-section,
+.register-section,
+.footer {
+    padding-top: 5rem !important;
+    padding-bottom: 5rem !important;
+}
+
+/* Hero section special case - maintains viewport height */
+.hero {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    /* Height already controlled by hero-restructure.css */
+}
+
+/* First section after hero - extra top padding for visual separation */
+.trust-section {
+    padding-top: 6rem !important;
+}
+
+/* Footer special padding */
+.footer {
+    padding-top: 4rem !important;
+    padding-bottom: 3rem !important;
+}
+
+/* Mobile section spacing */
+@media (max-width: 768px) {
+    section,
+    .trust-section,
+    .value-create,
+    .team-section,
+    .benefits,
+    .companies-section,
+    .success-stories,
+    .process-section,
+    .faq-section,
+    .register-section {
+        padding-top: 3rem !important;
+        padding-bottom: 3rem !important;
+    }
+    
+    .trust-section {
+        padding-top: 3.5rem !important;
+    }
+    
+    .footer {
+        padding-top: 2.5rem !important;
+        padding-bottom: 2rem !important;
+    }
+}
+
+/* ========================================
+   BUTTON STYLE UNIFICATION
+   ======================================== */
+
+/* All CTA buttons - unified styling */
+button,
+a.btn-primary,
+a.btn-secondary,
+a.btn-hero-primary,
+a.btn-hero-secondary,
+.btn-primary,
+.btn-secondary,
+.btn-submit,
+.nav-cta,
+.value-link,
+.team-cta a,
+.cta-button {
+    border-radius: 9999px !important;    /* Full rounded corners */
+    font-weight: 600 !important;
+    text-transform: none !important;     /* Remove any uppercase */
+    letter-spacing: 0.01em !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+/* Unified hover behavior */
+button:hover,
+a.btn-primary:hover,
+a.btn-secondary:hover,
+a.btn-hero-primary:hover,
+a.btn-hero-secondary:hover,
+.btn-primary:hover,
+.btn-secondary:hover,
+.btn-submit:hover,
+.nav-cta:hover,
+.value-link:hover,
+.team-cta a:hover,
+.cta-button:hover {
+    transform: scale(1.05) translateY(-2px) !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Active/pressed state */
+button:active,
+a.btn-primary:active,
+a.btn-secondary:active,
+.btn-primary:active,
+.btn-secondary:active {
+    transform: scale(1.02) translateY(0) !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Primary button colors - consistent */
+.btn-primary,
+.btn-hero-primary,
+.nav-cta,
+.btn-submit {
+    background: #10B981 !important;      /* Secondary green */
+    color: white !important;
+    border: 2px solid transparent !important;
+}
+
+.btn-primary:hover,
+.btn-hero-primary:hover,
+.nav-cta:hover,
+.btn-submit:hover {
+    background: #059669 !important;      /* Darker green on hover */
+    box-shadow: 0 10px 25px rgba(16, 185, 129, 0.25) !important;
+}
+
+/* Secondary/ghost buttons - consistent */
+.btn-secondary,
+.btn-hero-secondary {
+    background: transparent !important;
+    color: white !important;
+    border: 2px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+.btn-secondary:hover,
+.btn-hero-secondary:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* ========================================
+   SIMPLIFICATION OF DECORATIVE ELEMENTS
+   ======================================== */
+
+/* Remove gradient text effects - use solid colors */
+.gradient-text,
+.hero-main,
+.section-title {
+    background: none !important;
+    -webkit-background-clip: initial !important;
+    -webkit-text-fill-color: initial !important;
+    background-clip: initial !important;
+}
+
+.hero-main {
+    color: #FFFFFF !important;            /* Solid white for hero */
+}
+
+.section-title {
+    color: #111827 !important;            /* Dark gray for sections */
+}
+
+.team-section .section-title,
+.value-create .section-title {
+    color: #FFFFFF !important;            /* White for dark sections */
+}
+
+/* Simplify background patterns */
+.hero::before,
+.hero::after,
+.value-create::before,
+.value-create::after,
+.team-section::before,
+.team-section::after {
+    display: none !important;              /* Remove decorative overlays */
+}
+
+/* Simplify card animations */
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }       /* Reduced from 1.05 or 1.1 */
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }  /* Reduced from -10px or -20px */
+}
+
+/* Remove excessive shadows */
+.card,
+.value-card,
+.benefit-card,
+.trust-item,
+.story-card {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07) !important;  /* Subtle shadow */
+}
+
+.card:hover,
+.value-card:hover,
+.benefit-card:hover,
+.trust-item:hover,
+.story-card:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important; /* Moderate on hover */
+}
+
+/* ========================================
+   DARK MODE CONSISTENCY
+   ======================================== */
+
+/* Dark section backgrounds - unified */
+.hero,
+.team-section,
+.footer {
+    background: #0f172a !important;       /* --dark color */
+}
+
+/* Navy sections */
+.value-create {
+    background: #1e293b !important;       /* --navy color */
+}
+
+/* Light sections */
+.trust-section,
+.benefits,
+.companies-section,
+.success-stories,
+.process-section,
+.faq-section {
+    background: #FFFFFF !important;       /* White background */
+}
+
+/* Register section - slight tint */
+.register-section {
+    background: #F9FAFB !important;       /* --gray-50 */
+}
+
+/* Text colors for dark sections */
+.hero,
+.team-section,
+.value-create,
+.footer {
+    color: #F3F4F6 !important;           /* --gray-100 */
+}
+
+.hero p,
+.team-section p,
+.value-create p,
+.footer p {
+    color: #E5E7EB !important;           /* --gray-200 */
+}
+
+/* Text colors for light sections */
+.trust-section,
+.benefits,
+.companies-section,
+.success-stories,
+.process-section,
+.faq-section,
+.register-section {
+    color: #111827 !important;           /* --gray-900 */
+}
+
+/* Ensure readability of all headings */
+.hero h1,
+.hero h2,
+.team-section h2,
+.team-section h3,
+.value-create h2,
+.value-create h3 {
+    color: #FFFFFF !important;
+}
+
+/* ========================================
+   COMPONENT CONSISTENCY
+   ======================================== */
+
+/* Cards in dark sections */
+.team-member,
+.hero .card {
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Cards in light sections */
+.trust-item,
+.benefit-card,
+.value-card:not(.featured-card),
+.story-card,
+.faq-item {
+    background: #FFFFFF !important;
+    border: 1px solid #E5E7EB !important;
+}
+
+/* Input fields consistency */
+input,
+textarea,
+select {
+    border-radius: 8px !important;
+    border: 1px solid #D1D5DB !important;
+    background: #FFFFFF !important;
+    color: #111827 !important;
+    transition: all 0.2s ease !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: #6366F1 !important;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1) !important;
+    outline: none !important;
+}
+
+/* ========================================
+   MOBILE CONSISTENCY
+   ======================================== */
+
+@media (max-width: 768px) {
+    /* Ensure buttons are full-width on mobile */
+    .btn-primary,
+    .btn-secondary,
+    .btn-hero-primary,
+    .btn-hero-secondary,
+    .nav-cta,
+    .value-link,
+    .team-cta a {
+        width: 100% !important;
+        justify-content: center !important;
+        padding: 1rem 2rem !important;
+    }
+    
+    /* Consistent card spacing */
+    .card,
+    .value-card,
+    .benefit-card,
+    .trust-item,
+    .story-card,
+    .team-member {
+        margin-bottom: 1.5rem !important;
+    }
+    
+    /* Simplified animations on mobile */
+    * {
+        animation-duration: 0.3s !important;
+    }
+    
+    /* Disable hover effects on touch devices */
+    @media (hover: none) {
+        button:hover,
+        a:hover,
+        .card:hover {
+            transform: none !important;
+        }
+    }
+}
+
+/* ========================================
+   FINAL CLEANUP
+   ======================================== */
+
+/* Remove any remaining complex gradients */
+.gradient-primary,
+.gradient-secondary,
+.gradient-accent {
+    background: #6366F1 !important;      /* Solid primary color */
+}
+
+/* Ensure all links in dark sections are visible */
+.hero a:not(.btn-primary):not(.btn-secondary),
+.team-section a:not(.btn-primary):not(.btn-secondary),
+.value-create a:not(.btn-primary):not(.btn-secondary),
+.footer a {
+    color: #93C5FD !important;           /* Light blue for links */
+}
+
+.hero a:not(.btn-primary):not(.btn-secondary):hover,
+.team-section a:not(.btn-primary):not(.btn-secondary):hover,
+.value-create a:not(.btn-primary):not(.btn-secondary):hover,
+.footer a:hover {
+    color: #DBEAFE !important;
+    text-decoration: underline !important;
+}
+
+/* Ensure consistent border radius */
+.card,
+.value-card,
+.benefit-card,
+.trust-item,
+.story-card,
+.team-member,
+.faq-item {
+    border-radius: 12px !important;      /* Consistent card radius */
+}
+
+/* Final z-index cleanup */
+.header {
+    z-index: 1000 !important;
+}
+
+.hero-content {
+    z-index: 10 !important;
+}
+
+.modal,
+.overlay {
+    z-index: 2000 !important;
+}
+
+/* Remove any leftover debugging borders or backgrounds */
+.debug,
+.test {
+    display: none !important;
+}

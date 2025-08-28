@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <title>AI Talent Bridge | AIエンジニアのためのキャリア支援 - Tokyo AI Community公式パートナー</title>
+    <meta name="description" content="Tokyo AI Community公式キャリア支援パートナー。アナリストによる企業価値評価で中長期成長企業をご紹介。外国人エンジニアサポート充実。完全無料">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+JP:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="design-tokens.css">
+    <link rel="stylesheet" href="design-system-updates.css">
+    <link rel="stylesheet" href="value-create-improvements.css">
+    <link rel="stylesheet" href="hero-background-implementation.css">
+    <link rel="stylesheet" href="value-create-final-fix.css">
+    <link rel="stylesheet" href="cta-button-final.css">
+    <link rel="stylesheet" href="title-fix.css">
+    <link rel="stylesheet" href="trust-section-redesign.css">
+    <link rel="stylesheet" href="process-section.css">
+    
+    <!-- Force CTA button styles and title fix -->
+    <style>
+        /* Force title line break for PC with tighter spacing */
+        @media (min-width: 769px) {
+            .main-title {
+                white-space: pre-line !important;
+                display: block !important;
+                line-height: 0.9 !important;  /* Very tight line spacing */
+            }
+            .main-title br {
+                display: block !important;
+                content: "\A" !important;
+                white-space: pre !important;
+                margin: -0.3em 0 !important;  /* More negative margin for tighter gap */
+            }
+        }
+        
+        /* CTA Button styles */
+        .cta-primary,
+        a.cta-primary {
+            background: #10B981 !important;
+            color: #FFFFFF !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+            font-weight: 700 !important;
+            padding: 16px 48px !important;
+            border: 3px solid #10B981 !important;
+            border-radius: 50px !important;
+            display: inline-block !important;
+            text-decoration: none !important;
+            position: relative !important;
+            z-index: 9999 !important;
+        }
+        .cta-primary:hover {
+            background: #059669 !important;
+            border-color: #059669 !important;
+        }
+    </style>
+    
+    <!-- Force title break with JavaScript as fallback -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if on desktop (width > 768px)
+            if (window.innerWidth > 768) {
+                const title = document.querySelector('.main-title');
+                if (title) {
+                    // Ensure the BR tag creates a real line break
+                    title.style.whiteSpace = 'pre-line';
+                    title.innerHTML = 'あなたの見えない価値を、<br>\n企業の未来に。';
+                }
+            }
+        });
+        
+        // Trigger animation when trust section comes into view
+        window.addEventListener('scroll', function() {
+            const trustSection = document.querySelector('.trust-section');
+            if (trustSection) {
+                const rect = trustSection.getBoundingClientRect();
+                if (rect.top < window.innerHeight * 0.8) {
+                    trustSection.classList.add('in-view');
+                }
+            }
+        });
+    </script>
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header class="header">
+        <nav class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-text">AI Talent Bridge</span>
+                <span class="logo-badge">Tokyo AI Community公式パートナー</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#value-create" class="nav-link">Value Create</a>
+                <a href="#team" class="nav-link">チーム</a>
+                <a href="#benefits" class="nav-link">メリット</a>
+                <a href="#companies" class="nav-link">採用企業</a>
+                <a href="#success" class="nav-link">成功事例</a>
+                <a href="#register" class="nav-cta">無料登録</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero hero-section" id="home">
+        <div class="hero-background"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <!-- Subtitle -->
+                <p class="subtitle">AIエンジニアとして、次のステージへ</p>
+                
+                <!-- Main Title -->
+                <h1 class="main-title">あなたの見えない価値を、<br>
+企業の未来に。</h1>
+                
+                <!-- Hero Description -->
+                <p class="hero-description">
+                    Tokyo AI コミュニティの公式パートナーが<br>
+                    あなたのスキルと可能性をトップ企業への架け橋に変えます。
+                </p>
+                
+                <!-- Trust Badges -->
+                <div class="trust-badges">
+                    <span class="badge"><span class="badge-icon">🌍</span>多言語対応</span>
+                    <span class="badge"><span class="badge-icon">💎</span>企業価値視点</span>
+                    <span class="badge"><span class="badge-icon">👤</span>1対1サポート</span>
+                    <span class="badge"><span class="badge-icon">✨</span>完全無料</span>
+                </div>
+                
+                <!-- CTA Button -->
+                <div class="cta-container">
+                    <a href="#contact-form" class="cta-primary">
+                        無料キャリア相談を開始
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Indicators -->
+    <section class="trust-section">
+        <div class="container">
+            <div class="trust-header">
+                <h2 class="trust-title">選ばれる4つの理由</h2>
+                <p class="trust-subtitle">Tokyo AI Communityとの連携が生む独自の価値</p>
+            </div>
+            <div class="trust-grid trust-cards">
+                <div class="trust-item trust-card">
+                    <span class="badge">FREE</span>
+                    <div class="trust-icon icon-wrapper">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="3" y="11" width="18" height="11" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                            <path d="M7 11V7a5 5 0 0110 0v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            <circle cx="12" cy="16" r="1" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <h3>完全無料・<br>透明性100%</h3>
+                    <p>転職成功後も費用は一切不要。<br>隠れたコストなし</p>
+                </div>
+                <div class="trust-item trust-card">
+                    <span class="badge">OFFICIAL</span>
+                    <div class="trust-icon icon-wrapper">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L9.19 8.63L2 9.24L7.46 13.97L5.82 21L12 17.27L18.18 21L16.54 13.97L22 9.24L14.81 8.63L12 2Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3>Tokyo AI<br>Community公認</h3>
+                    <p>1,000名超のAIエンジニア<br>ネットワークを活用</p>
+                </div>
+                <div class="trust-item trust-card">
+                    <span class="badge">DATA</span>
+                    <div class="trust-icon icon-wrapper">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                            <path d="M9 9v8M15 5v12M12 12v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3>データドリブンな<br>企業分析</h3>
+                    <p>技術スタック・成長性・<br>カルチャーを定量評価</p>
+                </div>
+                <div class="trust-item trust-card">
+                    <span class="badge">GLOBAL</span>
+                    <div class="trust-icon icon-wrapper">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/>
+                            <path d="M2 12h20M12 2c2.5 2.5 4 5.5 4 10s-1.5 7.5-4 10c-2.5-2.5-4-5.5-4-10s1.5-7.5 4-10z" stroke="currentColor" stroke-width="1.5"/>
+                        </svg>
+                    </div>
+                    <h3>多国籍チーム<br>対応</h3>
+                    <p>10カ国以上の転職支援実績。<br>ビザ相談も対応</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Value Create Section -->
+    <section class="value-create" id="value-create">
+        <div class="container">
+            <h2 class="section-title">
+                Value Createだからできるキャリア支援
+            </h2>
+            <p class="section-subtitle">
+                「企業価値をデザインする」コンサルティング会社が提供する特別な価値
+            </p>
+            
+            <div class="value-cards">
+                <div class="value-card featured-card">
+                    <div class="value-icon">💎</div>
+                    <h3>企業価値評価のプロフェッショナル</h3>
+                    <div class="value-card-subtitle">20年以上のIRコンサルティング実績に基づく確かな企業分析</div>
+                    <p>Value Createは上場企業のIR戦略立案、企業価値向上コンサルティングで豊富な実績を持つプロフェッショナルファームです。私たちは財務分析だけでなく、経営理念、ビジネスモデル、組織文化まで総合的に評価し、「10年後も成長する企業」を見極めます。この専門知識を活用し、あなたに本当に価値のある企業をご紹介します。</p>
+                    <ul class="value-features">
+                        <li>中長期成長性の精密な分析による将来性のある企業の選定</li>
+                        <li>経営陣の質とビジョンの評価で安心できる転職先をご提案</li>
+                        <li>イノベーション創出力の判定により成長企業を見極め</li>
+                        <li>統合報告書作成の知見を活かした非財務価値の評価</li>
+                        <li>グローバル基準での企業価値評価能力</li>
+                    </ul>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🎯</div>
+                    <h3>ビジョナリーカンパニーの選定</h3>
+                    <div class="value-card-subtitle">真に価値を創造し、社会を変革する企業への道筋</div>
+                    <p>私たちのIRコンサルティング実績から、本当に将来性のある企業を識別します。「日本発のビジョナリーカンパニー」への転職をサポートし、単なる有名企業ではなく、真に価値を創造する企業へ導きます。あなたのスキルが最も活きる、成長著しい企業との出会いを実現します。</p>
+                    <ul class="value-features">
+                        <li>独自の企業評価フレームワークによる精密な選定</li>
+                        <li>経営者の直接的なビジョンと戦略の理解</li>
+                        <li>市場での競争優位性と持続可能性の分析</li>
+                        <li>イノベーション力と組織文化の総合評価</li>
+                    </ul>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">📊</div>
+                    <h3>企業の「見えない資産」を評価</h3>
+                    <div class="value-card-subtitle">統合報告書作成のプロフェッショナルが見抜く本質的価値</div>
+                    <p>財務数値だけでなく、企業文化、理念、人材、知的財産などの「見えない資産」を専門的に評価します。統合報告書作成で培った知見を活用し、企業の真の価値と成長ポテンシャルを見極め、本当にあなたの価値観とマッチする企業をご紹介します。</p>
+                    <ul class="value-features">
+                        <li>人的資本の質と育成体制の詳細な分析</li>
+                        <li>組織文化とあなたの価値観のマッチング評価</li>
+                        <li>知的財産やブランド価値の将来性判定</li>
+                        <li>ESG要素を含むサステナビリティ評価</li>
+                    </ul>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🌐</div>
+                    <h3>グローバル展開企業へのネットワーク</h3>
+                    <div class="value-card-subtitle">世界を舞台に活躍するキャリアへの架け橋</div>
+                    <p>海外事業支援の豊富な実績から構築した、グローバル展開を目指す企業との強固なネットワークを活用します。国際的なキャリアを希望するエンジニアに最適な機会を提供し、外国人エンジニアの日本での活躍の場も積極的に創出しています。</p>
+                    <ul class="value-features">
+                        <li>グローバル企業との直接的なパイプライン</li>
+                        <li>海外展開を計画する成長企業の厳選紹介</li>
+                        <li>国際的なプロジェクトへの参画機会提供</li>
+                        <li>多様性を重視する先進的な企業文化のマッチング</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="value-cta">
+                <div class="cta-content">
+                    <h3>なぜValue Createなのか？</h3>
+                    <p>私たちは「企業価値をデザインする」専門家集団です。<br>
+                    企業の真の価値を見極め、その企業で働くエンジニアの価値も最大化します。<br>
+                    <strong>あなたのキャリアに「価値」をデザインします。</strong></p>
+                    <a href="https://www.valuecreate.net/" target="_blank" class="value-link">
+                        Value Create 公式サイト →
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section" id="team">
+        <div class="container">
+            <h2 class="section-title">
+                私たちがあなたのキャリアをサポートします
+            </h2>
+            <p class="section-subtitle">
+                グローバル視点と日本市場の深い理解を併せ持つプロフェッショナルチーム
+            </p>
+            
+            <div class="team-grid">
+                <!-- Barry O'Neill -->
+                <div class="team-member">
+                    <div class="team-photo-wrapper">
+                        <img src="BON Headshot.avif" alt="Barry O'Neill" class="team-photo" loading="lazy">
+                        <div class="team-photo-overlay"></div>
+                    </div>
+                    <h3 class="team-name">Barry O'Neill</h3>
+                    <p class="team-role">Value Create パートナー</p>
+                    
+                    <div class="team-catchphrase">
+                        <span class="icon">🌍</span>
+                        欧州PE/VCネットワークでAI人材採用を支援
+                    </div>
+                    
+                    <!-- 要約 (常に表示) -->
+                    <div class="team-summary">
+                        <p>起業家として米国・欧州・英国・日本・中国で事業を展開。Techstars TokyoでEIRとして活動。</p>
+                    </div>
+                    
+                    <!-- 詳細 (トグル表示) -->
+                    <div class="team-detail" id="barry-detail">
+                        <p>成長戦略とグローバル展開の専門知識を、多様な業界の企業支援に活かしている。</p>
+                        <p>前職のStoryToys CEOとして、LEGO・Disney・Marvelとのパートナーシップ締結、2社の買収、13億円超の資金調達を主導。2021年にTeam17 PLCへ売却（2度目のExit達成）。</p>
+                        <p>大手企業やVCのアドバイザー、欧州委員会R&Dプログラムへの貢献など、幅広い領域で活動。</p>
+                        <p class="team-mission">日本・APACのスタートアップ支援を通じて、グローバル人材と日本企業のギャップを埋めることがミッション。</p>
+                    </div>
+                    
+                    <button onclick="toggleTeamDetail('barry-detail', this)" class="team-toggle-btn">
+                        もっと見る →
+                    </button>
+                </div>
+                
+                <!-- Shu Koike -->
+                <div class="team-member">
+                    <div class="team-photo-wrapper">
+                        <img src="shu koike.png" alt="Shu Koike" class="team-photo" loading="lazy">
+                        <div class="team-photo-overlay"></div>
+                    </div>
+                    <h3 class="team-name">Shu Koike</h3>
+                    <p class="team-role">AI Talent Bridge 事業責任者</p>
+                    
+                    <div class="team-catchphrase">
+                        <span class="icon">✨</span>
+                        日本企業の制度設計からAI人材定着まで伴走
+                    </div>
+                    
+                    <!-- 要約 (常に表示) -->
+                    <div class="team-summary">
+                        <p>教育・人材・人事の3領域を横断する採用のスペシャリスト。1,000名以上の学生のキャリア形成を支援。</p>
+                    </div>
+                    
+                    <!-- 詳細 (トグル表示) -->
+                    <div class="team-detail" id="shu-detail">
+                        <p>人材企業にてクリエイティブ領域特化のマッチングサービスを新規事業として立ち上げ、100社以上のデザイナー/クリエイター採用を成功に導く。</p>
+                        <p>並行して複数のスタートアップ・ベンチャー企業で人事として採用戦略の立案から実行、定着支援まで一貫して担当。</p>
+                        <p>教育者として「人を育てる」視点、事業開発者として「市場を創る」視点、人事として「組織を創る」視点。</p>
+                        <p class="team-mission">この360度の視座から、AI/テック人材採用の新しいスタンダードを構築。</p>
+                    </div>
+                    
+                    <button onclick="toggleTeamDetail('shu-detail', this)" class="team-toggle-btn">
+                        もっと見る →
+                    </button>
+                </div>
+            </div>
+            
+            <div class="team-cta">
+                <h3>経験豊富なチームがあなたをサポート</h3>
+                <p>グローバルビジネスと日本市場、両方の視点からあなたの価値を最大化します。</p>
+                <a href="#register" class="btn-primary">無料キャリア相談を始める</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Benefits Section -->
+    <section class="benefits" id="benefits">
+        <div class="container">
+            <h2 class="section-title">
+                なぜAIエンジニアが選ぶのか
+            </h2>
+            <p class="section-subtitle">
+                Value Create × Tokyo AI Communityのシナジーで実現する特別な価値
+            </p>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-number">01</div>
+                    <h3 class="benefit-title">企業価値分析のプロフェッショナル</h3>
+                    <p class="benefit-description">
+                        IRコンサルティングの実績を活かし、企業の真の価値を分析。
+                        財務だけでなく、経営理念、企業文化、成長性を総合評価
+                    </p>
+                    <ul class="benefit-list">
+                        <li>企業の「見えない資産」を可視化</li>
+                        <li>ビジョナリーカンパニーの選別</li>
+                        <li>長期的なキャリア構築を支援</li>
+                    </ul>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-number">02</div>
+                    <h3 class="benefit-title">外国人エンジニア向けサポート</h3>
+                    <p class="benefit-description">
+                        日本在住の外国人エンジニアに特化した手厚いフォロー。
+                        言語、ビザ、文化の壁を乗り越える全面支援
+                    </p>
+                    <ul class="benefit-list">
+                        <li>英語・中国語対応のキャリアコンサルティング</li>
+                        <li>ビザサポート・在留資格相談</li>
+                        <li>日本企業文化のオンボーディング支援</li>
+                    </ul>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-number">03</div>
+                    <h3 class="benefit-title">個別キャリアコンサルティング</h3>
+                    <p class="benefit-description">
+                        一人ひとりのキャリアプランに寄り添う個別サポート。
+                        面接対策から入社後のフォローまで伴走
+                    </p>
+                    <ul class="benefit-list">
+                        <li>キャリアプラン設計・将来性評価</li>
+                        <li>面接対策・ポートフォリオ作成支援</li>
+                        <li>入社後3ヶ月間のフォローアップ</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Companies Section -->
+    <section class="companies" id="companies">
+        <div class="container">
+            <h2 class="section-title">Tokyo AI Community経由でアクセス可能な企業群</h2>
+            <p class="section-subtitle">コミュニティメンバーが活躍する最先端AI企業へ直接つながる</p>
+            
+            <div class="companies-grid">
+                <div class="company-category">
+                    <h3 class="category-title">外資系テック大手</h3>
+                    <div class="company-list">
+                        <div class="company-item">GAFAM系企業</div>
+                        <div class="company-item">クラウドプラットフォーマー</div>
+                        <div class="company-item">AI研究開発企業</div>
+                        <div class="company-item">グローバルSaaS企業</div>
+                        <div class="company-item">半導体・GPU関連企業</div>
+                        <div class="company-item">その他30社以上</div>
+                    </div>
+                </div>
+                
+                <div class="company-category">
+                    <h3 class="category-title">国内リーディングカンパニー</h3>
+                    <div class="company-list">
+                        <div class="company-item">メガベンチャー各社</div>
+                        <div class="company-item">AI先進企業</div>
+                        <div class="company-item">大手IT企業</div>
+                        <div class="company-item">金融・フィンテック企業</div>
+                        <div class="company-item">製造業DX推進企業</div>
+                        <div class="company-item">その他100社以上</div>
+                    </div>
+                </div>
+                
+                <div class="company-category">
+                    <h3 class="category-title">注目のAIスタートアップ</h3>
+                    <div class="company-list">
+                        <div class="company-item">生成AI特化企業</div>
+                        <div class="company-item">MLOps・インフラ企業</div>
+                        <div class="company-item">ヘルステック・バイオAI</div>
+                        <div class="company-item">自動運転・ロボティクス</div>
+                        <div class="company-item">エンタープライズAI</div>
+                        <div class="company-item">その他50社以上</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="community-connection">
+                <div class="connection-card">
+                    <h3>🤝 Tokyo AI Communityの強み</h3>
+                    <ul>
+                        <li>コミュニティメンバーが<strong>CTO・技術責任者</strong>として在籍</li>
+                        <li>定期的な<strong>企業交流イベント</strong>で直接つながる</li>
+                        <li><strong>技術勉強会・LT会</strong>での企業エンジニアとの交流</li>
+                        <li><strong>非公開求人</strong>の優先紹介</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Stories -->
+    <section class="success" id="success">
+        <div class="container">
+            <h2 class="section-title">Tokyo AI Communityメンバーのキャリアストーリー</h2>
+            <p class="section-subtitle">コミュニティのネットワークを活用して理想のポジションを獲得</p>
+            
+            <div class="stories-grid">
+                <div class="story-card featured">
+                    <div class="featured-badge">FEATURED</div>
+                    <div class="story-header">
+                        <div class="story-avatar">👨‍💻</div>
+                        <div class="story-info">
+                            <h4>コミュニティメンバー Aさん（32歳）</h4>
+                            <p class="story-transition">国内SIer → 外資系テック大手</p>
+                            <p class="story-role">Senior ML Engineer</p>
+                        </div>
+                    </div>
+                    <div class="story-stats">
+                        <div class="story-stat">
+                            <span class="stat-label">年収</span>
+                            <span class="stat-change">大幅アップ</span>
+                        </div>
+                        <div class="story-stat">
+                            <span class="stat-label">転職期間</span>
+                            <span class="stat-value">スムーズ</span>
+                        </div>
+                    </div>
+                    <div class="story-detail">
+                        <h5>Tokyo AI Communityでの活動</h5>
+                        <p>「月次のLT会で自分の機械学習プロジェクトを発表。多くの企業エンジニアからフィードバックをもらいました。」</p>
+                        
+                        <h5>ネットワークの力</h5>
+                        <p>「コミュニティで知り合ったエンジニアが、偶然自社の採用担当で、直接声をかけてくれました。
+                        技術面接対策もコミュニティメンバーがサポートしてくれて、完璧に准備できました。」</p>
+                        
+                        <h5>現在の仕事</h5>
+                        <p>「グローバルAIチームで、日本市場向けのMLソリューションを開発。
+                        リモートワークも柔軟に対応でき、ワークライフバランスも大幅に改善しました。」</p>
+                    </div>
+                    <div class="story-tags">
+                        <span class="tag">機械学習</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">TensorFlow</span>
+                        <span class="tag">Cloud ML</span>
+                        <span class="tag">Kubernetes</span>
+                    </div>
+                    <div class="community-note">
+                        <span class="note-icon">🎆</span>
+                        <p>Tokyo AI Communityのネットワーク経由で転職成功</p>
+                    </div>
+                </div>
+                
+                <div class="story-card">
+                    <div class="story-header">
+                        <div class="story-avatar">👩‍💻</div>
+                        <div class="story-info">
+                            <h4>コミュニティメンバー Bさん（28歳）</h4>
+                            <p class="story-transition">スタートアップ → 国内メガベンチャー</p>
+                            <p class="story-role">Data Scientist</p>
+                        </div>
+                    </div>
+                    <div class="story-stats">
+                        <div class="story-stat">
+                            <span class="stat-label">年収</span>
+                            <span class="stat-change">希望通り</span>
+                        </div>
+                        <div class="story-stat">
+                            <span class="stat-label">転職期間</span>
+                            <span class="stat-value">短期間</span>
+                        </div>
+                    </div>
+                    <div class="story-detail">
+                        <h5>Tokyo AI Communityでの出会い</h5>
+                        <p>「ハッカソンイベントでチームを組んだメガベンチャーのエンジニアと意気投合。その後も交流が続きました。」</p>
+                        
+                        <h5>スキルの可視化</h5>
+                        <p>「GitHubプロフィールやKaggleの実績から、私のスキルを正確に評価。
+                        コミュニティメンバーのエンジニアが技術面で推薦してくれたことで、信頼を得られました。」</p>
+                        
+                        <h5>現在の仕事</h5>
+                        <p>「大規模ECプラットフォームで推薦アルゴリズムの最適化を担当。
+                        完全リモート勤務で、地方からでも最先端の技術に携われています。」</p>
+                    </div>
+                    <div class="story-tags">
+                        <span class="tag">データ分析</span>
+                        <span class="tag">MLOps</span>
+                        <span class="tag">AWS</span>
+                        <span class="tag">BigQuery</span>
+                        <span class="tag">推薦システム</span>
+                    </div>
+                </div>
+                
+                <div class="story-card">
+                    <div class="story-header">
+                        <div class="story-avatar">👨‍💻</div>
+                        <div class="story-info">
+                            <h4>コミュニティメンバー Cさん（35歳）</h4>
+                            <p class="story-transition">大手メーカー → AI研究開発企業</p>
+                            <p class="story-role">Research Scientist</p>
+                        </div>
+                    </div>
+                    <div class="story-stats">
+                        <div class="story-stat">
+                            <span class="stat-label">年収</span>
+                            <span class="stat-change">満足</span>
+                        </div>
+                        <div class="story-stat">
+                            <span class="stat-label">研究環境</span>
+                            <span class="stat-value">理想的</span>
+                        </div>
+                    </div>
+                    <div class="story-detail">
+                        <h5>論文輪読会での縁</h5>
+                        <p>「Tokyo AI Communityの論文輪読会で発表した研究が、多くの企業研究者の目に留まりました。」</p>
+                        
+                        <h5>研究者ネットワーク</h5>
+                        <p>「論文やOSS貢献の実績をコミュニティで共有。同じ研究分野の企業から直接オファーをいただきました。
+                        コミュニティメンバーの研究者からの推薦が決め手となりました。」</p>
+                        
+                        <h5>現在の仕事</h5>
+                        <p>「最先端のAI研究所で、次世代の深層学習アルゴリズムを研究。
+                        国際会議での発表や、オープンソースへの貢献も積極的に行っています。」</p>
+                    </div>
+                    <div class="story-tags">
+                        <span class="tag">深層学習</span>
+                        <span class="tag">研究開発</span>
+                        <span class="tag">PyTorch</span>
+                        <span class="tag">CUDA</span>
+                        <span class="tag">論文執筆</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- More Stories Button -->
+            <div class="more-stories">
+                <a href="#more-stories" class="btn-secondary">
+                    さらに100件以上の成功事例を見る →
+                </a>
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process">
+        <div class="container">
+            <h2 class="section-title">キャリア支援の流れ</h2>
+            <p class="section-subtitle">あなたのペースで理想のキャリアを実現</p>
+            
+            <div class="process-timeline">
+                <div class="process-step">
+                    <div class="step-number">STEP 01</div>
+                    <h3 class="step-title">無料登録</h3>
+                    <p class="step-description">簡単登録でスタート</p>
+                    <p class="step-time">すぐに開始</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">STEP 02</div>
+                    <h3 class="step-title">キャリア相談</h3>
+                    <p class="step-description">専門アナリストと相談</p>
+                    <p class="step-time">じっくり検討</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">STEP 03</div>
+                    <h3 class="step-title">企業紹介</h3>
+                    <p class="step-description">成長企業をご紹介</p>
+                    <p class="step-time">マッチング次第</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">STEP 04</div>
+                    <h3 class="step-title">内定・入社</h3>
+                    <p class="step-description">最後までサポート</p>
+                    <p class="step-time">安心の伴走</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration Section -->
+    <section class="register" id="register">
+        <div class="container">
+            <div class="register-content">
+                <h2 class="register-title">
+                    完全無料でキャリアアップを始める
+                </h2>
+                <p class="register-subtitle">
+                    Tokyo AI Community 公式パートナーとして安心のサポート
+                </p>
+                
+                <form class="register-form" id="registerForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">お名前 <span class="required">*</span></label>
+                            <input type="text" 
+                                   class="form-input" 
+                                   placeholder="例: 山田 太郎" 
+                                   required>
+                            <span class="form-help">🔒 暷号化して保存</span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">メールアドレス <span class="required">*</span></label>
+                            <input type="email" 
+                                   class="form-input" 
+                                   placeholder="例: your.email@example.com" 
+                                   required>
+                            <span class="form-help">📬 スパムメールは一切送信しません</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">現在の職種 <span class="required">*</span></label>
+                            <select class="form-input" required>
+                                <option value="">選択してください</option>
+                                <option>機械学習エンジニア</option>
+                                <option>データサイエンティスト</option>
+                                <option>MLOpsエンジニア</option>
+                                <option>研究開発（AI/ML）</option>
+                                <option>バックエンドエンジニア（AI関連）</option>
+                                <option>AIプロダクトマネージャー</option>
+                                <option>その他AI関連職</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">経験年数</label>
+                            <select class="form-input">
+                                <option value="">選択してください（任意）</option>
+                                <option>1年未満</option>
+                                <option>1-3年</option>
+                                <option>3-5年</option>
+                                <option>5-10年</option>
+                                <option>10年以上</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">GitHub URL （任意）</label>
+                        <input type="url" 
+                               class="form-input" 
+                               placeholder="https://github.com/yourusername">
+                        <span class="form-help">📊 スキル評価に活用させていただきます</span>
+                    </div>
+                    
+                    <div class="form-checkbox">
+                        <input type="checkbox" id="agree" required>
+                        <label for="agree">
+                            <a href="#privacy" target="_blank">利用規約</a>と
+                            <a href="#privacy" target="_blank">プライバシーポリシー</a>に同意する
+                        </label>
+                    </div>
+                    
+                    <div class="form-checkbox">
+                        <input type="checkbox" id="notification">
+                        <label for="notification">
+                            マッチングした求人情報の通知を受け取る（任意）
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="btn-submit">
+                        <span class="btn-icon">🚀</span>
+                        <span class="btn-text">
+                            <span class="btn-main">今すぐ無料で登録する</span>
+                            <span class="btn-sub">30秒で完了 • 完全無料 • いつでも退会可</span>
+                        </span>
+                    </button>
+                    
+                    <div class="form-security">
+                        <div class="security-badge">
+                            <span>🔐</span>
+                            <span>SSL暗号化通信</span>
+                        </div>
+                        <div class="security-badge">
+                            <span>🛡️</span>
+                            <span>個人情報保護</span>
+                        </div>
+                    </div>
+                </form>
+                
+                
+                <div class="register-features">
+                    <div class="feature-item">
+                        <span class="feature-icon">🔒</span>
+                        <span>現職に知られず転職活動</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">🚀</span>
+                        <span>即日マッチング開始</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">✅</span>
+                        <span>完全無料・退会自由</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">🎆</span>
+                        <span>Tokyo AIメンバー優遇</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="container">
+            <h2 class="section-title">よくあるご質問</h2>
+            
+            <div class="faq-list">
+                <details class="faq-item">
+                    <summary class="faq-question">
+                        本当に完全無料ですか？
+                    </summary>
+                    <div class="faq-answer">
+                        はい、転職成功まで一切費用はかかりません。企業から報酬をいただくビジネスモデルのため、
+                        求職者の方からは料金をいただきません。
+                    </div>
+                </details>
+                
+                <details class="faq-item">
+                    <summary class="faq-question">
+                        現職の会社に知られることはありませんか？
+                    </summary>
+                    <div class="faq-answer">
+                        ご安心ください。登録情報は厳重に管理され、あなたの許可なく第三者に開示されることはありません。
+                        ブロック企業機能もあるため、現職の企業を除外することも可能です。
+                    </div>
+                </details>
+                
+                <details class="faq-item">
+                    <summary class="faq-question">
+                        どんなスキルレベルが必要ですか？
+                    </summary>
+                    <div class="faq-answer">
+                        AI/機械学習に関連する実務経験が1年以上あれば登録可能です。
+                        ジュニアからシニアまで、幅広いレベルの求人をご用意しています。
+                    </div>
+                </details>
+                
+                <details class="faq-item">
+                    <summary class="faq-question">
+                        Tokyo AI Communityのメンバーでなくても利用できますか？
+                    </summary>
+                    <div class="faq-answer">
+                        はい、利用可能です。ただし、Tokyo AI Communityメンバーには優先的に
+                        限定求人をご紹介したり、特別なサポートを提供しています。
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3 class="footer-logo">AI Talent Bridge</h3>
+                    <p class="footer-tagline">Tokyo AI Community 公式パートナー</p>
+                    <p class="footer-description">
+                        企業価値をデザインするValue Createが運営
+                    </p>
+                    <div class="company-info">
+                        <p>運営会社: 株式会社バリュークリエイト</p>
+                        <a href="https://www.valuecreate.net/" target="_blank" class="company-link">
+                            www.valuecreate.net
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>サービス</h4>
+                    <ul>
+                        <li><a href="#benefits">メリット</a></li>
+                        <li><a href="#companies">採用企業</a></li>
+                        <li><a href="#success">成功事例</a></li>
+                        <li><a href="#register">無料登録</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>企業情報</h4>
+                    <ul>
+                        <li><a href="#about">運営会社</a></li>
+                        <li><a href="#privacy">プライバシーポリシー</a></li>
+                        <li><a href="#terms">利用規約</a></li>
+                        <li><a href="#security">セキュリティ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>コミュニティ</h4>
+                    <ul>
+                        <li><a href="https://tokyo-ai.com" target="_blank">Tokyo AI Community</a></li>
+                        <li><a href="#events">イベント情報</a></li>
+                        <li><a href="#blog">技術ブログ</a></li>
+                        <li><a href="#contact">お問い合わせ</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="copyright">
+                    © 2024 AI Talent Bridge by Value Create Inc. All Rights Reserved.
+                </p>
+                <p class="license">
+                    運営: 株式会社バリュークリエイト | 有料職業紹介事業許可申請中
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating CTA for Mobile -->
+    <div class="floating-cta">
+        <a href="#register" class="btn-floating">
+            無料登録する
+        </a>
+    </div>
+    
+    <!-- Lightweight JavaScript -->
+    <script src="script.js" defer></script>
+</body>
+</html>

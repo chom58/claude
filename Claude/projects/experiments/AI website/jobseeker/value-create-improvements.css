@@ -1,0 +1,345 @@
+/**
+ * Value Create Section Improvements
+ * Enhanced styling for the "Value Createだからできるキャリア実現" section
+ * Load after design-system-updates.css
+ */
+
+/* ========================================
+   SECTION BACKGROUND
+   ======================================== */
+
+/* Update background gradient - vertical with darker tones */
+.value-create {
+    background: linear-gradient(
+        180deg,                           /* Changed from 135deg to vertical */
+        #4F46E5 0%,                      /* Darker start - from primary-600 */
+        #4338CA 50%,                     /* Mid tone - primary-700 */
+        #3730A3 100%                     /* Darkest - primary-800 */
+    ) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    padding: 5rem 0 !important;
+}
+
+/* Add subtle pattern overlay for depth */
+.value-create::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 35px,
+            rgba(255, 255, 255, 0.01) 35px,
+            rgba(255, 255, 255, 0.01) 70px
+        );
+    pointer-events: none;
+}
+
+/* Ensure content stays above overlay */
+.value-create .container {
+    position: relative;
+    z-index: 1;
+}
+
+/* ========================================
+   SECTION TITLE & SUBTITLE
+   ======================================== */
+
+.value-create .section-title {
+    color: #FFFFFF !important;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    font-size: 2.5rem !important;
+    margin-bottom: 1rem !important;
+}
+
+.value-create .section-subtitle {
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-size: 1.125rem !important;
+    margin-bottom: 3rem !important;
+}
+
+/* ========================================
+   CARD IMPROVEMENTS
+   ======================================== */
+
+/* Enhanced card styling */
+.value-card {
+    background: #FFFFFF !important;
+    border-radius: 16px !important;
+    padding: 2rem !important;                    /* Increased from default */
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1) !important;  /* Enhanced shadow */
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    position: relative !important;
+    transition: all 0.3s ease !important;        /* Smooth transition */
+    cursor: default !important;
+    overflow: hidden !important;
+}
+
+/* Hover animation - card lifts up */
+.value-card:hover {
+    transform: translateY(-4px) !important;       /* Lift card on hover */
+    box-shadow: 
+        0 25px 50px rgba(0, 0, 0, 0.15),
+        0 0 0 1px rgba(99, 102, 241, 0.1) !important;  /* Enhanced shadow + border glow */
+}
+
+/* Add subtle background gradient on hover */
+.value-card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+        circle,
+        rgba(99, 102, 241, 0.03) 0%,
+        transparent 70%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.value-card:hover::after {
+    opacity: 1;
+}
+
+/* Featured card specific styling */
+.featured-card {
+    background: linear-gradient(
+        135deg,
+        #6366F1 0%,
+        #4F46E5 100%
+    ) !important;
+    padding: 2.5rem !important;                   /* Extra padding for featured */
+    box-shadow: 
+        0 25px 50px rgba(99, 102, 241, 0.3),
+        0 10px 20px rgba(0, 0, 0, 0.2) !important;
+}
+
+.featured-card:hover {
+    transform: translateY(-6px) scale(1.02) !important;  /* Larger lift for featured */
+    box-shadow: 
+        0 30px 60px rgba(99, 102, 241, 0.4),
+        0 15px 30px rgba(0, 0, 0, 0.25) !important;
+}
+
+/* ========================================
+   ICON STYLING
+   ======================================== */
+
+/* Unified icon sizing and color */
+.value-icon {
+    font-size: 48px !important;                  /* Unified size - 48px */
+    width: 48px !important;
+    height: 48px !important;
+    color: #6366F1 !important;                   /* Primary color */
+    margin-bottom: 1.5rem !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    animation: subtle-pulse 3s ease-in-out infinite !important;
+}
+
+/* Featured card icon - white for contrast */
+.featured-card .value-icon {
+    color: #FFFFFF !important;
+    background: rgba(255, 255, 255, 0.2) !important;
+    border-radius: 12px !important;
+    padding: 0.75rem !important;
+    width: auto !important;
+    height: auto !important;
+}
+
+/* Subtle pulse animation for icons */
+@keyframes subtle-pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.9;
+    }
+}
+
+/* Icon hover effect */
+.value-card:hover .value-icon {
+    animation-play-state: paused !important;
+    transform: scale(1.1) !important;
+    transition: transform 0.3s ease !important;
+}
+
+/* ========================================
+   CARD CONTENT
+   ======================================== */
+
+/* Card headings */
+.value-card h3 {
+    color: #1F2937 !important;                   /* Dark gray for readability */
+    font-size: 1.5rem !important;
+    font-weight: 700 !important;
+    margin-bottom: 1rem !important;
+    line-height: 1.3 !important;
+}
+
+.featured-card h3 {
+    color: #FFFFFF !important;
+    font-size: 1.75rem !important;
+}
+
+/* Card paragraphs */
+.value-card p {
+    color: #4B5563 !important;                   /* Medium gray */
+    line-height: 1.7 !important;
+    font-size: 1rem !important;
+    margin-bottom: 1.25rem !important;
+}
+
+.featured-card p {
+    color: rgba(255, 255, 255, 0.95) !important;
+    font-size: 1.05rem !important;
+}
+
+/* Feature list within cards */
+.value-features {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 1.5rem 0 0 0 !important;
+    border-top: 1px solid rgba(99, 102, 241, 0.1) !important;
+    padding-top: 1.5rem !important;
+}
+
+.value-features li {
+    position: relative !important;
+    padding-left: 1.75rem !important;
+    margin-bottom: 0.75rem !important;
+    color: #374151 !important;
+    font-size: 0.95rem !important;
+}
+
+.value-features li::before {
+    content: '✓' !important;
+    position: absolute !important;
+    left: 0 !important;
+    color: #10B981 !important;                  /* Success green for checkmarks */
+    font-weight: bold !important;
+    font-size: 1.1rem !important;
+}
+
+.featured-card .value-features {
+    border-top-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+.featured-card .value-features li {
+    color: rgba(255, 255, 255, 0.95) !important;
+}
+
+.featured-card .value-features li::before {
+    color: #34D399 !important;                  /* Lighter green for dark bg */
+}
+
+/* ========================================
+   VALUE CTA SECTION
+   ======================================== */
+
+.value-cta {
+    margin-top: 4rem !important;
+    padding: 2.5rem !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+    backdrop-filter: blur(10px) !important;
+    border-radius: 20px !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    text-align: center !important;
+}
+
+.value-cta .cta-content h3 {
+    color: #FFFFFF !important;
+    font-size: 2rem !important;
+    margin-bottom: 1rem !important;
+}
+
+.value-cta .cta-content p {
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-size: 1.125rem !important;
+    line-height: 1.6 !important;
+    margin-bottom: 1.5rem !important;
+}
+
+.value-cta .value-link {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.5rem !important;
+    color: #FFFFFF !important;
+    background: #10B981 !important;             /* Secondary green */
+    padding: 0.875rem 2rem !important;
+    border-radius: 50px !important;
+    text-decoration: none !important;
+    font-weight: 600 !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3) !important;
+}
+
+.value-cta .value-link:hover {
+    background: #059669 !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4) !important;
+}
+
+/* ========================================
+   RESPONSIVE ADJUSTMENTS
+   ======================================== */
+
+@media (max-width: 768px) {
+    .value-create {
+        padding: 3rem 0 !important;
+    }
+    
+    .value-card {
+        padding: 1.5rem !important;
+        margin-bottom: 1.5rem !important;
+    }
+    
+    .featured-card {
+        padding: 2rem !important;
+    }
+    
+    .value-icon {
+        font-size: 40px !important;              /* Slightly smaller on mobile */
+        width: 40px !important;
+        height: 40px !important;
+    }
+    
+    .value-create .section-title {
+        font-size: 2rem !important;
+    }
+    
+    .value-card h3 {
+        font-size: 1.25rem !important;
+    }
+    
+    .featured-card h3 {
+        font-size: 1.5rem !important;
+    }
+    
+    .value-cta {
+        padding: 2rem 1.5rem !important;
+    }
+}
+
+/* Small mobile adjustments */
+@media (max-width: 480px) {
+    .value-card {
+        padding: 1.25rem !important;
+    }
+    
+    .value-features li {
+        font-size: 0.9rem !important;
+    }
+}

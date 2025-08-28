@@ -1,0 +1,80 @@
+/**
+ * Title Line Break Fix for PC
+ * Force the title to break at the right place
+ */
+
+/* ========================================
+   PC VERSION - FORCE LINE BREAK
+   ======================================== */
+
+/* Default for all screens */
+.main-title {
+    display: block !important;
+    white-space: normal !important;
+}
+
+/* PC specific (larger screens) */
+@media (min-width: 769px) {
+    .main-title {
+        font-size: clamp(2rem, 5vw, 4rem) !important;
+        line-height: 0.9 !important;  /* Very tight line height */
+        font-weight: 800 !important;
+        color: #FFFFFF !important;
+        white-space: pre-line !important;
+        word-break: keep-all !important;
+        display: block !important;
+        margin-top: 2rem !important;  /* More space from subtitle */
+    }
+    
+    .subtitle {
+        margin-bottom: 3rem !important;  /* Push title further down */
+    }
+    
+    /* Force BR tag to work */
+    .main-title br {
+        display: block !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        content: "" !important;
+        line-height: inherit !important;
+        height: 0 !important;
+        clear: both !important;
+    }
+    
+    /* Alternative: Use after pseudo element */
+    .main-title br::after {
+        content: "\A" !important;
+        white-space: pre !important;
+    }
+}
+
+/* Tablet */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .main-title {
+        font-size: clamp(1.8rem, 4.5vw, 3.5rem) !important;
+    }
+}
+
+/* Mobile - already working */
+@media (max-width: 768px) {
+    .main-title {
+        white-space: normal !important;
+    }
+    
+    .main-title br {
+        display: block !important;
+    }
+}
+
+/* Ultra-specific override for stubborn cases */
+body .hero .hero-content .main-title,
+body .hero-section .hero-content .main-title {
+    white-space: pre-line !important;
+}
+
+body .hero .hero-content .main-title br,
+body .hero-section .hero-content .main-title br {
+    display: block !important;
+    content: "\A" !important;
+    white-space: pre !important;
+}

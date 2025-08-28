@@ -1,0 +1,368 @@
+/**
+ * Typography Adjustments
+ * Global typography improvements for better readability and hierarchy
+ * Load after all other CSS files
+ */
+
+/* ========================================
+   GLOBAL TYPOGRAPHY BASE
+   ======================================== */
+
+/* Reset and base settings */
+html {
+    font-size: 16px; /* Base size for rem calculations */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+body {
+    font-feature-settings: 'palt' 1; /* Proportional alternate widths for Japanese */
+    line-height: 1.8 !important;     /* Increased from 1.7 for better readability */
+}
+
+/* ========================================
+   HEADING HIERARCHY
+   ======================================== */
+
+/* H1 - Main Headlines */
+h1,
+.hero-title,
+.hero-main {
+    font-weight: 800 !important;     /* Extra bold for main headlines */
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    font-feature-settings: 'palt' 1, 'kern' 1;
+}
+
+/* H2 - Section Titles */
+h2,
+.section-title,
+.trust-title {
+    font-weight: 700 !important;     /* Bold for section titles */
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+    font-feature-settings: 'palt' 1, 'kern' 1;
+}
+
+/* H3 - Subsection Titles */
+h3,
+.section-subtitle,
+.benefit-title,
+.value-card h3,
+.team-name {
+    font-weight: 600 !important;     /* Semibold for subtitles */
+    letter-spacing: -0.005em;
+    line-height: 1.4;
+    font-feature-settings: 'palt' 1;
+}
+
+/* H4-H6 - Smaller headings */
+h4 {
+    font-weight: 600 !important;
+    line-height: 1.4;
+}
+
+h5, h6 {
+    font-weight: 500 !important;
+    line-height: 1.5;
+}
+
+/* ========================================
+   BODY TEXT IMPROVEMENTS
+   ======================================== */
+
+/* Paragraphs */
+p {
+    line-height: 1.8 !important;
+    margin-bottom: 1.5rem !important;  /* Increased spacing between paragraphs */
+    font-feature-settings: 'palt' 1;   /* Japanese text spacing */
+}
+
+/* Last paragraph in a container - remove bottom margin */
+p:last-child,
+.hero-description:last-child,
+.benefit-description:last-child {
+    margin-bottom: 0 !important;
+}
+
+/* Description text */
+.hero-description,
+.benefit-description,
+.trust-subtitle,
+.team-summary,
+.team-detail {
+    line-height: 1.8 !important;
+    font-feature-settings: 'palt' 1;
+}
+
+/* Lists */
+ul, ol {
+    line-height: 1.8 !important;
+    margin-bottom: 1.5rem !important;
+}
+
+li {
+    margin-bottom: 0.5rem;
+    font-feature-settings: 'palt' 1;
+}
+
+/* Links */
+a {
+    font-weight: 500;
+    text-underline-offset: 2px;
+}
+
+/* Strong emphasis */
+strong, b {
+    font-weight: 700 !important;
+}
+
+/* ========================================
+   JAPANESE TEXT OPTIMIZATION
+   ======================================== */
+
+/* Japanese-specific text improvements */
+:lang(ja),
+.ja-text {
+    font-feature-settings: 'palt' 1, 'kern' 1;
+    word-break: keep-all;
+    line-break: strict;
+    text-align: justify;
+    text-justify: inter-ideograph;
+}
+
+/* Mixed Japanese-English text */
+.hero-description,
+.section-subtitle,
+.benefit-description {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* ========================================
+   BUTTON & CTA TYPOGRAPHY
+   ======================================== */
+
+/* All buttons */
+button,
+.btn-primary,
+.btn-secondary,
+.btn-hero-primary,
+.btn-hero-secondary,
+.nav-cta,
+.value-link {
+    font-weight: 600 !important;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+    min-height: 44px !important;      /* Touch target minimum */
+    display: inline-flex !important;
+    align-items: center !important;
+    padding-top: 0.75rem !important;
+    padding-bottom: 0.75rem !important;
+}
+
+/* ========================================
+   MOBILE TYPOGRAPHY (max-width: 768px)
+   ======================================== */
+
+@media (max-width: 768px) {
+    /* Increase all font sizes by 5% */
+    html {
+        font-size: 16.8px; /* 16px * 1.05 = 16.8px */
+    }
+    
+    /* Body text with wider line spacing */
+    body,
+    p,
+    li,
+    .hero-description,
+    .benefit-description,
+    .trust-subtitle {
+        line-height: 1.9 !important;   /* Even wider line spacing on mobile */
+    }
+    
+    /* Heading adjustments for mobile */
+    h1, .hero-main {
+        font-size: clamp(2rem, 5.25vw, 3.15rem) !important; /* 5% larger */
+        font-weight: 800 !important;
+        line-height: 1.25 !important;
+    }
+    
+    h2, .section-title {
+        font-size: clamp(1.75rem, 4.2vw, 2.625rem) !important; /* 5% larger */
+        font-weight: 700 !important;
+        line-height: 1.3 !important;
+    }
+    
+    h3, .section-subtitle {
+        font-size: clamp(1.25rem, 3.15vw, 1.875rem) !important; /* 5% larger */
+        font-weight: 600 !important;
+        line-height: 1.4 !important;
+    }
+    
+    /* Paragraph spacing on mobile */
+    p {
+        margin-bottom: 1.25rem !important;
+        font-size: 1.05rem !important; /* Slightly larger on mobile */
+    }
+    
+    /* Touch target optimization */
+    a,
+    button,
+    .btn-primary,
+    .btn-secondary,
+    .btn-hero-primary,
+    .btn-hero-secondary,
+    .nav-cta,
+    .nav-link,
+    .partner-badge,
+    .trust-item,
+    .benefit-card,
+    .value-card,
+    .team-toggle-btn {
+        min-height: 44px !important;   /* Minimum touch target */
+        min-width: 44px !important;    /* For square touch targets */
+    }
+    
+    /* Interactive elements padding */
+    .nav-link {
+        padding: 12px 16px !important;
+    }
+    
+    .partner-badge {
+        padding: 12px 20px !important;
+    }
+    
+    /* Form elements */
+    input,
+    textarea,
+    select {
+        min-height: 48px !important;   /* Larger for form inputs */
+        font-size: 16px !important;    /* Prevent zoom on iOS */
+        padding: 12px !important;
+    }
+    
+    /* Clickable cards - ensure adequate spacing */
+    .trust-item,
+    .benefit-card,
+    .value-card,
+    .team-member {
+        padding: 1.5rem !important;
+        margin-bottom: 1.5rem !important;
+    }
+    
+    /* Button text size */
+    .btn-hero-primary,
+    .btn-hero-secondary {
+        font-size: 1.1rem !important;
+        padding: 1rem 2rem !important;
+    }
+}
+
+/* ========================================
+   SMALL MOBILE (max-width: 480px)
+   ======================================== */
+
+@media (max-width: 480px) {
+    /* Further adjustments for very small screens */
+    html {
+        font-size: 16px; /* Keep at 16px to prevent too large text */
+    }
+    
+    /* Compact headings */
+    h1, .hero-main {
+        font-size: 2rem !important;
+    }
+    
+    h2, .section-title {
+        font-size: 1.75rem !important;
+    }
+    
+    h3, .section-subtitle {
+        font-size: 1.35rem !important;
+    }
+    
+    /* Body text */
+    p, li {
+        font-size: 1rem !important;
+        line-height: 1.85 !important;
+    }
+    
+    /* Ensure touch targets remain large */
+    button,
+    a.btn-primary,
+    a.btn-secondary,
+    a.btn-hero-primary,
+    a.btn-hero-secondary {
+        min-height: 48px !important;   /* Even larger on small screens */
+        width: 100% !important;        /* Full width buttons */
+        justify-content: center !important;
+    }
+}
+
+/* ========================================
+   ACCESSIBILITY IMPROVEMENTS
+   ======================================== */
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    h1, h2, h3, h4, h5, h6 {
+        font-weight: 900 !important;
+    }
+    
+    p, li {
+        font-weight: 500 !important;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+    }
+}
+
+/* Focus indicators for keyboard navigation */
+a:focus,
+button:focus,
+input:focus,
+textarea:focus,
+select:focus,
+[tabindex]:focus {
+    outline: 3px solid #6366F1 !important;
+    outline-offset: 2px !important;
+    border-radius: 4px;
+}
+
+/* ========================================
+   UTILITY CLASSES
+   ======================================== */
+
+/* Text weight utilities */
+.text-thin { font-weight: 100 !important; }
+.text-extra-light { font-weight: 200 !important; }
+.text-light { font-weight: 300 !important; }
+.text-regular { font-weight: 400 !important; }
+.text-medium { font-weight: 500 !important; }
+.text-semibold { font-weight: 600 !important; }
+.text-bold { font-weight: 700 !important; }
+.text-extra-bold { font-weight: 800 !important; }
+.text-black { font-weight: 900 !important; }
+
+/* Line height utilities */
+.leading-none { line-height: 1 !important; }
+.leading-tight { line-height: 1.25 !important; }
+.leading-snug { line-height: 1.375 !important; }
+.leading-normal { line-height: 1.5 !important; }
+.leading-relaxed { line-height: 1.625 !important; }
+.leading-loose { line-height: 1.75 !important; }
+.leading-extra { line-height: 2 !important; }
+
+/* Japanese text utility */
+.ja-optimized {
+    font-feature-settings: 'palt' 1, 'kern' 1 !important;
+    line-break: strict !important;
+    word-break: keep-all !important;
+}

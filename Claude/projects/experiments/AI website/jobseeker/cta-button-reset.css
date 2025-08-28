@@ -1,0 +1,184 @@
+/**
+ * CTA Button Complete Reset and Rebuild
+ * シンプルで確実に動作するCTAボタンスタイル
+ */
+
+/* ========================================
+   CTA BUTTON RESET AND REBUILD
+   ======================================== */
+
+/* Remove all existing CTA styles first */
+.cta-primary {
+    /* Complete reset */
+    all: unset !important;
+    
+    /* Basic display and sizing */
+    display: inline-block !important;
+    padding: 16px 48px !important;
+    margin: 0 !important;
+    
+    /* Colors */
+    background-color: #10B981 !important;
+    color: #FFFFFF !important;
+    
+    /* Typography */
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans JP', sans-serif !important;
+    line-height: 1.2 !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    letter-spacing: 0.02em !important;
+    white-space: nowrap !important;
+    
+    /* Font rendering */
+    font-smoothing: antialiased !important;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+    text-rendering: optimizeLegibility !important;
+    
+    /* Shape */
+    border: 2px solid #10B981 !important;
+    border-radius: 50px !important;
+    
+    /* Interaction */
+    cursor: pointer !important;
+    user-select: none !important;
+    
+    /* Positioning */
+    position: relative !important;
+    z-index: 100 !important;
+    
+    /* Animation */
+    transition: all 0.3s ease !important;
+    
+    /* Force rendering */
+    transform: translateZ(0) !important;
+    backface-visibility: hidden !important;
+}
+
+/* Hover state */
+.cta-primary:hover {
+    background-color: #059669 !important;
+    border-color: #059669 !important;
+    color: #FFFFFF !important;
+    transform: translateY(-2px) translateZ(0) !important;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3) !important;
+}
+
+/* Active state */
+.cta-primary:active {
+    transform: translateY(0) translateZ(0) !important;
+    box-shadow: 0 2px 6px rgba(16, 185, 129, 0.2) !important;
+}
+
+/* Focus state for accessibility */
+.cta-primary:focus {
+    outline: 3px solid rgba(16, 185, 129, 0.5) !important;
+    outline-offset: 2px !important;
+}
+
+/* ========================================
+   CTA CONTAINER
+   ======================================== */
+
+.cta-container {
+    margin-top: 32px !important;
+    margin-bottom: 0 !important;
+    position: relative !important;
+    z-index: 100 !important;
+    display: inline-block !important;
+}
+
+/* Remove any arrow icons */
+.cta-primary svg,
+.cta-primary .arrow-icon,
+.cta-primary i,
+.cta-primary::after,
+.cta-primary::before {
+    display: none !important;
+}
+
+/* ========================================
+   OVERRIDE EXISTING ANIMATIONS
+   ======================================== */
+
+/* Disable all animations on the button */
+.cta-primary {
+    animation: none !important;
+}
+
+/* Simple fade-in animation for initial load */
+@keyframes simpleFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Apply simple animation to container */
+.cta-container {
+    animation: simpleFadeIn 0.6s ease-out !important;
+}
+
+/* ========================================
+   RESPONSIVE ADJUSTMENTS
+   ======================================== */
+
+@media (max-width: 768px) {
+    .cta-primary {
+        padding: 14px 40px !important;
+        font-size: 16px !important;
+        width: 100% !important;
+        max-width: 300px !important;
+        display: block !important;
+        margin: 0 auto !important;
+    }
+    
+    .cta-container {
+        width: 100% !important;
+        text-align: center !important;
+        padding: 0 20px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .cta-primary {
+        padding: 12px 32px !important;
+        font-size: 15px !important;
+        max-width: 280px !important;
+    }
+    
+    .cta-container {
+        padding: 0 15px !important;
+    }
+}
+
+/* ========================================
+   ENSURE HIGHEST PRIORITY
+   ======================================== */
+
+/* Force these styles to override everything */
+body .hero .cta-primary,
+body .hero-section .cta-primary,
+.hero-content .cta-primary,
+#hero .cta-primary {
+    /* Repeat critical styles with higher specificity */
+    background-color: #10B981 !important;
+    color: #FFFFFF !important;
+    border: 2px solid #10B981 !important;
+    z-index: 100 !important;
+    position: relative !important;
+    cursor: pointer !important;
+    pointer-events: auto !important;
+}
+
+/* Ensure container allows clicks */
+.hero-content .cta-container {
+    pointer-events: auto !important;
+    z-index: 100 !important;
+}

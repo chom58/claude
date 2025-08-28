@@ -1,0 +1,311 @@
+/* Hero Section Restructure - Grid Layout & Visual Hierarchy */
+/* Load this after design-system-updates.css */
+
+/* ========================================
+   Hero Section Structure
+   ======================================== */
+
+/* Main hero container adjustments */
+.hero {
+    height: 80vh !important;  /* Reduced from 100vh */
+    min-height: 600px !important;
+    max-height: 900px !important;
+    display: flex !important;
+    align-items: center !important;
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+/* Content container with max-width and padding */
+.hero-content {
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    padding: 0 5% !important;
+    width: 100% !important;
+    position: relative !important;
+    z-index: 10 !important;
+}
+
+/* ========================================
+   Grid Layout Implementation
+   ======================================== */
+
+.hero-content {
+    display: grid !important;
+    grid-template-columns: 60% 40% !important;
+    gap: 3rem !important;
+    align-items: center !important;
+}
+
+/* Left column - Text content */
+.hero-text-column {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Right column - Visual elements */
+.hero-visual-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+/* ========================================
+   Visual Hierarchy Areas
+   ======================================== */
+
+/* 1. Main Message Area (最重要) */
+.hero-main-message {
+    background: rgba(255, 255, 255, 0.03);
+    border-left: 4px solid var(--accent);
+    padding: 2rem;
+    border-radius: 8px;
+    backdrop-filter: blur(5px);
+    margin-bottom: 1.5rem;
+}
+
+.hero-main-message .hero-title {
+    margin-bottom: 0;
+}
+
+.hero-main-message .hero-main {
+    background: linear-gradient(135deg, #ffffff 0%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* 2. Sub Message Area (補足) */
+.hero-sub-message {
+    background: rgba(99, 102, 241, 0.05);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid rgba(99, 102, 241, 0.1);
+    margin-bottom: 1.5rem;
+}
+
+.hero-description {
+    margin: 0;
+    line-height: 1.8;
+}
+
+/* 3. CTA Area (アクション) */
+.hero-cta-area {
+    padding: 1.5rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 1.5rem 0;
+}
+
+/* 4. Statistics Area (信頼性) */
+.hero-stats-area {
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.6) 0%, rgba(30, 41, 59, 0.4) 100%);
+    border-radius: 12px;
+    padding: 1.5rem;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* ========================================
+   Reorganized HTML Structure
+   ======================================== */
+
+/* Community badges and trust indicators */
+.hero-badges-area {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: rgba(16, 185, 129, 0.05);
+    border-radius: 12px;
+    border: 1px solid rgba(16, 185, 129, 0.1);
+}
+
+.community-badge {
+    background: rgba(255, 255, 255, 0.1) !important;
+    padding: 0.75rem 1.5rem !important;
+    border-radius: 50px !important;
+    display: inline-block !important;
+    margin-bottom: 0 !important;
+}
+
+.trust-logos {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.5rem !important;
+    margin-top: 0.5rem !important;
+}
+
+.partner-badge {
+    background: rgba(255, 255, 255, 0.05) !important;
+    padding: 0.5rem 1rem !important;
+    border-radius: 20px !important;
+    font-size: 0.9rem !important;
+}
+
+/* ========================================
+   Responsive Design
+   ======================================== */
+
+/* Tablet (768px - 1024px) */
+@media (max-width: 1024px) {
+    .hero-content {
+        grid-template-columns: 55% 45% !important;
+        gap: 2rem !important;
+        padding: 0 3% !important;
+    }
+}
+
+/* Mobile (max-width: 768px) */
+@media (max-width: 768px) {
+    .hero {
+        height: auto !important;
+        min-height: 100vh !important;
+        padding: 80px 0 40px !important;
+    }
+    
+    .hero-content {
+        grid-template-columns: 1fr !important;  /* Single column */
+        gap: 2rem !important;
+        padding: 0 1rem !important;
+    }
+    
+    /* Stack visual elements below text on mobile */
+    .hero-visual-column {
+        order: 2;
+    }
+    
+    .hero-text-column {
+        order: 1;
+    }
+    
+    /* Adjust area padding for mobile */
+    .hero-main-message,
+    .hero-sub-message,
+    .hero-badges-area {
+        padding: 1rem !important;
+    }
+    
+    .hero-main-message .hero-main {
+        font-size: clamp(2rem, 5vw, 3rem) !important;
+    }
+    
+    /* Mobile stats layout */
+    .hero-stats {
+        flex-direction: column !important;
+        padding: 1rem !important;
+    }
+    
+    .stat-item {
+        width: 100% !important;
+        text-align: center !important;
+        padding: 0.75rem 0 !important;
+    }
+}
+
+/* Small Mobile (max-width: 480px) */
+@media (max-width: 480px) {
+    .hero-content {
+        padding: 0 0.75rem !important;
+    }
+    
+    .hero-main-message {
+        padding: 0.75rem !important;
+        border-left-width: 3px !important;
+    }
+    
+    .hero-cta-area {
+        padding: 1rem 0 !important;
+    }
+    
+    .btn-hero-primary,
+    .btn-hero-secondary {
+        padding: 0.875rem 2rem !important;
+        font-size: 1rem !important;
+    }
+}
+
+/* ========================================
+   Visual Enhancements
+   ======================================== */
+
+/* Add subtle animations */
+.hero-main-message {
+    animation: slideInLeft 0.8s ease-out;
+}
+
+.hero-sub-message {
+    animation: fadeIn 1s ease-out 0.2s both;
+}
+
+.hero-cta-area {
+    animation: fadeIn 1s ease-out 0.4s both;
+}
+
+.hero-badges-area {
+    animation: slideInRight 0.8s ease-out 0.3s both;
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ========================================
+   Dark Mode Optimizations
+   ======================================== */
+
+/* Ensure readability with dark background */
+.hero-main-message,
+.hero-sub-message {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.hero-stats-area {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Improve contrast for text */
+.hero-description strong {
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.highlight-badge {
+    background: rgba(16, 185, 129, 0.2) !important;
+    padding: 0.25rem 0.75rem !important;
+    border-radius: 20px !important;
+    font-size: 0.875rem !important;
+    margin-right: 0.5rem !important;
+}
