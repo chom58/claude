@@ -1,0 +1,31 @@
+/* フッター ライセンス情報スタイル */
+.license-info {
+    background: rgba(255, 255, 255, 0.05);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    margin: 40px 0 20px;
+    text-align: center;
+}
+
+.license-info p {
+    margin: 5px 0;
+    color: rgba(226, 232, 240, 0.9);
+    font-size: 0.9rem;
+}
+
+.license-info p:first-child {
+    font-weight: 600;
+    color: #ffffff;
+}
+
+@media (max-width: 768px) {
+    .license-info {
+        padding: 15px;
+        margin: 30px -20px 15px;
+    }
+    
+    .license-info p {
+        font-size: 0.85rem;
+    }
+}

@@ -1,0 +1,195 @@
+/* 運営体制セクション - リデザイン */
+.team-section {
+    padding: 80px 20px;
+    background: #0f172a;
+    position: relative;
+}
+
+.team-section .container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.team-section .section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 16px;
+}
+
+.team-section .section-subtitle {
+    text-align: center;
+    font-size: 1.1rem;
+    color: rgba(226, 232, 240, 0.8);
+    margin-bottom: 60px;
+}
+
+/* チームグリッド */
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    margin-bottom: 50px;
+}
+
+/* チームカード基本スタイル */
+.team-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.team-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* アドバイザーカードのスタイル */
+.team-card.advisor {
+    border-color: rgba(99, 102, 241, 0.3);
+}
+
+.team-card.advisor:hover {
+    border-color: rgba(99, 102, 241, 0.5);
+    background: rgba(99, 102, 241, 0.05);
+}
+
+/* 創業者カードのスタイル */
+.team-card.founder {
+    border-color: rgba(16, 185, 129, 0.3);
+}
+
+.team-card.founder:hover {
+    border-color: rgba(16, 185, 129, 0.5);
+    background: rgba(16, 185, 129, 0.05);
+}
+
+/* プロフィール写真 */
+.team-card .team-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 24px;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+}
+
+/* 名前 */
+.team-card .team-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 8px;
+}
+
+/* 役職 */
+.team-card .role {
+    font-size: 1rem;
+    color: #10B981;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.team-card.advisor .role {
+    color: #6366F1;
+}
+
+/* タイトル */
+.team-card .title {
+    font-size: 0.9rem;
+    color: rgba(226, 232, 240, 0.7);
+    margin-bottom: 20px;
+}
+
+/* バッジ */
+.team-card .badge {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 30px;
+    padding: 8px 16px;
+    margin-bottom: 24px;
+}
+
+.team-card .badge span {
+    font-size: 0.9rem;
+    color: #ffffff;
+    font-weight: 500;
+}
+
+/* 説明文 */
+.team-card .description {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: rgba(226, 232, 240, 0.8);
+}
+
+/* CTAセクション */
+.team-cta {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.team-cta .btn-primary {
+    display: inline-block;
+    padding: 16px 40px;
+    background: linear-gradient(135deg, #10B981, #059669);
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+}
+
+.team-cta .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 40px rgba(16, 185, 129, 0.4);
+}
+
+/* タブレット対応 */
+@media (max-width: 1024px) {
+    .team-grid {
+        gap: 30px;
+    }
+    
+    .team-card {
+        padding: 35px;
+    }
+}
+
+/* モバイル対応 */
+@media (max-width: 768px) {
+    .team-section {
+        padding: 60px 20px;
+    }
+    
+    .team-section .section-title {
+        font-size: 1.75rem;
+    }
+    
+    .team-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .team-card {
+        padding: 30px 25px;
+    }
+    
+    .team-card .team-photo {
+        width: 100px;
+        height: 100px;
+    }
+    
+    .team-card .team-name {
+        font-size: 1.3rem;
+    }
+    
+}

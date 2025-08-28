@@ -2137,6 +2137,29 @@ body {
     color: var(--primary);
 }
 
+.footer-legal-links {
+    text-align: center;
+    padding: 1.5rem 0;
+    margin: 1rem 0;
+}
+
+.footer-legal-links a {
+    color: rgba(226, 232, 240, 0.8);
+    text-decoration: none;
+    font-size: 0.95rem;
+    padding: 0 1rem;
+    transition: color 0.3s ease;
+}
+
+.footer-legal-links a:hover {
+    color: rgba(99, 102, 241, 0.9);
+}
+
+.footer-legal-links .separator {
+    color: rgba(226, 232, 240, 0.4);
+    margin: 0 0.5rem;
+}
+
 .footer-bottom {
     padding-top: 2rem;
     border-top: 1px solid rgba(255, 255, 255, 0.1);

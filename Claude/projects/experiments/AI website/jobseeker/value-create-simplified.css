@@ -1,0 +1,215 @@
+/* Value Createセクション - シンプル化されたダークテーマ */
+.value-create-section {
+    padding: 80px 20px;
+    background: linear-gradient(180deg, 
+        transparent 0%, 
+        rgba(30, 41, 59, 0.3) 50%, 
+        transparent 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.value-create-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 80% 50%, rgba(16, 185, 129, 0.05) 0%, transparent 40%);
+    pointer-events: none;
+}
+
+.value-create-section .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.value-create-section .section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 60px;
+    letter-spacing: 0.02em;
+    position: relative;
+}
+
+.value-create-section .section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, #6366F1, #10B981);
+    margin: 20px auto 0;
+    border-radius: 2px;
+}
+
+.value-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 60px;
+}
+
+.value-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 40px 30px;
+    text-align: center;
+    transition: all 0.3s ease;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.value-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, transparent, rgba(99, 102, 241, 0.05));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.value-card:hover::before {
+    opacity: 1;
+}
+
+.value-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateY(-4px);
+    border-color: rgba(16, 185, 129, 0.3);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.value-card .icon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(16, 185, 129, 0.2));
+    border-radius: 12px;
+}
+
+.value-card .icon svg {
+    width: 32px;
+    height: 32px;
+    stroke: #10B981;
+}
+
+/* 絵文字アイコンの場合のフォールバック */
+.value-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    display: inline-block;
+    animation: float 3s ease-in-out infinite;
+}
+
+.value-card:nth-child(1) .value-icon {
+    animation-delay: 0s;
+}
+
+.value-card:nth-child(2) .value-icon {
+    animation-delay: 0.5s;
+}
+
+.value-card:nth-child(3) .value-icon {
+    animation-delay: 1s;
+}
+
+.value-card h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 16px;
+    line-height: 1.4;
+    min-height: 2.8em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.value-card p {
+    font-size: 0.95rem;
+    color: rgba(226, 232, 240, 0.8);
+    line-height: 1.6;
+    margin: 0;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    min-height: 4.8em;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* タブレット用レスポンシブ */
+@media (max-width: 1024px) {
+    .value-cards {
+        gap: 25px;
+    }
+    
+    .value-card {
+        padding: 35px 25px;
+    }
+}
+
+/* モバイル用レスポンシブ */
+@media (max-width: 768px) {
+    .value-create-section {
+        padding: 60px 0;
+    }
+    
+    .value-create-section .section-title {
+        font-size: 1.75rem;
+        margin-bottom: 40px;
+    }
+    
+    .value-cards {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        margin-top: 40px;
+    }
+    
+    .value-card {
+        padding: 30px 25px;
+    }
+    
+    .value-icon {
+        font-size: 2.5rem;
+    }
+    
+    .value-card h3 {
+        font-size: 1.15rem;
+        min-height: auto;
+    }
+    
+    .value-card p {
+        font-size: 0.9rem;
+        min-height: auto;
+    }
+}
