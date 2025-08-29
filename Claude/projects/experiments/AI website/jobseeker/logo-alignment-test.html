@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logo Alignment Test - AI Talent Bridge</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f3f4f6;
+            padding: 40px 20px;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #0f172a;
+            margin-bottom: 32px;
+            text-align: center;
+        }
+
+        .test-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .test-header {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 16px;
+        }
+
+        .dark-bg {
+            background: #0f172a;
+            padding: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .light-bg {
+            background: white;
+            border: 1px solid #e5e7eb;
+            padding: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-display {
+            position: relative;
+        }
+
+        /* Alignment guide lines */
+        .alignment-guide {
+            position: absolute;
+            background: rgba(239, 68, 68, 0.3);
+            pointer-events: none;
+        }
+
+        .horizontal-guide {
+            height: 1px;
+            width: 100%;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .vertical-guide {
+            width: 1px;
+            height: 100%;
+            top: 0;
+            left: 50px;
+        }
+
+        .grid-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .comparison-item {
+            text-align: center;
+        }
+
+        .comparison-label {
+            font-size: 0.875rem;
+            color: #64748b;
+            margin-bottom: 8px;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-top: 8px;
+        }
+
+        .aligned {
+            background: #dcfce7;
+            color: #16a34a;
+        }
+
+        .misaligned {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        /* Grid overlay for precision checking */
+        .grid-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                repeating-linear-gradient(0deg, rgba(59, 130, 246, 0.1) 0px, transparent 1px, transparent 10px, rgba(59, 130, 246, 0.1) 11px),
+                repeating-linear-gradient(90deg, rgba(59, 130, 246, 0.1) 0px, transparent 1px, transparent 10px, rgba(59, 130, 246, 0.1) 11px);
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 Logo Alignment Test</h1>
+
+        <div class="test-card">
+            <h2 class="test-header">Final Aligned Version</h2>
+            <div class="dark-bg">
+                <div class="logo-display">
+                    <img src="assets/logo-aligned.svg" alt="Aligned Logo" style="height: 40px;">
+                    <div class="horizontal-guide"></div>
+                    <div class="grid-overlay"></div>
+                </div>
+            </div>
+            <span class="status aligned">✓ Perfectly Aligned</span>
+        </div>
+
+        <div class="test-card">
+            <h2 class="test-header">Before vs After Comparison</h2>
+            <div class="grid-comparison">
+                <div class="comparison-item">
+                    <div class="comparison-label">Before (Misaligned)</div>
+                    <div class="dark-bg">
+                        <img src="assets/logo-final.svg" alt="Before" style="height: 40px;">
+                    </div>
+                    <span class="status misaligned">Text too high</span>
+                </div>
+                <div class="comparison-item">
+                    <div class="comparison-label">After (Aligned)</div>
+                    <div class="dark-bg">
+                        <img src="assets/logo-aligned.svg" alt="After" style="height: 40px;">
+                    </div>
+                    <span class="status aligned">Perfect alignment</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="test-card">
+            <h2 class="test-header">Technical Details</h2>
+            <ul style="color: #475569; line-height: 1.8;">
+                <li><strong>Icon Center Y:</strong> 20px (middle of 40px height)</li>
+                <li><strong>Text Baseline:</strong> dominant-baseline="central"</li>
+                <li><strong>Bridge Peak:</strong> y=14px</li>
+                <li><strong>Bridge Base:</strong> y=26px</li>
+                <li><strong>Text Y Position:</strong> y=20px (centered)</li>
+                <li><strong>Visual Balance:</strong> Icon and text share same horizontal center line</li>
+            </ul>
+        </div>
+
+        <div class="test-card">
+            <h2 class="test-header">Different Sizes Test</h2>
+            <div style="display: flex; gap: 24px; align-items: center; justify-content: center; background: #0f172a; padding: 24px; border-radius: 8px;">
+                <img src="assets/logo-aligned.svg" alt="32px" style="height: 32px;">
+                <img src="assets/logo-aligned.svg" alt="40px" style="height: 40px;">
+                <img src="assets/logo-aligned.svg" alt="48px" style="height: 48px;">
+            </div>
+            <p style="text-align: center; color: #64748b; margin-top: 12px; font-size: 0.875rem;">
+                Alignment maintained at all sizes
+            </p>
+        </div>
+    </div>
+</body>
+</html>

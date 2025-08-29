@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full Language Test - AI Talent Bridge</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f3f4f6;
+        }
+        .test-header {
+            background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+        .test-section {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        .pass {
+            background: #10B981;
+            color: white;
+        }
+        .fail {
+            background: #EF4444;
+            color: white;
+        }
+        .warning {
+            background: #F59E0B;
+            color: white;
+        }
+        pre {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+        button {
+            background: #10B981;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-right: 10px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        button:hover {
+            background: #059669;
+        }
+        .iframe-container {
+            position: relative;
+            height: 600px;
+            margin: 20px 0;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-header">
+        <h1>🌐 AI Talent Bridge - Complete Language Test Suite</h1>
+        <p>Comprehensive testing for bilingual functionality and visual elements</p>
+    </div>
+
+    <div class="test-section">
+        <h2>Test Controls</h2>
+        <button onclick="runFullTest()">Run Complete Test</button>
+        <button onclick="checkUntranslated()">Check Untranslated Text</button>
+        <button onclick="testVisualContrast()">Test Visual Contrast</button>
+        <button onclick="clearResults()">Clear Results</button>
+    </div>
+
+    <div class="test-section">
+        <h2>Live Preview</h2>
+        <div class="iframe-container">
+            <iframe src="index.html" id="testFrame"></iframe>
+        </div>
+    </div>
+
+    <div class="test-section">
+        <h2>Test Console</h2>
+        <pre id="console">Ready to run tests...</pre>
+    </div>
+
+    <script src="language-test.js"></script>
+    <script>
+        const consoleElement = document.getElementById('console');
+        let logBuffer = [];
+
+        // Override console.log to capture output
+        const originalLog = console.log;
+        console.log = function(...args) {
+            originalLog.apply(console, args);
+            logBuffer.push(args.join(' '));
+            consoleElement.textContent = logBuffer.join('\n');
+        };
+
+        function clearResults() {
+            logBuffer = [];
+            consoleElement.textContent = 'Ready to run tests...';
+        }
+
+        function runFullTest() {
+            clearResults();
+            const frame = document.getElementById('testFrame');
+            const frameWindow = frame.contentWindow;
+            
+            // Inject and run test in iframe context
+            frameWindow.runLanguageTest = runLanguageTest;
+            frameWindow.getElementPath = getElementPath;
+            frameWindow.runLanguageTest();
+        }
+
+        function checkUntranslated() {
+            clearResults();
+            console.log('=== Checking for Untranslated Japanese Text ===\n');
+            
+            const frame = document.getElementById('testFrame');
+            const frameDoc = frame.contentDocument || frame.contentWindow.document;
+            
+            const japanesePattern = /[\u3040-\u309F\u30A0-\u30FF\u4E00-\u9FAF]/;
+            const allElements = frameDoc.querySelectorAll('*');
+            let found = 0;
+            
+            allElements.forEach(element => {
+                if (element.childNodes.length === 1 && 
+                    element.childNodes[0].nodeType === Node.TEXT_NODE) {
+                    const text = element.textContent.trim();
+                    if (text && japanesePattern.test(text)) {
+                        if (!element.hasAttribute('data-i18n') && 
+                            !element.hasAttribute('data-i18n-list') &&
+                            !element.classList.contains('lang-btn') &&
+                            element.tagName !== 'SCRIPT' &&
+                            element.tagName !== 'STYLE') {
+                            found++;
+                            console.log(`Found: "${text}" in <${element.tagName.toLowerCase()}>`);
+                            console.log(`  Path: ${getElementPath(element)}`);
+                            console.log('');
+                        }
+                    }
+                }
+            });
+            
+            if (found === 0) {
+                console.log('✅ No untranslated Japanese text found!');
+            } else {
+                console.log(`\n❌ Found ${found} untranslated elements`);
+            }
+        }
+
+        function testVisualContrast() {
+            clearResults();
+            console.log('=== Visual Contrast Test ===\n');
+            
+            const frame = document.getElementById('testFrame');
+            const frameDoc = frame.contentDocument || frame.contentWindow.document;
+            const frameWindow = frame.contentWindow;
+            
+            // Test header visibility
+            const header = frameDoc.querySelector('.header');
+            if (header) {
+                const headerStyle = frameWindow.getComputedStyle(header);
+                console.log('Header Element:');
+                console.log(`  Background: ${headerStyle.backgroundColor}`);
+                console.log(`  Backdrop Filter: ${headerStyle.backdropFilter}`);
+                
+                const logo = header.querySelector('.logo');
+                if (logo) {
+                    const logoStyle = frameWindow.getComputedStyle(logo);
+                    console.log(`  Logo Color: ${logoStyle.color}`);
+                }
+            }
+            
+            // Test language switcher
+            const langSwitcher = frameDoc.querySelector('.language-switcher');
+            if (langSwitcher) {
+                console.log('\nLanguage Switcher:');
+                const switcherStyle = frameWindow.getComputedStyle(langSwitcher);
+                console.log(`  Background: ${switcherStyle.backgroundColor}`);
+                console.log(`  Border: ${switcherStyle.border}`);
+                
+                const langBtn = langSwitcher.querySelector('.lang-btn');
+                if (langBtn) {
+                    const btnStyle = frameWindow.getComputedStyle(langBtn);
+                    console.log(`  Button Text Color: ${btnStyle.color}`);
+                }
+                
+                const activeBtn = langSwitcher.querySelector('.lang-btn.active');
+                if (activeBtn) {
+                    const activeStyle = frameWindow.getComputedStyle(activeBtn);
+                    console.log(`  Active Button Background: ${activeStyle.background}`);
+                    console.log(`  Active Button Color: ${activeStyle.color}`);
+                }
+            }
+            
+            console.log('\n✅ Visual contrast test complete');
+        }
+
+        // Auto-run on load
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                console.log('Page loaded. Click "Run Complete Test" to begin.');
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

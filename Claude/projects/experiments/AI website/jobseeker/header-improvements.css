@@ -1,0 +1,162 @@
+/* Header Visibility Improvements */
+
+/* Reset body margin for fixed header */
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* 1. Header Background */
+.header {
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 16px 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+/* 2. Logo and Text Visibility */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo-text {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.logo-badge {
+  color: #10B981;
+  font-size: 0.875rem;
+  margin-left: 8px;
+  padding: 4px 8px;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: 12px;
+}
+
+/* 3. Navigation Menu Styles */
+.nav-menu {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+
+.nav-link {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
+  text-decoration: none;
+}
+
+.nav-link:hover {
+  color: #10B981;
+}
+
+/* 4. Button Visibility */
+.nav-cta {
+  background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+  color: white !important;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+}
+
+.nav-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+}
+
+/* 5. Hero Section Margin Adjustment */
+.hero-section {
+  margin-top: 80px; /* Header height offset */
+}
+
+/* Additional improvements for better visibility */
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+/* Language switcher adjustments for new header */
+.language-switcher {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.lang-btn {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.lang-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+}
+
+.lang-btn.active {
+  background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.3);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .header {
+    padding: 12px 0;
+  }
+  
+  .nav-container {
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .nav-menu {
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .nav-logo {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .logo-badge {
+    margin-left: 0;
+    margin-top: 4px;
+  }
+  
+  .hero-section {
+    margin-top: 160px; /* Adjust for mobile header height */
+  }
+  
+  .language-switcher {
+    margin: 10px 0;
+    order: -1;
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .nav-cta {
+    width: 100%;
+    text-align: center;
+    order: 2;
+  }
+}

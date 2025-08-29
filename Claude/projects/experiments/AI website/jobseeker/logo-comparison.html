@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logo Spacing Comparison - AI Talent Bridge</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f3f4f6;
+            padding: 40px 20px;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #0f172a;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #64748b;
+            margin-bottom: 40px;
+        }
+
+        .comparison-grid {
+            display: grid;
+            gap: 24px;
+        }
+
+        .logo-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .logo-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .logo-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .logo-badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .original {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .improved {
+            background: #dcfce7;
+            color: #16a34a;
+        }
+
+        .logo-display {
+            background: #0f172a;
+            padding: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100px;
+        }
+
+        .logo-display.light {
+            background: #ffffff;
+            border: 1px solid #e5e7eb;
+        }
+
+        .logo-img {
+            height: 40px;
+            width: auto;
+        }
+
+        .features {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+            color: #475569;
+            font-size: 0.875rem;
+        }
+
+        .icon {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .problem {
+            color: #dc2626;
+        }
+
+        .solution {
+            color: #16a34a;
+        }
+
+        .comparison-note {
+            background: #fef3c7;
+            border: 1px solid #fbbf24;
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 24px;
+        }
+
+        .comparison-note h3 {
+            color: #92400e;
+            margin: 0 0 8px 0;
+            font-size: 1rem;
+        }
+
+        .comparison-note p {
+            color: #78350f;
+            margin: 0;
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 AI Talent Bridge - ロゴ文字間隔の比較</h1>
+        <p class="subtitle">Logo Spacing Comparison</p>
+
+        <div class="comparison-note">
+            <h3>📝 改善の理由</h3>
+            <p>
+                元のロゴでは「AITalentBridge」が一つの単語のように見えて読みづらかったため、<br>
+                単語間の間隔を適切に調整し、各単語が明確に区別できるようにしました。
+            </p>
+        </div>
+
+        <div class="comparison-grid">
+            <!-- Original Version -->
+            <div class="logo-card">
+                <div class="logo-header">
+                    <h2 class="logo-title">元のバージョン（狭い間隔）</h2>
+                    <span class="logo-badge original">問題あり</span>
+                </div>
+                <div class="logo-display">
+                    <img src="assets/logo-white.svg" alt="Original Logo" class="logo-img">
+                </div>
+                <div class="features">
+                    <div class="feature-item">
+                        <span class="icon problem">❌</span>
+                        <span>文字間隔が狭すぎて読みづらい</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="icon problem">❌</span>
+                        <span>「AITalentBridge」が一つの単語に見える</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="icon problem">❌</span>
+                        <span>単語の区切りが不明瞭</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Version 2 - With Dots -->
+            <div class="logo-card">
+                <div class="logo-header">
+                    <h2 class="logo-title">改良版 v2（ドット区切り）</h2>
+                    <span class="logo-badge improved">改善</span>
+                </div>
+                <div class="logo-display">
+                    <img src="assets/logo-white-v2.svg" alt="Improved Logo v2" class="logo-img">
+                </div>
+                <div class="features">
+                    <div class="feature-item">
+                        <span class="icon solution">✅</span>
+                        <span>ドットで単語を視覚的に区切り</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="icon solution">✅</span>
+                        <span>適切な文字間隔</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="icon solution">✅</span>
+                        <span>モダンなデザイン</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Version 3 - Clear Spacing -->
+            <div class="logo-card">
+                <div class="logo-header">
+                    <h2 class="logo-title">改良版 v3（明確な間隔）</h2>
+                    <span class="logo-badge improved">推奨</span>
+                </div>
+                <div class="logo-display">
+                    <img src="assets/logo-white-v3.svg" alt="Improved Logo v3" class="logo-img">
+                </div>
+                <div class="features">
+                    <div class="feature-item">
+                        <span class="icon solution">✅</span>
+                        <span>各単語が明確に区別できる</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="icon solution">✅</span>
+                        <span>読みやすい適切な間隔</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="icon solution">✅</span>
+                        <span>プロフェッショナルな印象</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="logo-card" style="margin-top: 24px;">
+            <h2 class="logo-title" style="margin-bottom: 20px;">ライトモード表示テスト</h2>
+            <div class="logo-display light">
+                <img src="assets/logo.svg" alt="Logo on Light Background" class="logo-img">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
