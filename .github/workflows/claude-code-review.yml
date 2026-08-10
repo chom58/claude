@@ -19,12 +19,17 @@ jobs:
     #   github.event.pull_request.author_association == 'FIRST_TIME_CONTRIBUTOR'
     
     runs-on: ubuntu-latest
+    # Expose whether the Claude token secret is configured, so the review step
+    # can be skipped cleanly when it is absent (keeps the check green instead of
+    # erroring on an unconfigured repo).
+    env:
+      HAS_CLAUDE_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN != '' }}
     permissions:
       contents: read
       pull-requests: read
       issues: read
       id-token: write
-    
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -33,6 +38,8 @@ jobs:
 
       - name: Run Claude Code Review
         id: claude-review
+        # Skip (rather than fail) when no token is configured for this repo.
+        if: env.HAS_CLAUDE_TOKEN == 'true'
         uses: anthropics/claude-code-action@beta
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
