@@ -40,6 +40,11 @@ jobs:
         id: claude-review
         # Skip (rather than fail) when no token is configured for this repo.
         if: env.HAS_CLAUDE_TOKEN == 'true'
+        # Never block the PR on the review: an unconfigured, invalid, or expired
+        # token makes this step error, but the check should stay green. Once a
+        # valid token is set, the review runs normally and its feedback appears
+        # as usual; it just can't fail the check.
+        continue-on-error: true
         uses: anthropics/claude-code-action@beta
         with:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
